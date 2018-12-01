@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    ////////////////////////////////////
+
+
+
+
+
+    <div>
+        <div>Какие удобства вы предлагаете?</div>
+    </div>
+
+    <!--Wifi-->
+    <div style="margin: 20px;">
+        <div>
+            <input id="wifi" class="css-checkbox med" type="checkbox">
+            <label for="wifi" name="wifi_lbl" class="css-label med elegant">Wifi</label>
+        </div>
+    </div>
+    <!--Кондиционер-->
+    <div style="margin: 20px;">
+        <div>
+            <input id="airconditioning" class="css-checkbox med" type="checkbox">
+            <label for="airconditioning" name="airconditioning_lbl"
+                   class="css-label med elegant">Кондиционер</label>
+        </div>
+    </div>
+    <!--Стиральная машина-->
+    <div style="margin: 20px;">
+        <div>
+            <input id="washer" class="css-checkbox med" type="checkbox">
+            <label for="washer" name="washer_lbl" class="css-label med elegant">Стиральная машина</label>
+        </div>
+    </div>
+    <!--Телевизор-->
+    <div style="margin: 20px;">
+        <div>
+            <input id="tv" class="css-checkbox med" type="checkbox">
+            <label for="tv" name="tv_lbl" class="css-label med elegant">Телевизор</label>
+        </div>
+    </div>
+
+    <!--Курящие-->
+    <div style="margin: 20px;">
+        <div>
+            <input id="notSmoke" class="css-checkbox med" type="checkbox">
+            <label for="notSmoke" name="notSmoke_lbl" class="css-label med elegant">Подходит для курящих</label>
+        </div>
+    </div>
+
+    <!--C детьми-->
+    <div style="margin: 20px;">
+        <div>
+            <input id="forChildren" class="css-checkbox med" type="checkbox">
+            <label for="forChildren" name="forChildren_lbl" class="css-label med elegant">Подходит для
+                постояльцев с детьми</label>
+        </div>
+    </div>
+
+    <!--С животными-->
+    <div style="margin: 20px;">
+        <div>
+            <input id="possiblepets" class="css-checkbox med" type="checkbox">
+            <label for="possiblepets" name="possiblepets_lbl" class="css-label med elegant">Возможно с
+                домашними питомцами</label>
+        </div>
+    </div>
+
+
+    <br>
+    <button type="button" class="btn btn-light">Показать все удобства</button>
+    <button type="button" class="btn btn-light">Скрыть все удобства</button>
+    !!!!!!!!!!!!!!!!! <br>
+
+    <!--дополнительные удобства-->
+    <div class="accordion" id="additionalFacilities" aria-expanded="false">
+
+        <!--Удобства в номере-->
+        <div class="card">
+            <div class="card-header" id="roomFacilitiesCollapseHeading">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse"
+                            data-target="#roomFacilitiesCollapseArea"
+                            aria-expanded="false" aria-controls="roomFacilitiesCollapseArea">
+                        Удобства в номере
+                    </button>
+                </h5>
+            </div>
+
+            <div id="roomFacilitiesCollapseArea" class="collapse"
+                 aria-labelledby="roomFacilitiesCollapseHeading"
+                 data-parent="#additionalFacilities">
+                <div class="card-body">
+
+
+                    <!--Вешалка для одежды-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="clothesHanger" class="css-checkbox med" type="checkbox">
+                            <label for="clothesHanger" name="clothesHanger_lbl" class="css-label med elegant">Вешалка
+                                для одежды</label>
+                        </div>
+                    </div>
+
+                    <!-- Раскладная кровать-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="foldingBed" class="css-checkbox med" type="checkbox">
+                            <label for="foldingBed" name="foldingBed_lbl" class="css-label med elegant">Раскладная
+                                кровать</label>
+                        </div>
+                    </div>
+                    <!--Диван-кровать-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="sofaBed" class="css-checkbox med" type="checkbox">
+                            <label for="sofaBed" name="sofa-bed_lbl"
+                                   class="css-label med elegant">Диван-кровать</label>
+                        </div>
+                    </div>
+                    <!--Шкаф/комод-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="cupboard" class="css-checkbox med" type="checkbox">
+                            <label for="cupboard" name="cupboard_lbl"
+                                   class="css-label med elegant">Шкаф/комод</label>
+                        </div>
+                    </div>
+                    <!--Встроенные шкафы-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="built in wardrobes" class="css-checkbox med" type="checkbox">
+                            <label for="built in wardrobes" name="built in wardrobes_lbl"
+                                   class="css-label med elegant">Встроенные шкафы</label>
+                        </div>
+                    </div>
+                    <!--Ковровое покрытие-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="carpet" class="css-checkbox med" type="checkbox">
+                            <label for="carpet" name="carpet_lbl" class="css-label med elegant">Ковровое
+                                покрытие</label>
+                        </div>
+                    </div>
+                    <!--Ламинат-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="laminate" class="css-checkbox med" type="checkbox">
+                            <label for="laminate" name="laminate_lbl" class="css-label med elegant">Ламинат</label>
+                        </div>
+                    </div>
+                    <!--Паркетный пол-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="parquet" class="css-checkbox med" type="checkbox">
+                            <label for="parquet" name="parquet_lbl" class="css-label med elegant">Паркетный
+                                пол</label>
+                        </div>
+                    </div>
+                    <!--Деревянный пол-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="wooden" class="css-checkbox med" type="checkbox">
+                            <label for="wooden" name="wooden_lbl" class="css-label med elegant">Деревянный
+                                пол</label>
+                        </div>
+                    </div>
+                    <!--Плиточный/Мраморный пол-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="tiledMarble" class="css-checkbox med" type="checkbox">
+                            <label for="tiledMarble" name="tiled_marble_lbl" class="css-label med elegant">Плиточный/Мраморный
+                                пол</label>
+                        </div>
+                    </div>
+                    <!--Линолиум-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="linoleum" class="css-checkbox med" type="checkbox">
+                            <label for="linoleum" name="linoleum_lbl" class="css-label med elegant">
+                                Линолиум</label>
+                        </div>
+                    </div>
+                    <!--Полы с подогревом-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="heatedFloors" class="css-checkbox med" type="checkbox">
+                            <label for="heatedFloors" name="heatedFloors_lbl" class="css-label med elegant">Полы с
+                                подогревом</label>
+                        </div>
+                    </div>
+                    <!--Камин-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="fireplace" class="css-checkbox med" type="checkbox">
+                            <label for="fireplace" name="fireplace_lbl" class="css-label med elegant">Камин</label>
+                        </div>
+                    </div>
+                    <!--Вентилятор-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="fan" class="css-checkbox med" type="checkbox">
+                            <label for="fan" name="fan_lbl" class="css-label med elegant">Вентилятор</label>
+                        </div>
+                    </div>
+                    <!--Утюг-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="iron" class="css-checkbox med" type="checkbox">
+                            <label for="iron" name="iron_lbl" class="css-label med elegant">Утюг</label>
+                        </div>
+                    </div>
+                    <!--Гладильная доска-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="ironingboard" class="css-checkbox med" type="checkbox">
+                            <label for="ironingboard" name="ironingboard_lbl" class="css-label med elegant">Гладильная
+                                доска</label>
+                        </div>
+                    </div>
+                    <!--Москитная сетка-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="mosquito" class="css-checkbox med" type="checkbox">
+                            <label for="mosquito" name="mosquito_lbl" class="css-label med elegant">Москитная
+                                сетка</label>
+                        </div>
+                    </div>
+                    <!--Отдельный вход-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="separateEntrance" class="css-checkbox med" type="checkbox">
+                            <label for="separateEntrance" name="separateEntrance_lbl" class="css-label med elegant">Отдельный
+                                вход</label>
+                        </div>
+                    </div>
+                    <!--Диван-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="sofa" class="css-checkbox med" type="checkbox">
+                            <label for="sofa" name="sofa_lbl" class="css-label med elegant">Диван</label>
+                        </div>
+                    </div>
+                    <!--Двухспальная кровать-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="doubleBed" class="css-checkbox med" type="checkbox">
+                            <label for="doubleBed" name="doubleBed_lbl" class="css-label med elegant">Двухспальная
+                                кровать</label>
+                        </div>
+                    </div>
+                    <!--Кресло-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="armchair" class="css-checkbox med" type="checkbox">
+                            <label for="armchair" name="armchair_lbl" class="css-label med elegant">Кресло</label>
+                        </div>
+                    </div>
+                    <!--Звукоизоляция-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="soundproofing" class="css-checkbox med" type="checkbox">
+                            <label for="soundproofing" name="soundproofing_lbl" class="css-label med elegant">Звукоизоляция</label>
+                        </div>
+                    </div>
+                    <!--Рабочий стол-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="desktop" class="css-checkbox med" type="checkbox">
+                            <label for="desktop" name="desktop_lbl" class="css-label med elegant">Рабочий
+                                стол</label>
+                        </div>
+                    </div>
+                    <!--Чистящие средства-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="cleaners" class="css-checkbox med" type="checkbox">
+                            <label for="cleaners" name="cleaners_lbl" class="css-label med elegant">Чистящие
+                                средства</label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!--Ванная комната-->
+        <div class="card">
+            <div class="card-header" id="bathroomCollapseHeading">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#bathroomCollapseArea" aria-expanded="false"
+                            aria-controls="bathroomCollapseArea">
+                        Ванная комната
+                    </button>
+                </h5>
+            </div>
+            <div id="bathroomCollapseArea" class="collapse" aria-labelledby="bathroomCollapseHeading"
+                 data-parent="#additionalFacilities">
+                <div class="card-body">
+                    <!--Шампунь-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="shampoo" class="css-checkbox med" type="checkbox">
+                            <label for="shampoo" name="shampoo_lbl"
+                                   class="css-label med elegant">Шампунь</label>
+                        </div>
+                    </div>
+                    <!--Фен-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="hairDryer" class="css-checkbox med" type="checkbox">
+                            <label for="hairDryer" name="hairdryer_lbl" class="css-label med elegant">Фен</label>
+                        </div>
+                    </div>
+
+                    <!--Туалетная бумага-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="toiletPaper" class="css-checkbox med" type="checkbox">
+                            <label for="toiletPaper" name="toiletPaper_lbl" class="css-label med elegant">Туалетная
+                                бумага</label>
+                        </div>
+                    </div>
+                    <!--Биде-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="bidet" class="css-checkbox med" type="checkbox">
+                            <label for="bidet" name="bidet_lbl" class="css-label med elegant">Биде</label>
+                        </div>
+                    </div>
+                    <!--Ванна-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="bath" class="css-checkbox med" type="checkbox">
+                            <label for="bath" name="bath_lbl" class="css-label med elegant">Ванна</label>
+                        </div>
+                    </div>
+                    <!--Душевая кабина-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="showerCabin" class="css-checkbox med" type="checkbox">
+                            <label for="showerCabin" name="showerCabin_lbl" class="css-label med elegant">Душевая
+                                кабина</label>
+                        </div>
+                    </div>
+                    <!--Туалетные принадлежности-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="toiletries" class="css-checkbox med" type="checkbox">
+                            <label for="toiletries" name="toiletries_lbl" class="css-label med elegant">Туалетные
+                                принадлежности</label>
+                        </div>
+                    </div>
+
+                    <!--Джакузи-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="jacuzzi" class="css-checkbox med" type="checkbox">
+                            <label for="jacuzzi" name="jacuzzi_lbl" class="css-label med elegant">Джакузи</label>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <!--Медиа и технологии-->
+        <div class="card">
+            <div class="card-header" id="MediaCollapseHeading">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#MediaCollapseArea" aria-expanded="false"
+                            aria-controls="MediaCollapseArea">
+                        Медиа и технологии
+                    </button>
+                </h5>
+            </div>
+            <div id="MediaCollapseArea" class="collapse" aria-labelledby="MediaCollapseHeading"
+                 data-parent="#additionalFacilities">
+                <div class="card-body">
+
+                    <!--Компьютер-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="computer" class="css-checkbox med" type="checkbox">
+                            <label for="computer" name="computer_lbl"
+                                   class="css-label med elegant">Компьютер</label>
+                        </div>
+                    </div>
+                    <!--Кабельные каналы-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="сableСhannels" class="css-checkbox med" type="checkbox">
+                            <label for="сableСhannels" name="сableСhannels_lbl" class="css-label med elegant">Кабельные
+                                каналы</label>
+                        </div>
+                    </div>
+                    <!--Спутниковые каналы-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="satelliteChannels" class="css-checkbox med" type="checkbox">
+                            <label for="satelliteChannels" name="satelliteChannels_lbl"
+                                   class="css-label med elegant">Спутниковые
+                                каналы</label>
+                        </div>
+                    </div>
+                    <!--Телефон-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="phone" class="css-checkbox med" type="checkbox">
+                            <label for="phone" name="phone_lbl" class="css-label med elegant">Телефон</label>
+                        </div>
+                    </div>
+                    <!--Платные ТВ-каналы-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="payPerViewChannels" class="css-checkbox med" type="checkbox">
+                            <label for="payPerViewChannels" name="Pay-per-viewChannels_lbl"
+                                   class="css-label med elegant">Платные
+                                ТВ-каналы</label>
+                        </div>
+                    </div>
+                    <!--Видеопроигрыватель-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="videoPlayer" class="css-checkbox med" type="checkbox">
+                            <label for="videoPlayer" name="videoPlayer_lbl" class="css-label med elegant">Видеопроигрыватель</label>
+                        </div>
+                    </div>
+                    <!--Музыкальная аудио система-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="musicAudioSystem" class="css-checkbox med" type="checkbox">
+                            <label for="musicAudioSystem" name="musicAudioSystem_lbl" class="css-label med elegant">Музыкальная
+                                аудио
+                                система</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Питание и напитки-->
+        <div class="card">
+            <div class="card-header" id="foodCollapseHeading">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#foodCollapseArea" aria-expanded="false"
+                            aria-controls="foodCollapseArea">
+                        Питание и напитки
+                    </button>
+                </h5>
+            </div>
+            <div id="foodCollapseArea" class="collapse" aria-labelledby="foodCollapseHeading"
+                 data-parent="#additionalFacilities">
+                <div class="card-body">
+                    <!--Обеденный стол-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="dinnerTable" class="css-checkbox med" type="checkbox">
+                            <label for="dinnerTable" name="dinnerTable_lbl" class="css-label med elegant">Обеденный
+                                стол</label>
+                        </div>
+                    </div>
+                    <!--Духовка-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="oven" class="css-checkbox med" type="checkbox">
+                            <label for="oven" name="oven_lbl" class="css-label med elegant">Духовка</label>
+                        </div>
+                    </div>
+                    <!--Плита-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="plate" class="css-checkbox med" type="checkbox">
+                            <label for="plate" name="plate_lbl" class="css-label med elegant">Плита</label>
+                        </div>
+                    </div>
+                    <!--Тостер-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="toaster" class="css-checkbox med" type="checkbox">
+                            <label for="toaster" name="toaster_lbl" class="css-label med elegant">Тостер</label>
+                        </div>
+                    </div>
+                    <!--Посудомоечная машина-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="dishWasher" class="css-checkbox med" type="checkbox">
+                            <label for="dishWasher" name="dishwasher_lbl" class="css-label med elegant">Посудомоечная
+                                машина</label>
+                        </div>
+                    </div>
+                    <!--Электрический чайник-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="electricKettle" class="css-checkbox med" type="checkbox">
+                            <label for="electricKettle" name="electricKettle_lbl" class="css-label med elegant">Электрический
+                                чайник</label>
+                        </div>
+                    </div>
+                    <!--Кухонные принадлежности-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="kitchenAccessories" class="css-checkbox med" type="checkbox">
+                            <label for="kitchenAccessories" name="kitchenAccessories_lbl"
+                                   class="css-label med elegant">Кухонные
+                                принадлежности</label>
+                        </div>
+                    </div>
+                    <!--Микроволновая печь-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="microwave" class="css-checkbox med" type="checkbox">
+                            <label for="microwave" name="Microwave_lbl" class="css-label med elegant"> Микроволновая
+                                печь</label>
+                        </div>
+                    </div>
+                    <!--Холодильник-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="fridge" class="css-checkbox med" type="checkbox">
+                            <label for="fridge" name="fridge_lbl" class="css-label med elegant">Холодильник</label>
+                        </div>
+                    </div>
+                    <!--Кофемашина-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="coffeeMachine" class="css-checkbox med" type="checkbox">
+                            <label for="coffeeMachine" name="coffeeMachine_lbl" class="css-label med elegant">Кофемашина</label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!--Дополнительные услуги-->
+
+        <div class="card">
+            <div class="card-header" id="additionalServicesCollapseHeading">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#additionalServicesCollapseArea" aria-expanded="false"
+                            aria-controls="additionalServicesCollapseArea">
+                        Дополнительные услуги
+                    </button>
+                </h5>
+            </div>
+            <div id="additionalServicesCollapseArea" class="collapse"
+                 aria-labelledby="additionalServicesCollapseHeading"
+                 data-parent="#additionalFacilities">
+                <div class="card-body">
+                    <!--Будильник-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="alarmClock" class="css-checkbox med" type="checkbox">
+                            <label for="alarmClock" name="_lbl" class="css-label med elegant">Будильник</label>
+                        </div>
+                    </div>
+                    <!--Белье-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="underwear" class="css-checkbox med" type="checkbox">
+                            <label for="underwear" name="underwear_lbl" class="css-label med elegant">Белье</label>
+                        </div>
+                    </div>
+                    <!--Полотенца-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="towels" class="css-checkbox med" type="checkbox">
+                            <label for="towels" name="towels_lbl" class="css-label med elegant">Полотенца</label>
+                        </div>
+                    </div>
+                    <!--Дополнительные полотенца/постельное белье за дополнительную плату-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="extraBedding" class="css-checkbox med" type="checkbox">
+                            <label for="extraBedding" name="extraBedding_lbl" class="css-label med elegant">
+                                Дополнительные
+                                полотенца/постельное белье за дополнительную плату</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Снаружи-->
+        <div class="card">
+            <div class="card-header" id="outsideCollapseHeading">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#outsideCollapseArea" aria-expanded="false"
+                            aria-controls="outsideCollapseArea">
+                        Снаружи
+                    </button>
+                </h5>
+            </div>
+            <div id="outsideCollapseArea" class="collapse" aria-labelledby="outsideCollapseHeading"
+                 data-parent="#additionalFacilities">
+                <div class="card-body">
+                    <!--Балкон-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="balcony" class="css-checkbox med" type="checkbox">
+                            <label for="balcony" name="balcony_lbl" class="css-label med elegant"> Балкон</label>
+                        </div>
+                    </div>
+                    <!--Терраса-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="terrace" class="css-checkbox med" type="checkbox">
+                            <label for="terrace" name="terrace_lbl" class="css-label med elegant">Терраса</label>
+                        </div>
+                    </div>
+                    <!--Вид на город-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="cityView" class="css-checkbox med" type="checkbox">
+                            <label for="cityView" name="cityView_lbl" class="css-label med elegant">Вид на
+                                город</label>
+                        </div>
+                    </div>
+                    <!--Вид на сад-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="gardenView" class="css-checkbox med" type="checkbox">
+                            <label for="gardenView" name="gardenView_lbl" class="css-label med elegant">Вид на
+                                сад</label>
+                        </div>
+                    </div>
+                    <!--Вид на озеро-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="lakeView" class="css-checkbox med" type="checkbox">
+                            <label for="lakeView" name="lakeView_lbl" class="css-label med elegant">Вид на
+                                озеро</label>
+                        </div>
+                    </div>
+                    <!--Вид на лес-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="forestView" class="css-checkbox med" type="checkbox">
+                            <label for="forestView" name="forestView_lbl" class="css-label med elegant">Вид на
+                                лес</label>
+                        </div>
+                    </div>
+                    <!--рядом метро-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="metro" class="css-checkbox med" type="checkbox">
+                            <label for="metro" name="metro_lbl" class="css-label med elegant">Рядом метро</label>
+                        </div>
+                    </div>
+                    <!--рядом автобусная остановка-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="busStop" class="css-checkbox med" type="checkbox">
+                            <label for="busStop" name="busStop_lbl" class="css-label med elegant">Рядом автобусная
+                                остановка</label>
+                        </div>
+                    </div>
+                    <!--рядом магазин-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="shop" class="css-checkbox med" type="checkbox">
+                            <label for="shop" name="shop_lbl" class="css-label med elegant">Рядом магазин</label>
+                        </div>
+                    </div>
+                    <!--рядом развлекательный центр-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="entertainmentCenter" class="css-checkbox med" type="checkbox">
+                            <label for="entertainmentCenter" name="entertainmentCenter_lbl"
+                                   class="css-label med elegant">Рядом
+                                развлекательный центр</label>
+                        </div>
+                    </div>
+                    <!--бесплатная стоянка-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="freeParking" class="css-checkbox med" type="checkbox">
+                            <label for="freeParking" name="freeParking_lbl" class="css-label med elegant">Бесплатная
+                                стоянка</label>
+                        </div>
+                    </div>
+                    <!--Платная стоянка-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="paidParking" class="css-checkbox med" type="checkbox">
+                            <label for="paidParking" name="paidParking_lbl" class="css-label med elegant">Платная
+                                стоянка</label>
+                        </div>
+                    </div>
+                    <!--Одно стояночное место-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="oneParkingPace" class="css-checkbox med" type="checkbox">
+                            <label for="oneParkingPace" name="oneParkingPace_lbl" class="css-label med elegant">Одно
+                                стояночное
+                                место</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Доступность-->
+        <div class="card">
+            <div class="card-header" id="availabilityCollapseHeading">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#availabilityCollapseArea" aria-expanded="false"
+                            aria-controls="availabilityCollapseArea">
+                        Доступность
+                    </button>
+                </h5>
+            </div>
+            <div id="availabilityCollapseArea" class="collapse" aria-labelledby="availabilityCollapseHeading"
+                 data-parent="#additionalFacilities">
+                <div class="card-body">
+                    <!--Помещение полностью находится на первом этаже-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="firstFloor" class="css-checkbox med" type="checkbox">
+                            <label for="firstFloor" name="firstFloor_lbl" class="css-label med elegant">Помещение
+                                полностью находится на
+                                первом этаже</label>
+                        </div>
+                    </div>
+                    <!--Лифт-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="lift" class="css-checkbox med" type="checkbox">
+                            <label for="lift" name="lift_lbl" class="css-label med elegant">Лифт</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Безопасность-->
+        <div class="card">
+            <div class="card-header" id="securityCollapseHeading">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#securityCollapseArea" aria-expanded="false"
+                            aria-controls="securityCollapseArea">
+                        Безопасность
+                    </button>
+                </h5>
+            </div>
+            <div id="securityCollapseArea" class="collapse" aria-labelledby="securityCollapseHeading"
+                 data-parent="#additionalFacilities">
+                <div class="card-body">
+                    <!--Портье-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="receptionist" class="css-checkbox med" type="checkbox">
+                            <label for="receptionist" name="receptionist_lbl"
+                                   class="css-label med elegant">Портье</label>
+                        </div>
+                    </div>
+                    <!--Камеры наблюдения во дворе-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="surveillanceCamerasYard" class="css-checkbox med" type="checkbox">
+                            <label for="surveillanceCamerasYard" name="surveillanceCamerasYard_lbl"
+                                   class="css-label med elegant">Камеры
+                                наблюдения во дворе</label>
+                        </div>
+                    </div>
+                    <!--Камеры наблюдения на стоянке-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="surveillanceCamerasParking" class="css-checkbox med" type="checkbox">
+                            <label for="surveillanceCamerasParking" name="surveillanceCamerasParking_lbl"
+                                   class="css-label med elegant">
+                                Камеры наблюдения на стоянке</label>
+                        </div>
+                    </div>
+                    <!--Камеры наблюдения на лестничной площадке-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="surveillanceCamerasLanding" class="css-checkbox med" type="checkbox">
+                            <label for="surveillanceCamerasLanding" name="surveillanceCamerasLanding_lbl"
+                                   class="css-label med elegant">Камеры
+                                наблюдения на лестничной площадке</label>
+                        </div>
+                    </div>
+                    <!--Железные входные двери-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="ironDoors" class="css-checkbox med" type="checkbox">
+                            <label for="ironDoors" name="ironDoors_lbl" class="css-label med elegant"> Железные
+                                входные двери</label>
+                        </div>
+                    </div>
+                    <!--Сейф-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="safe" class="css-checkbox med" type="checkbox">
+                            <label for="safe" name="safe_lbl" class="css-label med elegant">Сейф</label>
+                        </div>
+                    </div>
+                    <!--Домофон-->
+                    <div style="margin: 20px;">
+                        <div>
+                            <input id="domoff" class="css-checkbox med" type="checkbox">
+                            <label for="domoff" name="domoff_lbl" class="css-label med elegant">Домофон</label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    /////////////////////////////
+
+
+    <!--Совмещенный санузел-->
+
+    <div style="margin: 20px;">
+        <div>
+            <input id="toiletcombined" class="css-checkbox med" type="checkbox">
+            <label for="toiletcombined" name="toiletcombined_lbl" class="css-label med elegant">Совмещенный
+                санузел</label>
+        </div>
+    </div>
+    !!
+    <!--Раздельный санузел-->
+    <div style="margin: 20px;">
+        <div>
+            <input id="toiletseparated" class="css-checkbox med" type="checkbox">
+            <label for="toiletseparated" name="toiletseparated_lbl" class="css-label med elegant">Раздельный
+                санузел</label>
+        </div>
+    </div>
+
+
+    <div style="margin: 20px;">
+        <div>
+            <input id="dishes" class="css-checkbox med" type="checkbox">
+            <label for="dishes" name="dishes_lbl" class="css-label med elegant">Посуда</label>
+        </div>
+    </div>
+
+    <!--</div>-->
+
+
+    <div style="margin: 20px;">
+        <div>
+            <input id="smallequipment" class="css-checkbox med" type="checkbox">
+            <label for="smallequipment" name="smallequipment_lbl" class="css-label med elegant">Мелкое
+                кухонное
+                оборудование</label>
+        </div>
+    </div>
+
+
+    <!--   <div style="margin: 20px;">
+           <div>
+    <input id="notsmoke" class="css-checkbox med" type="checkbox">
+    <label for="notsmoke" name="notsmoke_lbl" class="css-label med elegant">Для не
+        курящих</label>
+</div>
+</div>-->
+
+
+    <!--   <div style="margin: 20px;">
+           <div>
+               Цена за сутки <input name="pricenight" class="css-input" value="price" type="text">
+           </div>
+       </div>
+       <div style="margin: 20px;">
+           <div>
+               Цена за часы <input name="priceHour" class="css-input" value="price" type="text">
+           </div>
+       </div>-->
+
+    <!--///////////////////////////////////////////-->
+    <!--
+       <div style="margin: 20px;">
+            <div>
+                <input id="" class="css-checkbox med" type="checkbox">
+                <label for="" name="_lbl" class="css-label med elegant"></label>
+            </div>
+        </div>
+        -->
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <!--facilities END-->
+
+
+    </div>
+    </form>
+
+
+
+
+    ////////////////////////////////////
+
+
+</head>
+<body>
+
+</body>
+</html>

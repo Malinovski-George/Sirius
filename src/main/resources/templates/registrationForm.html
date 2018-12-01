@@ -1,0 +1,353 @@
+<!--<html xmlns:th="http://www.w3.org/1999/xhtml">-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap, CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style_checkbox.css">
+    <link rel="stylesheet" href="/css/style_input.css">
+    <link rel="stylesheet" href="/css/style_input_stylus.styl">
+    <link rel="stylesheet" href="/css/style_input_stylus.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <title>Home Page</title></head>
+<body>
+
+
+<div class="container" name="Main container">
+
+    <!--Main menu START-->
+    <nav name="Main Menu" class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="/">BOOKI</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <!--hide when logged-->
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Регистрация</a>
+                </li>
+                <!--hide when logged-->
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Вход</a>
+                </li>
+                <!--hide when unlogged-->
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Добвать объявление</a>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Выбрать город</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="#">Минск</a>
+                        <a class="dropdown-item" href="#">Могилев</a>
+                        <a class="dropdown-item" href="#">Витебск</a>
+                        <a class="dropdown-item" href="#">Брест</a>
+                        <a class="dropdown-item" href="#">Гродно</a>
+                        <a class="dropdown-item" href="#">Гомель</a>
+                    </div>
+                </li>
+            </ul>
+            <!--
+            search
+            <form class="form-inline my-2 my-lg-0">
+                 <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+             </form>-->
+        </div>
+    </nav>
+    <!--Main menu END-->
+
+
+    <h1>Hello !</h1>
+    <!--<p>Welcome to book <span th:text="${appName}">Our App</span></p>-->
+    <p>Welcome to book <span>Our App</span></p>
+    <button class="btn btn-success">asdasd</button>
+
+    <form th:action="@{/registrationForm}" method="post" th:object="${registrationFormDto}">
+        <div class="container">
+
+
+            <!--Contact info START-->
+            <div>
+                <h3>Основная информация</h3><br>
+
+                <div>
+
+                    <h4><span>Какие контактные данные вы хотите указать для этого объекта?</span></h4><br>
+                    <span> Контактное лицо</span><br>
+                    <span> <input name="ownerName" class="css-input" type="text" th:field="*{ownerName}"></span><br>
+                    <br>
+
+
+                </div>
+            </div>
+        </div>
+
+        <input type="submit" value="Save as Draft"/>
+
+    </form>
+
+
+    <form th:action="@{/registrationForm}" th:object="${registrationFormDto}" method="post">
+        <!--<form th:action="@{/registrationForm}" method="post" th:object="${registrationFormDto}">-->
+        <div class="container">
+
+
+            <!--Contact info START-->
+            <div>
+                <h3>Основная информация</h3><br>
+
+                <div>
+
+                    <h4><span>Какие контактные данные вы хотите указать для этого объекта?</span></h4><br>
+                    <span> Контактное лицо</span><br>
+                    <!--!!name--> <span> <input name="ownerName" class="css-input" type="text"
+                                                th:field="*{ownerName}"></span><br>
+                    <br>
+                    <!--<span> <input name="ownerName" class="css-input" type="text" ></span><br> <br>-->
+                    <span>Контактные номера телефона (чтобы мы могли помочь вам с регистрацией)</span>
+
+                    <!--  <label for="inp" class="inp">
+                          <input type="text" id="inp" placeholder="&nbsp;">
+                          <span class="label">Label</span>
+                          <span class="border"></span>
+                      </label>
+      -->
+                    <br>
+                    <!--<span><input name="phone1" class="css-input" type="text" th:field="*{ownerName}"></span>-->
+                    <span><input name="phone1" class="css-input" type="text"></span>
+
+                    <input id="viberPhone1" class="css-checkbox med" type="checkbox" th:field="*{viberPhone1}">
+                    <!--<input id="viberPhone1" class="css-checkbox med" type="checkbox" >-->
+                    <label for="viberPhone1" name="viberPhone1_lbl"
+                           class="css-label med elegant">Viber</label>
+                    <input id="watsUpPhone1" class="css-checkbox med" type="checkbox" th:field="*{watsUpPhone1}">
+                    <!--<input id="watsUpPhone1" class="css-checkbox med" type="checkbox">-->
+                    <label for="watsUpPhone1" name="watsUpPhone1_lbl"
+                           class="css-label med elegant">WatsUp</label>
+
+                    <br><br>
+                    <span><input name="phone2" class="css-input" type="text"></span>
+
+                    <input id="viberPhone2" class="css-checkbox med" type="checkbox">
+                    <label for="viberPhone2" name="viberPhone2_lbl"
+                           class="css-label med elegant">Viber</label>
+                    <input id="watsUpPhone2" class="css-checkbox med" type="checkbox">
+                    <label for="watsUpPhone2" name="watsUpPhone2_lbl"
+                           class="css-label med elegant">WatsUp</label>
+
+                    <br><br>
+                    <span><input name="phone3" class="css-input" type="text"></span>
+
+
+                    <input id="viberPhone3" class="css-checkbox med" type="checkbox">
+                    <label for="viberPhone3" name="viberPhone3_lbl"
+                           class="css-label med elegant">Viber</label>
+                    <input id="watsUpPhone3" class="css-checkbox med" type="checkbox">
+                    <label for="watsUpPhone3" name="watsUpPhone3_lbl"
+                           class="css-label med elegant">WatsUp</label>
+                    <br>
+
+
+                </div>
+                <br>
+                <div>
+                    <!--todo devide street and house number-->
+                    <h4>Где находится ваш объект?</h4>
+                    Улица и номер дома <br>
+                    <input name="street" class="css-input" type="text"> <br> <br>
+                    Страна/территория <br>
+                    <input name="country" class="css-input" type="text"> <br> <br>
+                    Город <br>
+                    <input name="town" class="css-input" type="text">
+                </div>
+            </div>
+            <!--Contact info END-->
+
+            //////////////////////////////////////////////////////////////////////////////
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <h3>Планировка и цены </h3><br>
+            <h4>апартаменты</h4>
+            <!--price START-->
+
+
+            <div>
+
+                Количество комнат
+                <select name="roomnumber">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>10+</option>
+                </select><br><br>
+
+                Количество спальных мест
+                <select name="bednumber">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>10+</option>
+                </select><br><br>
+
+                Количество ванных комнат
+                <select name="bathroomnumber">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>4+</option>
+
+                </select><br><br>
+
+
+                Этаж/этажность <br>
+                <input name="multistorey" class="css-input" type="number"><br><br>
+                общая площадь<br>
+                <input name="generalarea" class="css-input" type="number"><br><br>
+                жилая площадь<br>
+                <input name="lifearea" class="css-input" type="number"><br><br>
+                площадь кухни<br>
+                <input name="kitchenarea" class="css-input" type="number"><br><br>
+
+
+                <h4>Количество гостей</h4>
+                Сколько гостей могут остановиться в этой комнате?<br>
+
+                <input name="guestsNumber" class="css-input" type="number"><br><br>
+
+
+            </div>
+
+            <h4>цена за ночь</h4>
+            <div>
+                <div style="margin: 20px;">
+                    <div>
+                        Цена за сутки
+                        <input name="pricenight" class="css-input" value="price" type="text">
+                    </div>
+                </div>
+
+                <div style="margin: 20px;">
+                    <div>
+                        Цена за часы <input name="priceHour" class="css-input" value="price" type="text">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <input type="submit" value="Save as Draft"/>
+
+
+        <!--price END-->
+        //////////////////////////////////////////////////////////////////////////////////////
+
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <!--File Upload START-->
+        <div class="panel panel-default">
+            <div class="panel-heading text-center">
+                <h3>Spring MVC + Dropzone.js Example</h3>
+            </div>
+            <div class="panel-body">
+                <div>
+                    <form id="dropzone-form" class="dropzone"
+                          enctype="multipart/form-data">
+
+                        <div class="dz-default dz-message file-dropzone text-center well col-sm-12">
+                            <span class="glyphicon glyphicon-paperclip"></span> <span>
+                                                       To attach files, drag and drop here</span><br>
+                            <span>OR</span><br>
+                            <span>Just Click</span>
+                        </div>
+
+                        <!-- this is were the previews should be shown. -->
+                        <div class="dropzone-previews"></div>
+                    </form>
+                    <hr>
+                    <button id="upload-button" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-upload"></span> Upload
+                    </button>
+                    <a class="btn btn-primary pull-right" href="list"> <span
+                            class="glyphicon glyphicon-eye-open"></span> View All Uploads
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--File Upload END-->
+        //////////////////////////////////////////////////////////////////////////////////////
+        <br>
+        <br>
+        <br>
+        <br>
+        <!--facilities START-->
+
+        <!--</form>-->
+    </form>
+</div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+
+<!--///////////////////////////////////////////////////////////////////////////////////////////-->
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+
+<!--Placed at the end of the document so the pages load faster-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="../../assets/js/vendor/popper.min.js"></script>
+
+<!--<script src="../../dist/js/bootstrap.min.js"></script>-->
+
+<script src="/js/jquery-2.1.1.js"></script>
+<!--<script src="/js/bootstrap.js"></script>-->
+<script src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap-dialog.js"></script>
+
+<script type="text/javascript" src="/js/dropzone.js"></script>
+<script type="text/javascript" src="/js/uploader.js"></script>
+
+
+</body>
+</html>
