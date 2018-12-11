@@ -7,22 +7,24 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 
 //    https://www.baeldung.com/registration-with-spring-mvc-and-spring-security
 
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     public UserDetailsServiceImpl() {
     }
 
-    public UserDetailsServiceImpl(UserService userService) {
+    public UserDetailsServiceImpl(IUserService userService) {
         this.userService = userService;
     }
 
@@ -43,5 +45,40 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
         return new org.springframework.security.core.userdetails.User(mail, password, grantedAuthorities);
     }
+
+    //example from spring tutorial
+/*
+    @Autowired
+    private UserRepository userRepository;
+    //
+    public UserDetails loadUserByUsername(String email)
+            throws UsernameNotFoundException {
+
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
+            throw new UsernameNotFoundException(
+                    "No user found with username: "+ email);
+        }
+        boolean enabled = true;
+        boolean accountNonExpired = true;
+        boolean credentialsNonExpired = true;
+        boolean accountNonLocked = true;
+        return  new org.springframework.security.core.userdetails.User
+                (user.getEmail(),
+                        user.getPassword().toLowerCase(), enabled, accountNonExpired,
+                        credentialsNonExpired, accountNonLocked,
+                        getAuthorities(user.getRoles()));
+    }
+
+    private static List<GrantedAuthority> getAuthorities (List<String> roles) {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        for (String role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role));
+        }
+        return authorities;
+    }
+
+    */
+
 }
 

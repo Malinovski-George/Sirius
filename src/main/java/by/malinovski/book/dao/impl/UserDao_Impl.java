@@ -79,5 +79,10 @@ public class UserDao_Impl implements UserDao {
                 .setString("userId", String.valueOf(userId));
         return (User) query.list().stream().findFirst().orElse(null);
     }
+
+    @Override
+    public User save(User user) {
+        return user;
+    }
 }
 

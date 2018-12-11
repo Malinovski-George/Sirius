@@ -16,4 +16,6 @@ public interface UserDao {
     List<User> getAllManagers();*/
 
     User getUserById(int owner);
+
+    User save(User user);
 }
