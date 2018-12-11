@@ -53,6 +53,14 @@ public class MainController {
         return "done";
     }
 
+    @RequestMapping(path = {"/userRegistration"}, method = RequestMethod.GET)
+    public String userRegistrationFormPost(@ModelAttribute RegistrationFormDto registrationFormDto, Model model) {
+
+        model.addAttribute("user", registrationFormDto);
+        return "userRegistration";
+    }
+
+
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public @ResponseBody
     List upload(MultipartHttpServletRequest request,
@@ -110,5 +118,7 @@ public class MainController {
             e.printStackTrace();
         }*/
     }
+
+
 
 }

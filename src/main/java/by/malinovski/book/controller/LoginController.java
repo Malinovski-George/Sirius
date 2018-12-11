@@ -1,5 +1,6 @@
 package by.malinovski.book.controller;
 
+import by.malinovski.book.dto.UserDto;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -16,13 +17,13 @@ public class LoginController {
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
     public String login() {
-        return "login.html";
+        return "login2.html";
     }
 
     @RequestMapping("/login-error")
     public String loginError(Model model) {
         model.addAttribute("loginError", true);
-        return "login.html";
+        return "login2.html";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -39,5 +40,12 @@ public class LoginController {
 //    public String tickets(Model model) {
 //        return "home";
 //    }
+
+    @RequestMapping("/userRegistration")
+    public String registration(Model model) {
+        UserDto userDto = new UserDto();
+        model.addAttribute("user", userDto);
+        return "userRegistration.html";
+    }
 
 }

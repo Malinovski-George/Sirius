@@ -1,5 +1,6 @@
 package by.malinovski.book;
 
+import by.malinovski.book.service.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,9 +21,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/",
                         "/home",
+                        "/userRegistration",
                         "/lib/bootstrap/**",
                         "/css/**",
-                        "/img/**",
+                        "/scss/**",
+                        "/image/**",
+                        "/fonts/**",
                         "/js/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -46,6 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .build();
 
         return new InMemoryUserDetailsManager(user);
+//        return new UserDetailsServiceImpl();
     }
 
 //    @SuppressWarnings("deprecation")
