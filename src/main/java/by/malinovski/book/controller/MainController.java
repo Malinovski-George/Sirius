@@ -35,30 +35,29 @@ public class MainController {
 //        return "home";
     }
 
-    @RequestMapping(path = {"/registrationForm"}, method = RequestMethod.GET)
-    public ModelAndView registrationFormGet() {
-//    public String showHome() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("registrationForm");
-//        modelAndView.addObject("appName", "asdasd");
-        modelAndView.addObject("registrationFormDto", new RegistrationFormDto());
-        return modelAndView;
-//        return "home";
-    }
 
-    @RequestMapping(path = {"/registrationForm"}, method = RequestMethod.POST)
-    public String registrationFormPost(@ModelAttribute RegistrationFormDto registrationFormDto, Model model) {
 
-        model.addAttribute("registrationFormDto", registrationFormDto);
-        return "done";
-    }
-
-    @RequestMapping(path = {"/userRegistration"}, method = RequestMethod.GET)
+   /* @RequestMapping(path = {"/userRegistration"}, method = RequestMethod.GET)
     public String userRegistrationFormPost(@ModelAttribute RegistrationFormDto registrationFormDto, Model model) {
 
         model.addAttribute("user", registrationFormDto);
         return "userRegistration";
     }
+*/
+  /* @RequestMapping(path = {"/registrationForm"}, method = RequestMethod.POST)
+   public String registrationFormPost(@ModelAttribute RegistrationFormDto registrationFormDto, Model model) {
+
+
+       model.addAttribute("registrationFormDto", registrationFormDto);
+        return "done";
+    }*/
+
+//    @RequestMapping(path = {"/userRegistration"}, method = RequestMethod.GET)
+//    public String userRegistrationFormPost(@ModelAttribute RegistrationFormDto registrationFormDto, Model model) {
+//
+//        model.addAttribute("user", registrationFormDto);
+//        return "userRegistration";
+//    }
 
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)

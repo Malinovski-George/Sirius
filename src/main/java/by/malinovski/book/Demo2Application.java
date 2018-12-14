@@ -25,7 +25,8 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @SpringBootApplication
-@Import({WebSecurityConfig.class, AuthenticationSecurityConfig.class})
+//@Import({WebSecurityConfig.class, AuthenticationSecurityConfig.class})
+@Import({WebSecurityConfig.class})
 @EnableAutoConfiguration(exclude = {
         DataSourceAutoConfiguration.class,
         DataSourceTransactionManagerAutoConfiguration.class,

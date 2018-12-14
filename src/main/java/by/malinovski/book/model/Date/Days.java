@@ -1,9 +1,5 @@
 package by.malinovski.book.model.Date;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-@AllArgsConstructor
 public enum Days {
 
 
@@ -21,13 +17,19 @@ public enum Days {
 
     SUNDAY("Sunday", "Воскресенье");
 
-    @Getter
     private String rus;
-    @Getter
     private String eng;
 
     Days(String rus, String eng) {
         this.rus = rus;
         this.eng = eng;
+    }
+
+    public String getRus() {
+        return rus;
+    }
+
+    public String getEng() {
+        return eng;
     }
 }
