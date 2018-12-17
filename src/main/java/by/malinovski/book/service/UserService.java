@@ -25,7 +25,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User registerNewUserAccount(UserDto accountDto) throws EmailExistsException {
+//    public User registerNewUserAccount(UserDto accountDto) throws EmailExistsException {
+    public void registerNewUserAccount(UserDto accountDto) throws EmailExistsException {
         if (isEmailExist(accountDto.getEmail())) {
             throw new EmailExistsException(
                     "There is no an account with that email address: " + accountDto.getEmail());
@@ -37,7 +38,8 @@ public class UserService implements IUserService {
         user.setEmail(accountDto.getEmail());
 //        user.setRoles(Arrays.asList("ROLE_USER"));
         user.setRole(Role.ROLE_ADMIN);
-        return repository.save(user);
+//        return repository.save(user);
+        repository.save(user);
     }
 
     private boolean isEmailExist(String email) {

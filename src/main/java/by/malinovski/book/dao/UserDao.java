@@ -17,5 +17,5 @@ public interface UserDao {
 
     User getUserById(int owner);
 
-    User save(User user);
+    void save(User user);
 }

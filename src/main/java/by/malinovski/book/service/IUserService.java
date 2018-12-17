@@ -10,5 +10,5 @@ public interface IUserService {
 
     String getUserEmail(String userName);
 
-    User registerNewUserAccount(UserDto accountDto) throws EmailExistsException;
+    void registerNewUserAccount(UserDto accountDto) throws EmailExistsException;
 }

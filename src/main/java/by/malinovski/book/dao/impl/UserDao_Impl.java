@@ -1,7 +1,6 @@
 package by.malinovski.book.dao.impl;
 
 
-
 import by.malinovski.book.dao.UserDao;
 import by.malinovski.book.model.User;
 import org.hibernate.Query;
@@ -11,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.io.Serializable;
 import java.util.List;
 
 @Repository
@@ -44,7 +44,7 @@ public class UserDao_Impl implements UserDao {
 
         Query query = session.createQuery("from User where NAME =:userName")
                 .setString("userName", userName);
-        return  (User) query.list().stream().findFirst().orElse(null);
+        return (User) query.list().stream().findFirst().orElse(null);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class UserDao_Impl implements UserDao {
         User user = getUserByName(userName);
 //        return user.getEmail();
 
-    return null;
+        return null;
     }
 
    /* @Override
@@ -82,8 +82,14 @@ public class UserDao_Impl implements UserDao {
     }
 
     @Override
-    public User save(User user) {
-        return user;
+    @Transactional
+    public void save(User user) {
+        Session session = sessionFactory.getCurrentSession();
+
+
+        Serializable save = session.save(user);
+
+
     }
 }
 

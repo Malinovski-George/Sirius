@@ -8,12 +8,12 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.GlobalAuthenticationConfigurerAdapter;
 
-//@Order(Ordered.HIGHEST_PRECEDENCE)
-//@Configuration
+@Order(Ordered.HIGHEST_PRECEDENCE)
+@Configuration
 public class AuthenticationSecurityConfig extends
         GlobalAuthenticationConfigurerAdapter {
 
-//    @Autowired
+   @Autowired
     private UserDetailsServiceImpl users;
 
     @Override

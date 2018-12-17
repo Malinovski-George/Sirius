@@ -38,11 +38,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .permitAll();
     }
+//    https://www.baeldung.com/registration-with-spring-mvc-and-spring-security
 
     @Bean
     @Override
     public UserDetailsService userDetailsService() {
-        UserDetails user =
+       /* UserDetails user =
                 User.withDefaultPasswordEncoder()
                         .username("user")
                         .password("password")
@@ -51,19 +52,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         User.withDefaultPasswordEncoder().username("user").password("user").roles("USER").build();
 
-        return new InMemoryUserDetailsManager(user);
-//        return new UserDetailsServiceImpl();
+        return new InMemoryUserDetailsManager(user);*/
+        return new UserDetailsServiceImpl();
     }
 
-    @SuppressWarnings("deprecation")
-    @Bean
-    public InMemoryUserDetailsManager inMemoryUserDetailsManager() throws Exception {
-        return new InMemoryUserDetailsManager(
-                User.withDefaultPasswordEncoder().username("admin").password("admin")
-                        .roles("ADMIN", "USER", "ACTUATOR").build(),
-                User.withDefaultPasswordEncoder().username("user").password("user")
-                        .roles("USER").build());
-    }
+//    @SuppressWarnings("deprecation")
+//    @Bean
+//    public InMemoryUserDetailsManager inMemoryUserDetailsManager() throws Exception {
+//        return new InMemoryUserDetailsManager(
+//                User.withDefaultPasswordEncoder().username("admin").password("admin")
+//                        .roles("ADMIN", "USER", "ACTUATOR").build(),
+//                User.withDefaultPasswordEncoder().username("user").password("user")
+//                        .roles("USER").build());
+//    }
 
 
     @Override
@@ -71,5 +72,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         web
                 .ignoring()
                 .antMatchers("/resources/**");
+
     }
 }

@@ -1,7 +1,6 @@
-create table "user"
+create table user
 (
 	id integer not null
-		constraint user_pkey
 			primary key,
 	email varchar(50) not null,
 	password varchar(20) not null,

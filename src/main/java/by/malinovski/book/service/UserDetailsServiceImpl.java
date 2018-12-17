@@ -1,5 +1,6 @@
 package by.malinovski.book.service;
 
+import by.malinovski.book.dao.UserDao;
 import by.malinovski.book.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -9,8 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -28,7 +28,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         this.userService = userService;
     }
 
-    @Override
+   /* @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
         User user = userService.getUserByEmail(email);
@@ -44,30 +44,47 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         }
         return new org.springframework.security.core.userdetails.User(mail, password, grantedAuthorities);
-    }
+    }*/
 
     //example from spring tutorial
-/*
     @Autowired
-    private UserRepository userRepository;
+    private UserDao userRepository;
     //
     public UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {
 
-        User user = userRepository.findByEmail(email);
+        User user = userRepository.getUserByEmail(email);
         if (user == null) {
             throw new UsernameNotFoundException(
                     "No user found with username: "+ email);
         }
-        boolean enabled = true;
+
+
+      /*  boolean enabled = true;
         boolean accountNonExpired = true;
         boolean credentialsNonExpired = true;
         boolean accountNonLocked = true;
+
+        List list = java.util.Arrays.asList(user.getRole().toString());
         return  new org.springframework.security.core.userdetails.User
                 (user.getEmail(),
                         user.getPassword().toLowerCase(), enabled, accountNonExpired,
                         credentialsNonExpired, accountNonLocked,
-                        getAuthorities(user.getRoles()));
+                        getAuthorities(list));
+        */
+        String mail = "user error";
+        String password = "password error";
+        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+        if (user != null) {
+            String role = user.getRole().toString();
+            grantedAuthorities.add(new SimpleGrantedAuthority(role));
+            mail = user.getEmail();
+            password = user.getPassword();
+
+        }
+        return new org.springframework.security.core.userdetails.User(mail, password, grantedAuthorities);
+
+
     }
 
     private static List<GrantedAuthority> getAuthorities (List<String> roles) {
@@ -78,7 +95,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return authorities;
     }
 
-    */
 
 }
 

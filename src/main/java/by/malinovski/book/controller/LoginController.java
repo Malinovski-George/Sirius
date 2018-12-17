@@ -85,7 +85,7 @@ public class LoginController {
         }
         return registered;
     }*/
-    @RequestMapping(value = "/user/registration", method = RequestMethod.POST)
+    @RequestMapping(value = "/userRegistration", method = RequestMethod.POST)
     public ModelAndView registerUserAccount(
             @ModelAttribute("user") @Valid UserDto accountDto,
             BindingResult result,
@@ -94,25 +94,28 @@ public class LoginController {
 
         User registered = new User();
         if (!result.hasErrors()) {
-            registered = createUserAccount(accountDto, result);
+//            registered = createUserAccount(accountDto, result);
+            createUserAccount(accountDto, result);
         }
-        if (registered == null) {
-            result.rejectValue("email", "message.regError");
-        }
+//        if (registered == null) {
+//            result.rejectValue("email", "message.regError");
+//        }
         if (result.hasErrors()) {
             return new ModelAndView("registration", "user", accountDto);
         }
         else {
-            return new ModelAndView("successRegister", "user", accountDto);
+            return new ModelAndView("home", "user", accountDto);
         }
     }
-    private User createUserAccount(UserDto accountDto, BindingResult result) {
+//    private User createUserAccount(UserDto accountDto, BindingResult result) {
+    private void createUserAccount(UserDto accountDto, BindingResult result) {
         User registered = null;
         try {
-            registered = service.registerNewUserAccount(accountDto);
+//            registered = service.registerNewUserAccount(accountDto);
+            service.registerNewUserAccount(accountDto);
         } catch (EmailExistsException e) {
-            return null;
+//            return null;
         }
-        return registered;
+//        return registered;
     }
 }
