@@ -1,20 +1,23 @@
+use booki;
+
 create table flat
 (
 	flatowner integer not null,
 	flatattributes integer not null,
 	descriptionshort varchar(200),
-	city varchar(25) not null,
-	street varchar(45) not null,
+	city varchar(25) ,
+	street varchar(45) ,
+	ownername varchar(45) ,
 	house varchar(10),
-	created timestamp not null,
+	created timestamp ,
 	modified timestamp,
 	id integer not null
-		constraint flat_id_pk
-			primary key
+		PRIMARY KEY
 )
 ;
 
 create unique index flat_id_uindex
 	on flat (id)
 ;
+
 

@@ -11,4 +11,5 @@ public interface FlatAttributesDao {
 
     boolean updateAttributes(FlatAttributes attributes);
 
+    void save(FlatAttributes flatAttributes);
 }

@@ -6,13 +6,17 @@ import by.malinovski.book.model.Flat;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
+@Transactional
 public class FlatDao_Impl implements FlatDao {
 
+    @Autowired
     private SessionFactory sessionFactory;
 
     public FlatDao_Impl(SessionFactory sessionFactory) {
@@ -48,5 +52,12 @@ public class FlatDao_Impl implements FlatDao {
                 .add(Restrictions.eq("id", userId))
                 .list();
         return flats;
+    }
+
+    @Override
+    public void save(Flat flat) {
+        Session session = sessionFactory.getCurrentSession();
+
+        session.save(flat);
     }
 }

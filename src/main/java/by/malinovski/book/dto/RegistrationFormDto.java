@@ -34,24 +34,89 @@ public class RegistrationFormDto {
 
     //    Где находится ваш объект?
     private String street;
+    private String houseNumber;
     private String country;
     private String town;
 
     //    Планировка и цены
-    private byte roomnumber;
-    private byte bednumber;
-    private byte bathroomnumber;
-    private byte multistorey;
-    private short generalarea;
-    private short lifearea;
-    private short kitchenarea;
+    private double roomNumber;
+    private double bedNumber;
+    private String bathroomNumber;
+    private int multistorey;
+    private int generalarea;
+    private int lifearea;
+    private int kitchenarea;
+
+    public String getBathroomNumber() {
+        return bathroomNumber;
+    }
+
+    public void setBathroomNumber(String bathroomNumber) {
+        this.bathroomNumber = bathroomNumber;
+    }
+
+    public int getMultistorey() {
+        return multistorey;
+    }
+
+    public void setMultistorey(int multistorey) {
+        this.multistorey = multistorey;
+    }
+
+    public int getGeneralarea() {
+        return generalarea;
+    }
+
+    public void setGeneralarea(int generalarea) {
+        this.generalarea = generalarea;
+    }
+
+    public int getLifearea() {
+        return lifearea;
+    }
+
+    public void setLifearea(int lifearea) {
+        this.lifearea = lifearea;
+    }
+
+    public int getKitchenarea() {
+        return kitchenarea;
+    }
+
+    public void setKitchenarea(int kitchenarea) {
+        this.kitchenarea = kitchenarea;
+    }
+
+    public int getGuestsNumber() {
+        return guestsNumber;
+    }
+
+    public void setGuestsNumber(int guestsNumber) {
+        this.guestsNumber = guestsNumber;
+    }
+
+    public int getPricenight() {
+        return pricenight;
+    }
+
+    public void setPricenight(int pricenight) {
+        this.pricenight = pricenight;
+    }
+
+    public int getPriceHour() {
+        return priceHour;
+    }
+
+    public void setPriceHour(int priceHour) {
+        this.priceHour = priceHour;
+    }
 
     //    Количество гостей
-    private byte guestsNumber;
+    private int guestsNumber;
 
     //    цена за ночь
-    private BigDecimal pricenight;
-    private BigDecimal priceHour;
+    private int pricenight;
+    private int priceHour;
 
     private List dropzone;
 
@@ -273,85 +338,18 @@ public class RegistrationFormDto {
         this.town = town;
     }
 
-    public byte getRoomnumber() {
-        return roomnumber;
+
+
+
+    public String getBathroomnumber() {
+        return bathroomNumber;
     }
 
-    public void setRoomnumber(byte roomnumber) {
-        this.roomnumber = roomnumber;
+    public void setBathroomnumber(String bathroomnumber) {
+        this.bathroomNumber = bathroomnumber;
     }
 
-    public byte getBednumber() {
-        return bednumber;
-    }
 
-    public void setBednumber(byte bednumber) {
-        this.bednumber = bednumber;
-    }
-
-    public byte getBathroomnumber() {
-        return bathroomnumber;
-    }
-
-    public void setBathroomnumber(byte bathroomnumber) {
-        this.bathroomnumber = bathroomnumber;
-    }
-
-    public byte getMultistorey() {
-        return multistorey;
-    }
-
-    public void setMultistorey(byte multistorey) {
-        this.multistorey = multistorey;
-    }
-
-    public short getGeneralarea() {
-        return generalarea;
-    }
-
-    public void setGeneralarea(short generalarea) {
-        this.generalarea = generalarea;
-    }
-
-    public short getLifearea() {
-        return lifearea;
-    }
-
-    public void setLifearea(short lifearea) {
-        this.lifearea = lifearea;
-    }
-
-    public short getKitchenarea() {
-        return kitchenarea;
-    }
-
-    public void setKitchenarea(short kitchenarea) {
-        this.kitchenarea = kitchenarea;
-    }
-
-    public byte getGuestsNumber() {
-        return guestsNumber;
-    }
-
-    public void setGuestsNumber(byte guestsNumber) {
-        this.guestsNumber = guestsNumber;
-    }
-
-    public BigDecimal getPricenight() {
-        return pricenight;
-    }
-
-    public void setPricenight(BigDecimal pricenight) {
-        this.pricenight = pricenight;
-    }
-
-    public BigDecimal getPriceHour() {
-        return priceHour;
-    }
-
-    public void setPriceHour(BigDecimal priceHour) {
-        this.priceHour = priceHour;
-    }
 
     public List getDropzone() {
         return dropzone;
@@ -1007,6 +1005,30 @@ public class RegistrationFormDto {
 
     public void setDomoff(boolean domoff) {
         this.domoff = domoff;
+    }
+
+    public String getHouseNumber() {
+        return houseNumber;
+    }
+
+    public void setHouseNumber(String houseNumber) {
+        this.houseNumber = houseNumber;
+    }
+
+    public double getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(double roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public double getBedNumber() {
+        return bedNumber;
+    }
+
+    public void setBedNumber(double bedNumber) {
+        this.bedNumber = bedNumber;
     }
 
 

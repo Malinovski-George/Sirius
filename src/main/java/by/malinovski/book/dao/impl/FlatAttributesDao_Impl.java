@@ -7,8 +7,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 @Repository
 public class FlatAttributesDao_Impl implements FlatAttributesDao {
 
@@ -39,5 +41,13 @@ public class FlatAttributesDao_Impl implements FlatAttributesDao {
     @Override
     public boolean updateAttributes(FlatAttributes attributes) {
         return false;
+    }
+
+    @Override
+    public void save(FlatAttributes flatAttributes) {
+        Session session = null;
+        session = sessionFactory.getCurrentSession();
+        session.save(flatAttributes);
+
     }
 }

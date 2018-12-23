@@ -14,13 +14,17 @@ public class Flat {
 
     //General
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional=false)
-    @JoinColumn(name = "id", insertable = false, updatable = false)
+//    @JoinColumn(name = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "flatOwner")
     private User flatOwner;
+
+    @Column(name = "ownerName", nullable = false, length=250)
+    private String ownerName;
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "flat", cascade = CascadeType.ALL)
     private FlatAttributes flatAttributes;
@@ -52,4 +56,84 @@ public class Flat {
 
     //  private FlatStatistic statistic;
 
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public User getFlatOwner() {
+        return flatOwner;
+    }
+
+    public void setFlatOwner(User flatOwner) {
+        this.flatOwner = flatOwner;
+    }
+
+    public FlatAttributes getFlatAttributes() {
+        return flatAttributes;
+    }
+
+    public void setFlatAttributes(FlatAttributes flatAttributes) {
+        this.flatAttributes = flatAttributes;
+    }
+
+    public String getDescriptionShort() {
+        return descriptionShort;
+    }
+
+    public void setDescriptionShort(String descriptionShort) {
+        this.descriptionShort = descriptionShort;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getHouse() {
+        return house;
+    }
+
+    public void setHouse(String house) {
+        this.house = house;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Date getModified() {
+        return modified;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
 }

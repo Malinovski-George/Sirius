@@ -72,12 +72,7 @@
     <!--Main menu END-->
 
 
-    <h1>Hello !</h1>
-    <!--<p>Welcome to book <span th:text="${appName}">Our App</span></p>-->
-    <p>Welcome to book <span>Our App</span></p>
-    <button class="btn btn-success">asdasd</button>
-
-    <form th:action="@{/registrationForm}" method="post" th:object="${registrationFormDto}">
+    <form th:action="@{/registrationForm}" method="post" th:object="${simpleFlatDto}">
         <div class="container">
 
 
@@ -102,7 +97,8 @@
     </form>
 
 
-    <form th:action="@{/registrationForm}" th:object="${registrationFormDto}" method="post">
+    <form th:action="@{/registrationForm}" th:object="${simpleFlatDto}" method="post">
+    <!--<form th:action="@{/registrationForm}" th:object="${flat}" method="post">-->
         <!--<form th:action="@{/registrationForm}" method="post" th:object="${registrationFormDto}">-->
         <div class="container">
 
@@ -111,69 +107,73 @@
             <div>
                 <h3>Основная информация</h3><br>
 
+
                 <div>
 
                     <h4><span>Какие контактные данные вы хотите указать для этого объекта?</span></h4><br>
                     <span> Контактное лицо</span><br>
-                    <!--!!name--> <span> <input name="ownerName" class="css-input" type="text"
-                                                th:field="*{ownerName}"></span><br>
+                    <span> <input name="ownerName" class="css-input" type="text"
+                                  th:field="*{ownerName}"></span><br>
                     <br>
-                    <!--<span> <input name="ownerName" class="css-input" type="text" ></span><br> <br>-->
-                    <span>Контактные номера телефона (чтобы мы могли помочь вам с регистрацией)</span>
-
-                    <!--  <label for="inp" class="inp">
-                          <input type="text" id="inp" placeholder="&nbsp;">
-                          <span class="label">Label</span>
-                          <span class="border"></span>
-                      </label>
-      -->
+                    <span>Контактные номера телефона</span>
                     <br>
-                    <!--<span><input name="phone1" class="css-input" type="text" th:field="*{ownerName}"></span>-->
-                    <span><input name="phone1" class="css-input" type="text"></span>
 
-                    <input id="viberPhone1" class="css-checkbox med" type="checkbox" th:field="*{viberPhone1}">
-                    <!--<input id="viberPhone1" class="css-checkbox med" type="checkbox" >-->
+                    <span><input name="phone1" class="css-input" type="text" th:field="*{phone1}"></span>
+
+                    <!--input id="viberPhone1" class="css-checkbox med" type="checkbox" th:field="*{viberPhone1}" th:value="*{viberPhone1}">
                     <label for="viberPhone1" name="viberPhone1_lbl"
-                           class="css-label med elegant">Viber</label>
-                    <input id="watsUpPhone1" class="css-checkbox med" type="checkbox" th:field="*{watsUpPhone1}">
-                    <!--<input id="watsUpPhone1" class="css-checkbox med" type="checkbox">-->
+                           class="css-label med elegant">Viber</label>-->
+
+
+<!--
+                    <input class="css-checkbox med" type="checkbox" th:field="*{viberPhone1}" th:value="*{viberPhone1}">
+                    <label th:for="${#ids.next('viberPhone1')}">Viber</label>-->
+
+
+
+
+                  <!--  <input id="watsUpPhone1" class="css-checkbox med" type="checkbox">
                     <label for="watsUpPhone1" name="watsUpPhone1_lbl"
                            class="css-label med elegant">WatsUp</label>
+                    <br><br>-->
 
-                    <br><br>
-                    <span><input name="phone2" class="css-input" type="text"></span>
+                    <span><input name="phone2" class="css-input" type="text" th:field="*{phone2}"></span>
 
-                    <input id="viberPhone2" class="css-checkbox med" type="checkbox">
+                   <!-- <input id="viberPhone2" class="css-checkbox med" type="checkbox">
                     <label for="viberPhone2" name="viberPhone2_lbl"
                            class="css-label med elegant">Viber</label>
                     <input id="watsUpPhone2" class="css-checkbox med" type="checkbox">
                     <label for="watsUpPhone2" name="watsUpPhone2_lbl"
                            class="css-label med elegant">WatsUp</label>
 
-                    <br><br>
-                    <span><input name="phone3" class="css-input" type="text"></span>
+                    <br><br>-->
+                    <span><input name="phone3" class="css-input" type="text" th:field="*{phone3}"></span>
 
 
-                    <input id="viberPhone3" class="css-checkbox med" type="checkbox">
+                <!--    <input id="viberPhone3" class="css-checkbox med" type="checkbox">
                     <label for="viberPhone3" name="viberPhone3_lbl"
                            class="css-label med elegant">Viber</label>
                     <input id="watsUpPhone3" class="css-checkbox med" type="checkbox">
                     <label for="watsUpPhone3" name="watsUpPhone3_lbl"
                            class="css-label med elegant">WatsUp</label>
                     <br>
-
+-->
 
                 </div>
+
+
                 <br>
                 <div>
                     <!--todo devide street and house number-->
                     <h4>Где находится ваш объект?</h4>
-                    Улица и номер дома <br>
-                    <input name="street" class="css-input" type="text"> <br> <br>
+                    Улица<br>
+                    <input name="street" class="css-input" type="text" th:field="*{street}"> <br> <br>
+                    Номер дома <br>
+                    <input name="street" class="css-input" type="text" th:field="*{houseNumber}"> <br> <br>
                     Страна/территория <br>
-                    <input name="country" class="css-input" type="text"> <br> <br>
+                    <input name="country" class="css-input" type="text" th:field="*{country}"> <br> <br>
                     Город <br>
-                    <input name="town" class="css-input" type="text">
+                    <input name="town" class="css-input" type="text" th:field="*{town}">
                 </div>
             </div>
             <!--Contact info END-->
@@ -192,60 +192,56 @@
             <div>
 
                 Количество комнат
-                <select name="roomnumber">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>10+</option>
-                </select><br><br>
+            <!--    <select  th:field="*{roomNumber}">
+                    <option th:value="1">1</option>
+                    <option th:value="2">2</option>
+                    <option th:value="3">3</option>
+                    <option th:value="4">4</option>
+                    <option th:value="5">5</option>
+                    <option th:value="6">6</option>
+                    <option th:value="7">7</option>
+                    <option th:value="8">8</option>
+                    <option th:value="9'">9</option>
+                    <option th:value="10">10</option>
+                    <option th:value="11">10+</option>
+                </select><br><br>-->
+
+
+                <select th:field="*{roomNumber}">
+                    <option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}" th:text="${i}"
+                            th:selected="${i==1}"></option>
+                </select>
+
+
 
                 Количество спальных мест
-                <select name="bednumber">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>10+</option>
+                <select name="bednumber" th:field="*{bedNumber}">
+                    <option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}" th:text="${i}"
+                            th:selected="${i==1}"></option>
                 </select><br><br>
 
-                Количество ванных комнат
-                <select name="bathroomnumber">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>4+</option>
+               <!-- Количество ванных комнат
+                <select name="bathroomnumber" th:field="*{bathroomNumber}">
+                    <option th:each="i : ${#numbers.sequence(1, 5)}" th:value="${i}" th:text="${i}"
+                            th:selected="${i==1}"></option>
 
-                </select><br><br>
+                </select><br><br>-->
 
 
                 Этаж/этажность <br>
-                <input name="multistorey" class="css-input" type="number"><br><br>
+                <input name="multistorey" class="css-input" type="number" th:field="*{multistorey}"><br><br>
                 общая площадь<br>
-                <input name="generalarea" class="css-input" type="number"><br><br>
+                <input name="generalarea" class="css-input" type="number" th:field="*{generalArea}"><br><br>
                 жилая площадь<br>
-                <input name="lifearea" class="css-input" type="number"><br><br>
+                <input name="lifearea" class="css-input" type="number" th:field="*{lifeArea}"><br><br>
                 площадь кухни<br>
-                <input name="kitchenarea" class="css-input" type="number"><br><br>
+                <input name="kitchenarea" class="css-input" type="number" th:field="*{kitchenArea}"><br><br>
 
 
                 <h4>Количество гостей</h4>
-                Сколько гостей могут остановиться в этой комнате?<br>
+                Сколько гостей могут остановиться в этой квартире?<br>
 
-                <input name="guestsNumber" class="css-input" type="number"><br><br>
+                <input name="guestsNumber" class="css-input" type="number" th:field="*{guestsNumber}"><br><br>
 
 
             </div>
@@ -255,13 +251,13 @@
                 <div style="margin: 20px;">
                     <div>
                         Цена за сутки
-                        <input name="pricenight" class="css-input" value="price" type="text">
+                        <input name="pricenight" class="css-input" value="price" type="number" th:field="*{priceNight}">
                     </div>
                 </div>
 
                 <div style="margin: 20px;">
                     <div>
-                        Цена за часы <input name="priceHour" class="css-input" value="price" type="text">
+                        Цена за часы <input name="priceHour" class="css-input" value="price" type="number" th:field="*{priceHour}">
                     </div>
                 </div>
             </div>

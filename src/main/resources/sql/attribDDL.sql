@@ -5,6 +5,7 @@ create table flatattributes
 			primary key,
 	roomnumber smallint not null,
 	bednumber smallint,
+	guestsNumber smallint,
 	floor smallint not null,
 	multistorey integer,
 	generalarea smallint not null,

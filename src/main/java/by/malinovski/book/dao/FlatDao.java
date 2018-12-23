@@ -16,6 +16,5 @@ public interface FlatDao {
     List<Flat> getFlatsByUserId(int userId);
 
 
-
-
+    void save(Flat flat);
 }

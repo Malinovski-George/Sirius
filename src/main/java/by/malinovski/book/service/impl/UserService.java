@@ -1,10 +1,11 @@
-package by.malinovski.book.service;
+package by.malinovski.book.service.impl;
 
 import by.malinovski.book.dao.UserDao;
 import by.malinovski.book.dto.UserDto;
 import by.malinovski.book.exceptions.EmailExistsException;
 import by.malinovski.book.model.Role;
 import by.malinovski.book.model.User;
+import by.malinovski.book.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class UserService implements IUserService {
 
     @Override
     public User getUserByEmail(String email) {
-        return null;
+        return repository.getUserByEmail(email);
     }
 
     @Override

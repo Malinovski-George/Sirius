@@ -32,10 +32,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="registrationForm">Регистрация</a>
                 </li>
-                <!--hide when logged-->
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Вход</a>
-                </li>
                 <!--hide when unlogged-->
                 <li class="nav-item">
                     <a class="nav-link" href="/registrationForm">Добавить объявление</a>
@@ -61,6 +57,20 @@
                  <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
              </form>-->
+
+            <ul class="nav navbar-nav navbar-right">
+                <!--hide when logged-->
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Вход</a>
+                </li>
+                <!--hide when unlogged-->
+                <li>
+                    <a class="nav-link" th:href="@{/logout}">Logout</a>
+                </li>
+            </ul>
+
+
         </div>
     </nav>
     <!--Main menu END-->
