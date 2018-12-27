@@ -1,10 +1,17 @@
-package by.malinovski.book.model;
+package by.malinovski.book.model.attributes;
+
+import by.malinovski.book.model.Flat;
+import by.malinovski.book.model.Price.Price;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
+
+/**
+ * This class contains all flat attributes
+ * that is used in full setting form
+ */
 
 @Entity
-@Table(name="FlatAttributes")
+@Table(name = "FlatAttributes")
 public class FlatAttributes {
 //TODO convert in USD/RUB
 
@@ -17,7 +24,7 @@ public class FlatAttributes {
     @JoinColumn(name = "flat")
     Flat flat;
 
-    @Column(name = "roomNumber", nullable = false)
+ /*   @Column(name = "roomNumber", nullable = false)
     byte roomNumber;
 
     @Column(name = "bedNumber")
@@ -39,7 +46,7 @@ public class FlatAttributes {
     private byte lifeArea;
 
     @Column(name = "kitchenArea", nullable = false)
-    private byte kitchenArea;
+    private byte kitchenArea;*/
 
     @Column(name = "hasBalcony")
     boolean balcony;
@@ -137,14 +144,19 @@ public class FlatAttributes {
     @Column(name = "hasReceptionist")
     private boolean isReceptionist;
 
-    @Column(name = "priceDay")
-    private BigDecimal priceDay;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "price")
+    private Price price;
 
-    @Column(name = "priceNight")
+
+  /*  @Column(name = "priceDay")
+    private BigDecimal priceDay;*/
+
+   /* @Column(name = "priceNight")
     private BigDecimal priceNight;
 
     @Column(name = "priceHour")
-    private BigDecimal priceHour;
+    private BigDecimal priceHour;*/
 
 
     public int getId() {
@@ -163,7 +175,7 @@ public class FlatAttributes {
         this.flat = flat;
     }
 
-    public byte getRoomNumber() {
+    /*public byte getRoomNumber() {
         return roomNumber;
     }
 
@@ -218,7 +230,7 @@ public class FlatAttributes {
     public void setKitchenArea(byte kitchenArea) {
         this.kitchenArea = kitchenArea;
     }
-
+*/
     public boolean isBalcony() {
         return balcony;
     }
@@ -475,15 +487,15 @@ public class FlatAttributes {
         isReceptionist = receptionist;
     }
 
-    public BigDecimal getPriceDay() {
+   /* public BigDecimal getPriceDay() {
         return priceDay;
     }
 
     public void setPriceDay(BigDecimal priceDay) {
         this.priceDay = priceDay;
-    }
+    }*/
 
-    public BigDecimal getPriceNight() {
+   /* public BigDecimal getPriceNight() {
         return priceNight;
     }
 
@@ -497,5 +509,13 @@ public class FlatAttributes {
 
     public void setPriceHour(BigDecimal priceHour) {
         this.priceHour = priceHour;
+    }*/
+
+    public Price getPrice() {
+        return price;
+    }
+
+    public void setPrice(Price price) {
+        this.price = price;
     }
 }

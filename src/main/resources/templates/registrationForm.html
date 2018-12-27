@@ -175,6 +175,18 @@
                     Город <br>
                     <input name="town" class="css-input" type="text" th:field="*{town}">
                 </div>
+
+                <br>
+                <div>
+                    <!--todo devide street and house number-->
+                    <h4>Краткое описание</h4>
+
+                    <textarea name="street" class="css-input" cols="120" rows="5" type="text" maxlength="500"
+                              th:field="*{descriptionShort}"></textarea> <br> <br>
+
+                </div>
+
+
             </div>
             <!--Contact info END-->
 
@@ -251,15 +263,15 @@
                 <div style="margin: 20px;">
                     <div>
                         Цена за сутки
-                        <input name="pricenight" class="css-input" value="price" type="number" th:field="*{priceNight}">
+                        <input name="pricenight" class="css-input" value="price" type="number" th:field="*{priceDay}">
                     </div>
                 </div>
 
-                <div style="margin: 20px;">
+               <!-- <div style="margin: 20px;">
                     <div>
                         Цена за часы <input name="priceHour" class="css-input" value="price" type="number" th:field="*{priceHour}">
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
 

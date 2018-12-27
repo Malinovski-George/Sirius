@@ -2,6 +2,10 @@ package by.malinovski.book.controller;
 
 
 import by.malinovski.book.dto.RegistrationFormDto;
+import by.malinovski.book.dto.SimpleFlatDto;
+import by.malinovski.book.model.Flat;
+import by.malinovski.book.service.impl.FlatService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,12 +16,15 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 @Controller
 public class MainController {
 
+                @Autowired
+                FlatService flatService;
 
    /* @RequestMapping(path = { "/", "/home" }, method = RequestMethod.GET)
     public String showHome() {
@@ -25,13 +32,29 @@ public class MainController {
     }*/
 
 
-    @RequestMapping(path = {"/", "/home"}, method = RequestMethod.GET)
-    public ModelAndView showHome() {
+                @RequestMapping(path = {"/", "/home"}, method = RequestMethod.GET)
+                public ModelAndView showHome() {
 //    public String showHome() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("home");
-        modelAndView.addObject("appName", "asdasd");
-        return modelAndView;
+
+//                    List<Flat> list2 =        flatService.getAllFlats();
+/*
+
+                    List<Flat> list = new LinkedList<>();
+                    list.add(new Flat());
+                    list.add(new Flat());
+                    list.add(new Flat());
+                    list.add(new Flat());
+                    list.add(new Flat());
+            list.add(new Flat());
+*/
+                    List<SimpleFlatDto> allFlats = flatService.getAllFlats();
+
+                    ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("home");
+            modelAndView.addObject("appName", "asdasd");
+            modelAndView.addObject("flats", allFlats);
+            modelAndView.addObject("fields", allFlats.size());
+            return modelAndView;
 //        return "home";
     }
 
@@ -117,7 +140,6 @@ public class MainController {
             e.printStackTrace();
         }*/
     }
-
 
 
 }

@@ -1,7 +1,8 @@
 package by.malinovski.book.dao.impl;
 
 import by.malinovski.book.dao.FlatAttributesDao;
-import by.malinovski.book.model.FlatAttributes;
+import by.malinovski.book.model.attributes.FlatAttributes;
+import by.malinovski.book.model.attributes.SimpleAttributes;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -49,5 +50,11 @@ public class FlatAttributesDao_Impl implements FlatAttributesDao {
         session = sessionFactory.getCurrentSession();
         session.save(flatAttributes);
 
+    }
+
+    @Override
+    public void save(SimpleAttributes simpleAttr) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(simpleAttr);
     }
 }

@@ -44,7 +44,7 @@ public class FlatController {
         User user = userService.getUserByEmail(principal.getName());
         flatService.saveNewFlat(simpleFlatDto, user);
 
-        return "done";
+        return "home";
     }
 
 

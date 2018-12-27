@@ -6,9 +6,10 @@ import org.springframework.stereotype.Component;
 public class SimpleFlatDto {
 
 
+    private int id;
     private String ownerName;
 
-
+    // TODO GM: add phones
     private String phone1;
     private String phone2;
     private String phone3;
@@ -34,10 +35,16 @@ public class SimpleFlatDto {
     //Количество кроватей
     private byte bedNumber;
 
+    private String descriptionShort;
+
 
     //    цена за ночь
-    private int priceNight;
-    private int priceHour;
+
+
+private long priceDay;
+
+/*    private int priceNight;
+    private int priceHour;*/
 
 
     public String getOwnerName() {
@@ -160,7 +167,7 @@ public class SimpleFlatDto {
         this.bedNumber = bedNumber;
     }
 
-    public int getPriceNight() {
+   /* public int getPriceNight() {
         return priceNight;
     }
 
@@ -174,5 +181,29 @@ public class SimpleFlatDto {
 
     public void setPriceHour(int priceHour) {
         this.priceHour = priceHour;
+    }*/
+
+    public long getPriceDay() {
+        return priceDay;
+    }
+
+    public void setPriceDay(long priceDay) {
+        this.priceDay = priceDay;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDescriptionShort() {
+        return descriptionShort;
+    }
+
+    public void setDescriptionShort(String descriptionShort) {
+        this.descriptionShort = descriptionShort;
     }
 }

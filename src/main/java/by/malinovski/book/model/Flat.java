@@ -1,15 +1,15 @@
 package by.malinovski.book.model;
 
+import by.malinovski.book.model.attributes.FlatAttributes;
+import by.malinovski.book.model.attributes.SimpleAttributes;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
 @Data
 @Entity
-@Table(name="flat")
+@Table(name = "flat")
 public class Flat {
 
     //General
@@ -18,36 +18,39 @@ public class Flat {
     @Column(name = "id")
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional=false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
 //    @JoinColumn(name = "id", insertable = false, updatable = false)
     @JoinColumn(name = "flatOwner")
     private User flatOwner;
 
-    @Column(name = "ownerName", nullable = false, length=250)
+    @Column(name = "ownerName", nullable = false, length = 250)
     private String ownerName;
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "flat", cascade = CascadeType.ALL)
     private FlatAttributes flatAttributes;
 
-    @Column(name = "descriptionShort", nullable = false, length=250)
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "flat", cascade = CascadeType.ALL)
+    private SimpleAttributes simpleAttributes;
+
+    @Column(name = "descriptionShort", nullable = false, length = 250)
     private String descriptionShort;
 
     //TODO dinamic search of city/streetid
     //Address
-    @Column(name = "city", nullable = false, length=250)
+    @Column(name = "city", nullable = false, length = 250)
     private String city;
 
-    @Column(name = "street", nullable = false, length=250)
+    @Column(name = "street", nullable = false, length = 250)
     private String street;
 
-    @Column(name = "house", nullable = false, length=250)
+    @Column(name = "house", nullable = false, length = 250)
     private String house;
 
     //Service
     @Column(name = "created", nullable = false)
     private Date created;
 
-    @Column(name = "modified", nullable = false, length=250)
+    @Column(name = "modified", nullable = false, length = 250)
     private Date modified;
 
 
@@ -135,5 +138,13 @@ public class Flat {
 
     public void setModified(Date modified) {
         this.modified = modified;
+    }
+
+    public SimpleAttributes getSimpleAttributes() {
+        return simpleAttributes;
+    }
+
+    public void setSimpleAttributes(SimpleAttributes simpleAttributes) {
+        this.simpleAttributes = simpleAttributes;
     }
 }
