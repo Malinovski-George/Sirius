@@ -10,14 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.security.Principal;
@@ -49,8 +47,15 @@ public class FlatController {
     }
 
 
-    @RequestMapping(path = {"/registrationForm"}, method = RequestMethod.POST)
-    public String registrationFormPost1(@ModelAttribute SimpleFlatDto simpleFlatDto, Principal principal, BindingResult result) throws IOException {
+//    @RequestMapping(path = {"/registrationForm"}, method = RequestMethod.POST)
+@PostMapping("/registrationForm")
+    public String registrationFormPost1(@Valid SimpleFlatDto simpleFlatDto, BindingResult result, Principal principal) throws IOException {
+
+
+        if (result.hasErrors()) {
+            return "registrationForm";
+        }
+
         User user = userService.getUserByEmail(principal.getName());
         flatService.saveNewFlat(simpleFlatDto, user);
 

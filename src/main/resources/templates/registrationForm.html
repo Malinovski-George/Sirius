@@ -8,9 +8,9 @@
     <!-- Bootstrap, CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style_checkbox.css">
-    <link rel="stylesheet" href="/css/style_input.css">
-    <link rel="stylesheet" href="/css/style_input_stylus.styl">
-    <link rel="stylesheet" href="/css/style_input_stylus.css">
+    <!--<link rel="stylesheet" href="/css/style_input.css">-->
+    <!--<link rel="stylesheet" href="/css/style_input_stylus.styl">-->
+    <!--<link rel="stylesheet" href="/css/style_input_stylus.css">-->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/style_dropzone.css">
     <link rel="stylesheet" href="/css/bootstrap-dialog.css">
@@ -80,9 +80,9 @@
     <!--Main menu END-->
 
 
-
-    <form th:action="@{/registrationForm}" th:object="${simpleFlatDto}" method="post" enctype="multipart/form-data">
-    <!--<form th:action="@{/registrationForm}" th:object="${flat}" method="post">-->
+    <form th:action="@{/registrationForm}" th:object="${simpleFlatDto}" method="post" enctype="multipart/form-data"
+          class="needs-validation" novalidate>
+        <!--<form th:action="@{/registrationForm}" th:object="${flat}" method="post">-->
         <!--<form th:action="@{/registrationForm}" method="post" th:object="${registrationFormDto}">-->
         <div class="container">
 
@@ -227,11 +227,27 @@
 
                 </select><br><br>-->
 
-                <div th:class="${#fields.hasErrors('multistorey')} ? 'form-group has-error' :'form-group' ">
-                    <p th:errors="*{multistorey}" class="help-block"></p>
-                Этаж/этажность <br>
-                <input name="multistorey" class="css-input" type="number" th:field="*{multistorey}"><br><br>
-                               </div>
+                <div th:class="${#fields.hasErrors('multistorey')} ? 'form-control:invalid' :'form-group' ">
+                    <p th:errors="*{multistorey}" >errors</p>
+
+
+                    !!!!!!!!!!!!!!!!!!!!!!
+                    <!--https://getbootstrap.com/docs/4.0/components/forms/?-->
+                    !!!!!!!!!!!!!!!!!!!!!!
+
+                    Этаж/этажность <br>
+                    <input name="multistorey" type="number" th:field="*{multistorey}"
+                           class="form-control"
+
+                           th:style="${#fields.hasErrors('multistorey')} ? 'border-color: #dc3545;' :'' "
+                           required ><p th:errors="*{multistorey}" style="color: #dc3545;">errors</p><br><br>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please choose a username.
+                    </div>
+                </div>
 
 
                 общая площадь<br>
@@ -368,6 +384,28 @@
             }
         });
     }
+</script>
+
+<!--todo validation-->
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
 </script>
 
 
