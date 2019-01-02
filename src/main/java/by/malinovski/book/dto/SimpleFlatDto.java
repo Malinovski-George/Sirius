@@ -1,6 +1,7 @@
 package by.malinovski.book.dto;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class SimpleFlatDto {
@@ -38,11 +39,11 @@ public class SimpleFlatDto {
     private String descriptionShort;
 
 
-    //    цена за ночь
 
-
-private long priceDay;
-
+//    цена за ночь
+    private long priceDay;
+    private MultipartFile[] multipartFiles;
+    private int mainPhotoId;
 /*    private int priceNight;
     private int priceHour;*/
 
@@ -205,5 +206,21 @@ private long priceDay;
 
     public void setDescriptionShort(String descriptionShort) {
         this.descriptionShort = descriptionShort;
+    }
+
+    public MultipartFile[] getMultipartFiles() {
+        return multipartFiles;
+    }
+
+    public void setMultipartFiles(MultipartFile[] multipartFiles) {
+        this.multipartFiles = multipartFiles;
+    }
+
+    public void setMainPhotoId(int mainPhotoId) {
+        this.mainPhotoId = mainPhotoId;
+    }
+
+    public int getMainPhotoId() {
+        return mainPhotoId;
     }
 }

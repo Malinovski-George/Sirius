@@ -1,7 +1,7 @@
-create table flatattributes
+create table flat_attributes
 (
 	id integer not null
-		constraint flatattributes_pkey
+		constraint flat_attributes_pkey
 			primary key,
 	roomnumber smallint not null,
 	bednumber smallint,
@@ -50,6 +50,6 @@ create table flatattributes
 ;
 
 create unique index flatattributes_id_uindex
-	on flatattributes (id)
+	on flat_attributes (id)
 ;
 

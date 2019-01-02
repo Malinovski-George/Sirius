@@ -64,6 +64,11 @@ public class SimpleFlatConvertor {
             flatDto.setCountry(flat.getCity());
             flatDto.setTown(flat.getCity());
             flatDto.setDescriptionShort(flat.getDescriptionShort());
+
+
+            if (flat.getPhotos() != null) {
+                flatDto.setMainPhotoId(flat.getPhotos().stream().findFirst().get().getId());
+            }
             SimpleAttributes simpleAttributes = flat.getSimpleAttributes();
             flatDto.setRoomNumber(simpleAttributes.getRoomNumber());
             flatDto.setMultistorey(simpleAttributes.getMultistorey());

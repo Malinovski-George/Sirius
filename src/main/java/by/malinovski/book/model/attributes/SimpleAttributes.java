@@ -2,8 +2,11 @@ package by.malinovski.book.model.attributes;
 
 import by.malinovski.book.model.Flat;
 import by.malinovski.book.model.Price.Price;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 /**
  * This class contains flat attributes
@@ -19,23 +22,34 @@ public class SimpleAttributes {
     @Column(name = "id")
     private int id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "flat")
     Flat flat;
 
     @Column(name = "roomNumber", nullable = false)
+    @NotNull(message="Укажите количество комнат")
+    @Range(min = 1L,
+            message = "Укажите правильное количество комнат")
     byte roomNumber;
 
+    @Range(min = 1L,
+            message = "Укажите правильное количество спальных мест")
     @Column(name = "bedNumber")
     byte bedNumber;
 
     @Column(name = "guestsNumber")
+    @Range(min = 1L,
+            message = "Укажите правильное количество гостей")
     byte guestsNumber;
 
     @Column(name = "floor", nullable = false)
+    @Range(min = 1L,
+            message = "Укажите правильное количество гостей")
     byte floor;
 
     @Column(name = "multistorey", nullable = false)
+    @Range(min = 1L,
+            message = "Укажите правильное количество этажей")
     byte multistorey; //этажность
 
     @Column(name = "generalArea", nullable = false)
@@ -48,8 +62,9 @@ public class SimpleAttributes {
     private byte kitchenArea;
 
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "price")
+
     private Price price;
 
 

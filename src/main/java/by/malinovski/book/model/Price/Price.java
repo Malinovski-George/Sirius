@@ -8,7 +8,7 @@ import java.math.BigDecimal;
  */
 
 @Entity
-@Table(name="Price")
+@Table(name = "Price")
 public class Price {
 
     @Id
@@ -27,7 +27,6 @@ public class Price {
     private BigDecimal priceDay;
 
     // -- gettets and setters --
-
 
     public int getId() {
         return id;

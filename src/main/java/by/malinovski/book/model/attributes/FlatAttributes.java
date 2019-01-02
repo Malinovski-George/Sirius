@@ -11,7 +11,7 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "FlatAttributes")
+@Table(name = "Flat_Attributes")
 public class FlatAttributes {
 //TODO convert in USD/RUB
 
@@ -20,7 +20,7 @@ public class FlatAttributes {
     @Column(name = "id")
     private int id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "flat")
     Flat flat;
 

@@ -1,13 +1,15 @@
 package by.malinovski.book.model;
 
+import by.malinovski.book.model.Photos.FlatPhoto;
 import by.malinovski.book.model.attributes.FlatAttributes;
 import by.malinovski.book.model.attributes.SimpleAttributes;
-import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-@Data
+
 @Entity
 @Table(name = "flat")
 public class Flat {
@@ -19,7 +21,6 @@ public class Flat {
     private int id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "id", insertable = false, updatable = false)
     @JoinColumn(name = "flatOwner")
     private User flatOwner;
 
@@ -35,7 +36,6 @@ public class Flat {
     @Column(name = "descriptionShort", nullable = false, length = 250)
     private String descriptionShort;
 
-    //TODO dinamic search of city/streetid
     //Address
     @Column(name = "city", nullable = false, length = 250)
     private String city;
@@ -53,12 +53,10 @@ public class Flat {
     @Column(name = "modified", nullable = false, length = 250)
     private Date modified;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "flat", cascade = CascadeType.REMOVE)
+    private Set<FlatPhoto> photos = new HashSet<>();
 
-    //private List<FlatPhoto> flatPhotos = new LinkedList<>();
-
-
-    //  private FlatStatistic statistic;
-
+    // -- gettets and setters --
 
     public String getOwnerName() {
         return ownerName;
@@ -146,5 +144,13 @@ public class Flat {
 
     public void setSimpleAttributes(SimpleAttributes simpleAttributes) {
         this.simpleAttributes = simpleAttributes;
+    }
+
+    public Set<FlatPhoto> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(Set<FlatPhoto> photos) {
+        this.photos = photos;
     }
 }

@@ -14,6 +14,16 @@
     <link rel="stylesheet" href="/css/style_input_stylus.styl">
     <link rel="stylesheet" href="/css/style_input_stylus.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style_dropzone.css">
+    <link rel="stylesheet" href="/css/bootstrap-dialog.css">
+
+
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=fc9d2f36-6962-4864-818f-800ac391ee96" type="text/javascript"></script>
+    <script>
+        ymaps.ready(init);
+    function init() {
+        var suggestView1 = new ymaps.SuggestView('street');
+    }</script>
 
     <title>Home Page</title></head>
 <body>
@@ -72,32 +82,8 @@
     <!--Main menu END-->
 
 
-    <form th:action="@{/registrationForm}" method="post" th:object="${simpleFlatDto}">
-        <div class="container">
 
-
-            <!--Contact info START-->
-            <div>
-                <h3>Основная информация</h3><br>
-
-                <div>
-
-                    <h4><span>Какие контактные данные вы хотите указать для этого объекта?</span></h4><br>
-                    <span> Контактное лицо</span><br>
-                    <span> <input name="ownerName" class="css-input" type="text" th:field="*{ownerName}"></span><br>
-                    <br>
-
-
-                </div>
-            </div>
-        </div>
-
-        <input type="submit" value="Save as Draft"/>
-
-    </form>
-
-
-    <form th:action="@{/registrationForm}" th:object="${simpleFlatDto}" method="post">
+    <form th:action="@{/registrationForm}" th:object="${simpleFlatDto}" method="post" enctype="multipart/form-data">
     <!--<form th:action="@{/registrationForm}" th:object="${flat}" method="post">-->
         <!--<form th:action="@{/registrationForm}" method="post" th:object="${registrationFormDto}">-->
         <div class="container">
@@ -113,7 +99,7 @@
                     <h4><span>Какие контактные данные вы хотите указать для этого объекта?</span></h4><br>
                     <span> Контактное лицо</span><br>
                     <span> <input name="ownerName" class="css-input" type="text"
-                                  th:field="*{ownerName}"></span><br>
+                                  th:field="*{ownerName}" onkeypress="replaceEnterWithTab(this)"></span><br>
                     <br>
                     <span>Контактные номера телефона</span>
                     <br>
@@ -167,7 +153,7 @@
                     <!--todo devide street and house number-->
                     <h4>Где находится ваш объект?</h4>
                     Улица<br>
-                    <input name="street" class="css-input" type="text" th:field="*{street}"> <br> <br>
+                    <input id="street" style="width: 600px;" name="street" class="css-input" type="text" th:field="*{street}" > <br> <br>
                     Номер дома <br>
                     <input name="street" class="css-input" type="text" th:field="*{houseNumber}"> <br> <br>
                     Страна/территория <br>
@@ -190,7 +176,7 @@
             </div>
             <!--Contact info END-->
 
-            //////////////////////////////////////////////////////////////////////////////
+
             <br>
             <br>
             <br>
@@ -218,12 +204,13 @@
                     <option th:value="11">10+</option>
                 </select><br><br>-->
 
-
-                <select th:field="*{roomNumber}">
-                    <option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}" th:text="${i}"
-                            th:selected="${i==1}"></option>
-                </select>
-
+                <div th:class="${#fields.hasErrors('roomNumber')} ? 'form-group has-error' :'form-group' ">
+                    <p th:errors="*{roomNumber}" class="help-block"></p>
+                    <select th:field="*{roomNumber}">
+                        <option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}" th:text="${i}"
+                                th:selected="${i==1}"></option>
+                    </select>
+                </div>
 
 
                 Количество спальных мест
@@ -239,9 +226,13 @@
 
                 </select><br><br>-->
 
-
+                <div th:class="${#fields.hasErrors('multistorey')} ? 'form-group has-error' :'form-group' ">
+                    <p th:errors="*{multistorey}" class="help-block"></p>
                 Этаж/этажность <br>
                 <input name="multistorey" class="css-input" type="number" th:field="*{multistorey}"><br><br>
+                               </div>
+
+
                 общая площадь<br>
                 <input name="generalarea" class="css-input" type="number" th:field="*{generalArea}"><br><br>
                 жилая площадь<br>
@@ -276,59 +267,62 @@
         </div>
 
 
+        <input type="file" th:field="*{multipartFiles}" multiple>
+
+
         <input type="submit" value="Save as Draft"/>
 
 
         <!--price END-->
-        //////////////////////////////////////////////////////////////////////////////////////
 
         <br>
         <br>
         <br>
         <br>
-
-        <!--File Upload START-->
-        <div class="panel panel-default">
-            <div class="panel-heading text-center">
-                <h3>Spring MVC + Dropzone.js Example</h3>
-            </div>
-            <div class="panel-body">
-                <div>
-                    <form id="dropzone-form" class="dropzone"
-                          enctype="multipart/form-data">
-
-                        <div class="dz-default dz-message file-dropzone text-center well col-sm-12">
-                            <span class="glyphicon glyphicon-paperclip"></span> <span>
-                                                       To attach files, drag and drop here</span><br>
-                            <span>OR</span><br>
-                            <span>Just Click</span>
-                        </div>
-
-                        <!-- this is were the previews should be shown. -->
-                        <div class="dropzone-previews"></div>
-                    </form>
-                    <hr>
-                    <button id="upload-button" class="btn btn-primary">
-                        <span class="glyphicon glyphicon-upload"></span> Upload
-                    </button>
-                    <a class="btn btn-primary pull-right" href="list"> <span
-                            class="glyphicon glyphicon-eye-open"></span> View All Uploads
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!--File Upload END-->
-        //////////////////////////////////////////////////////////////////////////////////////
         <br>
         <br>
         <br>
         <br>
-        <!--facilities START-->
 
-        <!--</form>-->
     </form>
 </div>
 
+
+//////////////////////////////////////////////////////////////////////////////////////
+<!--File Upload START-->
+                    <div class="container">
+                        <div class="panel panel-default">
+                            <div class="panel-heading text-center">
+                                <h3>Spring MVC + Dropzone.js Example</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div>
+                                    <form id="dropzone-form" class="dropzone"
+                                          enctype="multipart/form-data">
+
+                                        <div
+                                                class="dz-default dz-message file-dropzone text-center well col-sm-12">
+
+                                            <span class="glyphicon glyphicon-paperclip"></span> <span>
+								To attach files, drag and drop here</span><br> <span>OR</span><br>
+                                            <span>Just Click</span>
+                                        </div>
+
+                                        <!-- this is were the previews should be shown. -->
+                                        <div class="dropzone-previews"></div>
+                </form>
+                <hr>
+                <button id="upload-button" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-upload"></span> Upload
+                </button>
+                <a class="btn btn-primary pull-right" href="list">
+                    <span class="glyphicon glyphicon-eye-open"></span> View All Uploads
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--File Upload END-->
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -355,6 +349,25 @@
 
 <script type="text/javascript" src="/js/dropzone.js"></script>
 <script type="text/javascript" src="/js/uploader.js"></script>
+
+<!--TODO script for replaceEnterWithTab-->
+<script>
+    function replaceEnterWithTab(field) {
+        field.bind("keypress", function(e) {
+            if (e.keyCode == 13) {
+                var inputs = $(this).parents("form").eq(0).find(":input:visible:enabled");
+                var idx = inputs.index(this);
+
+                if (idx == inputs.length - 1) {
+                    inputs[0].select()
+                } else {
+                    inputs[idx + 1].focus();
+                }
+                return false;
+            }
+        });
+    }
+</script>
 
 
 </body>

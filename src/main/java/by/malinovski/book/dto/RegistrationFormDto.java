@@ -1,20 +1,10 @@
 package by.malinovski.book.dto;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.experimental.Accessors;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
 import java.util.List;
 
-@Data
 @Component
-//@Accessors(fluent = true) @Getter
-//@Setter
-//@NoArgsConstructor
 public class RegistrationFormDto {
     //    Какие контактные данные вы хотите указать для этого объекта?
 
@@ -339,8 +329,6 @@ public class RegistrationFormDto {
     }
 
 
-
-
     public String getBathroomnumber() {
         return bathroomNumber;
     }
@@ -348,7 +336,6 @@ public class RegistrationFormDto {
     public void setBathroomnumber(String bathroomnumber) {
         this.bathroomNumber = bathroomnumber;
     }
-
 
 
     public List getDropzone() {

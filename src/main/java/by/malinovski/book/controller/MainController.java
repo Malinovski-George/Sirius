@@ -1,14 +1,14 @@
 package by.malinovski.book.controller;
 
 
-import by.malinovski.book.dto.RegistrationFormDto;
 import by.malinovski.book.dto.SimpleFlatDto;
-import by.malinovski.book.model.Flat;
 import by.malinovski.book.service.impl.FlatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,15 +16,14 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 @Controller
 public class MainController {
 
-                @Autowired
-                FlatService flatService;
+    @Autowired
+    FlatService flatService;
 
    /* @RequestMapping(path = { "/", "/home" }, method = RequestMethod.GET)
     public String showHome() {
@@ -32,8 +31,8 @@ public class MainController {
     }*/
 
 
-                @RequestMapping(path = {"/", "/home"}, method = RequestMethod.GET)
-                public ModelAndView showHome() {
+    @RequestMapping(path = {"/", "/home"}, method = RequestMethod.GET)
+    public ModelAndView showHome() {
 //    public String showHome() {
 
 //                    List<Flat> list2 =        flatService.getAllFlats();
@@ -47,14 +46,14 @@ public class MainController {
                     list.add(new Flat());
             list.add(new Flat());
 */
-                    List<SimpleFlatDto> allFlats = flatService.getAllFlats();
+        List<SimpleFlatDto> allFlats = flatService.getAllFlats();
 
-                    ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("home");
-            modelAndView.addObject("appName", "asdasd");
-            modelAndView.addObject("flats", allFlats);
-            modelAndView.addObject("fields", allFlats.size());
-            return modelAndView;
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("home");
+        modelAndView.addObject("appName", "asdasd");
+        modelAndView.addObject("flats", allFlats);
+        modelAndView.addObject("fields", allFlats.size());
+        return modelAndView;
 //        return "home";
     }
 

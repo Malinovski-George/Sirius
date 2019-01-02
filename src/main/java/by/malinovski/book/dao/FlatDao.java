@@ -17,4 +17,6 @@ public interface FlatDao {
 
 
     void save(Flat flat);
+
+    void delete(Integer flatId);
 }

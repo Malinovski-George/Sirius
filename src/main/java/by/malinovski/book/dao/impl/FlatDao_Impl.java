@@ -9,6 +9,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -59,5 +60,13 @@ public class FlatDao_Impl implements FlatDao {
         Session session = sessionFactory.getCurrentSession();
 
         session.save(flat);
+    }
+
+    @Override
+    public void delete(Integer flatId) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "delete Flat where id = :id";
+        Query q = session.createQuery(hql).setParameter("id", flatId);
+        q.executeUpdate();
     }
 }
