@@ -2,22 +2,29 @@ use booki;
 
 create table flat
 (
-	flatowner integer not null,
-	flatattributes integer not null,
-	descriptionshort varchar(200),
-	city varchar(25) ,
-	street varchar(45) ,
-	ownername varchar(45) ,
-	house varchar(10),
-	created timestamp ,
-	modified timestamp,
-	id integer not null
-		PRIMARY KEY
+	flatowner int not null,
+	flatattributes int null,
+	descriptionshort varchar(2000) null,
+	city varchar(25) null,
+	street varchar(45) null,
+	ownername varchar(45) null,
+	house varchar(10) null,
+	created timestamp null,
+	modified timestamp null,
+	id int auto_increment
+		primary key,
+	simpleAttributes int null,
+	constraint flat_id_uindex
+		unique (id)
 )
 ;
+
+
+/*
 
 create unique index flat_id_uindex
 	on flat (id)
 ;
+*/
 
 
