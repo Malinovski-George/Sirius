@@ -1,226 +1,244 @@
 package by.malinovski.book.dto;
 
+import org.hibernate.validator.constraints.Range;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Component
 public class SimpleFlatDto {
 
+  private int id;
 
-    private int id;
-    private String ownerName;
+  @NotNull(message = "Имя не должно быть пустым")
+  private String ownerName;
 
-    // TODO GM: add phones
-    private String phone1;
-    private String phone2;
-    private String phone3;
+  // TODO GM: add phones
+  @NotNull(message = "Укажите хотя бы один телефон")
+  @Pattern(
+      regexp =
+          "\\s{0,}\\+{0,1}375\\s{0,}\\({0,1}(([2]{1}([5]{1}|[9]{1}))|([3]{1}[3]{1})|([4]{1}[4]{1}))\\){0,1}\\s{0,1}[0-9]{3,3}\\s{0,1}\\-{0,1}\\s{0,1}[0-9]{2,2}\\s{0,1}\\-{0,1}\\s{0,1}[0-9]{2,2}",
+      message = "Введите номер телефона соответствующий вормату +375(29|33|25|44)xxxxxxx")
+  private String phone1;
 
+  @Pattern(
+      regexp =
+          "\\s{0,}\\+{0,1}375\\s{0,}\\({0,1}(([2]{1}([5]{1}|[9]{1}))|([3]{1}[3]{1})|([4]{1}[4]{1}))\\){0,1}\\s{0,1}[0-9]{3,3}\\s{0,1}\\-{0,1}\\s{0,1}[0-9]{2,2}\\s{0,1}\\-{0,1}\\s{0,1}[0-9]{2,2}",
+      message = "Введите номер телефона соответствующий вормату +375(29|33|25|44)xxxxxxx")
+  private String phone2;
 
-    //    Где находится ваш объект?
-    private String street;
-    private String houseNumber;
-    private String country;
-    private String town;
+  @Pattern(
+      regexp =
+          "\\s{0,}\\+{0,1}375\\s{0,}\\({0,1}(([2]{1}([5]{1}|[9]{1}))|([3]{1}[3]{1})|([4]{1}[4]{1}))\\){0,1}\\s{0,1}[0-9]{3,3}\\s{0,1}\\-{0,1}\\s{0,1}[0-9]{2,2}\\s{0,1}\\-{0,1}\\s{0,1}[0-9]{2,2}",
+      message = "Введите номер телефона соответствующий вормату +375(29|33|25|44)xxxxxxx")
+  private String phone3;
 
-    //    private String bathroomNumber;
-    //    Планировка и цены
-    private byte roomNumber;
-    private byte multistorey;
-    private byte generalArea;
-    private byte lifeArea;
-    private byte kitchenArea;
+  //    Где находится ваш объект?
+  private String street;
+  private String houseNumber;
 
-    //    Количество гостей
-    private byte guestsNumber;
+  @NotNull(message = "Укажите город")
+  private String town;
 
-    //Количество кроватей
-    private byte bedNumber;
+  private String country;
 
-    private String descriptionShort;
+  //    private String bathroomNumber;
+  //    Планировка и цены
+  @NotNull(message = "Укажите количество комнат")
+  @Range(min = 1L, message = "Количество комнат не может быть меньше 1")
+  private byte roomNumber;
 
+  @Range(min = 1L, message = "Количество этажей не может быть меньше 1")
+  private byte multistorey;
 
+  @Range(min = 1L, message = "Общая площадь не может быть меньше 1")
+  private byte generalArea;
 
-//    цена за ночь
-    private long priceDay;
-    private MultipartFile[] multipartFiles;
-    private int mainPhotoId;
-/*    private int priceNight;
-    private int priceHour;*/
+  @Range(min = 1L, message = "Жилая площадь не может быть меньше 1")
+  private byte lifeArea;
 
+  @Range(min = 1L, message = "Площадь кухни не может быть меньше 1")
+  private byte kitchenArea;
 
-    public String getOwnerName() {
-        return ownerName;
-    }
+  //    Количество гостей
+  @NotNull(message = "Укажите максимально возможное количество гостей")
+  @Range(min = 1L, message = "Количесвто гостей не может быть меньше 1")
+  private byte guestsNumber;
 
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
-    }
+  // Количество кроватей
+  @NotNull(message = "Укажите количество спальных мест")
+  @Range(min = 1L, message = "Количесвто спальных мест не может быть меньше 1")
+  private byte bedNumber;
 
-    public String getPhone1() {
-        return phone1;
-    }
+  private String descriptionShort;
 
-    public void setPhone1(String phone1) {
-        this.phone1 = phone1;
-    }
+  //    цена за ночь
 
-    public String getPhone2() {
-        return phone2;
-    }
+  @NotNull(message = "Укажите цену")
+  @Range(min = 1L, message = "Цена не может быть меньше 1")
+  private long priceDay;
 
-    public void setPhone2(String phone2) {
-        this.phone2 = phone2;
-    }
+  private MultipartFile[] multipartFiles;
+  private int mainPhotoId;
 
-    public String getPhone3() {
-        return phone3;
-    }
+  public String getOwnerName() {
+    return ownerName;
+  }
 
-    public void setPhone3(String phone3) {
-        this.phone3 = phone3;
-    }
+  public void setOwnerName(String ownerName) {
+    this.ownerName = ownerName;
+  }
 
-    public String getStreet() {
-        return street;
-    }
+  public String getPhone1() {
+    return phone1;
+  }
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
+  public void setPhone1(String phone1) {
+    this.phone1 = phone1;
+  }
 
-    public String getHouseNumber() {
-        return houseNumber;
-    }
+  public String getPhone2() {
+    return phone2;
+  }
 
-    public void setHouseNumber(String houseNumber) {
-        this.houseNumber = houseNumber;
-    }
+  public void setPhone2(String phone2) {
+    this.phone2 = phone2;
+  }
 
-    public String getCountry() {
-        return country;
-    }
+  public String getPhone3() {
+    return phone3;
+  }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
+  public void setPhone3(String phone3) {
+    this.phone3 = phone3;
+  }
 
-    public String getTown() {
-        return town;
-    }
+  public String getStreet() {
+    return street;
+  }
 
-    public void setTown(String town) {
-        this.town = town;
-    }
+  public void setStreet(String street) {
+    this.street = street;
+  }
 
-    public byte getRoomNumber() {
-        return roomNumber;
-    }
+  public String getHouseNumber() {
+    return houseNumber;
+  }
 
-    public void setRoomNumber(byte roomNumber) {
-        this.roomNumber = roomNumber;
-    }
+  public void setHouseNumber(String houseNumber) {
+    this.houseNumber = houseNumber;
+  }
 
-    public byte getMultistorey() {
-        return multistorey;
-    }
+  public String getCountry() {
+    return country;
+  }
 
-    public void setMultistorey(byte multistorey) {
-        this.multistorey = multistorey;
-    }
+  public void setCountry(String country) {
+    this.country = country;
+  }
 
-    public byte getGeneralArea() {
-        return generalArea;
-    }
+  public String getTown() {
+    return town;
+  }
 
-    public void setGeneralArea(byte generalArea) {
-        this.generalArea = generalArea;
-    }
+  public void setTown(String town) {
+    this.town = town;
+  }
 
-    public byte getLifeArea() {
-        return lifeArea;
-    }
+  public byte getRoomNumber() {
+    return roomNumber;
+  }
 
-    public void setLifeArea(byte lifeArea) {
-        this.lifeArea = lifeArea;
-    }
+  public void setRoomNumber(byte roomNumber) {
+    this.roomNumber = roomNumber;
+  }
 
-    public byte getKitchenArea() {
-        return kitchenArea;
-    }
+  public byte getMultistorey() {
+    return multistorey;
+  }
 
-    public void setKitchenArea(byte kitchenArea) {
-        this.kitchenArea = kitchenArea;
-    }
+  public void setMultistorey(byte multistorey) {
+    this.multistorey = multistorey;
+  }
 
-    public byte getGuestsNumber() {
-        return guestsNumber;
-    }
+  public byte getGeneralArea() {
+    return generalArea;
+  }
 
-    public void setGuestsNumber(byte guestsNumber) {
-        this.guestsNumber = guestsNumber;
-    }
+  public void setGeneralArea(byte generalArea) {
+    this.generalArea = generalArea;
+  }
 
-    public byte getBedNumber() {
-        return bedNumber;
-    }
+  public byte getLifeArea() {
+    return lifeArea;
+  }
 
-    public void setBedNumber(byte bedNumber) {
-        this.bedNumber = bedNumber;
-    }
+  public void setLifeArea(byte lifeArea) {
+    this.lifeArea = lifeArea;
+  }
 
-   /* public int getPriceNight() {
-        return priceNight;
-    }
+  public byte getKitchenArea() {
+    return kitchenArea;
+  }
 
-    public void setPriceNight(int pricenight) {
-        this.priceNight = pricenight;
-    }
+  public void setKitchenArea(byte kitchenArea) {
+    this.kitchenArea = kitchenArea;
+  }
 
-    public int getPriceHour() {
-        return priceHour;
-    }
+  public byte getGuestsNumber() {
+    return guestsNumber;
+  }
 
-    public void setPriceHour(int priceHour) {
-        this.priceHour = priceHour;
-    }*/
+  public void setGuestsNumber(byte guestsNumber) {
+    this.guestsNumber = guestsNumber;
+  }
 
-    public long getPriceDay() {
-        return priceDay;
-    }
+  public byte getBedNumber() {
+    return bedNumber;
+  }
 
-    public void setPriceDay(long priceDay) {
-        this.priceDay = priceDay;
-    }
+  public void setBedNumber(byte bedNumber) {
+    this.bedNumber = bedNumber;
+  }
 
-    public int getId() {
-        return id;
-    }
+  public long getPriceDay() {
+    return priceDay;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public void setPriceDay(long priceDay) {
+    this.priceDay = priceDay;
+  }
 
-    public String getDescriptionShort() {
-        return descriptionShort;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public void setDescriptionShort(String descriptionShort) {
-        this.descriptionShort = descriptionShort;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public MultipartFile[] getMultipartFiles() {
-        return multipartFiles;
-    }
+  public String getDescriptionShort() {
+    return descriptionShort;
+  }
 
-    public void setMultipartFiles(MultipartFile[] multipartFiles) {
-        this.multipartFiles = multipartFiles;
-    }
+  public void setDescriptionShort(String descriptionShort) {
+    this.descriptionShort = descriptionShort;
+  }
 
-    public void setMainPhotoId(int mainPhotoId) {
-        this.mainPhotoId = mainPhotoId;
-    }
+  public MultipartFile[] getMultipartFiles() {
+    return multipartFiles;
+  }
 
-    public int getMainPhotoId() {
-        return mainPhotoId;
-    }
+  public void setMultipartFiles(MultipartFile[] multipartFiles) {
+    this.multipartFiles = multipartFiles;
+  }
+
+  public void setMainPhotoId(int mainPhotoId) {
+    this.mainPhotoId = mainPhotoId;
+  }
+
+  public int getMainPhotoId() {
+    return mainPhotoId;
+  }
 }
