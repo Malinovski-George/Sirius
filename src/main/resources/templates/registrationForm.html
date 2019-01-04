@@ -16,12 +16,19 @@
     <link rel="stylesheet" href="/css/bootstrap-dialog.css">
 
 
-    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=fc9d2f36-6962-4864-818f-800ac391ee96" type="text/javascript"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=fc9d2f36-6962-4864-818f-800ac391ee96"
+            type="text/javascript"></script>
     <script>
         ymaps.ready(init);
     function init() {
         var suggestView1 = new ymaps.SuggestView('street');
-    }</script>
+    }
+
+
+
+
+
+    </script>
 
     <title>Home Page</title></head>
 <body>
@@ -96,237 +103,287 @@
 
                     <h4><span>Какие контактные данные вы хотите указать для этого объекта?</span></h4><br>
                     <span> Контактное лицо</span><br>
-                    <span> <input name="ownerName" class="css-input" type="text"
-                                  th:field="*{ownerName}" onkeypress="replaceEnterWithTab(this)"></span><br>
+
+                    <div class="form-group col-md-4">
+                        <input name="ownerName" type="text"
+                               class="form-control" th:field="*{ownerName}" onkeypress="replaceEnterWithTab(this)"
+                               th:style="${#fields.hasErrors('ownerName')} ? 'border-color: #dc3545;' :'' "
+                               required>
+                        <p th:errors="*{ownerName}" style="color: #dc3545; font-size: 0.8em;">errors</p>
+                        <div class="invalid-feedback">
+                            Please choose a valid name.
+                        </div>
+
+                    </div>
+
+
                     <br>
                     <span>Контактные номера телефона</span>
                     <br>
 
-                    <span><input name="phone1" class="css-input" type="text" th:field="*{phone1}"></span>
+                    <div class="form-group col-md-4">
 
-                    <!--input id="viberPhone1" class="css-checkbox med" type="checkbox" th:field="*{viberPhone1}" th:value="*{viberPhone1}">
-                    <label for="viberPhone1" name="viberPhone1_lbl"
-                           class="css-label med elegant">Viber</label>-->
-
-
-<!--
-                    <input class="css-checkbox med" type="checkbox" th:field="*{viberPhone1}" th:value="*{viberPhone1}">
-                    <label th:for="${#ids.next('viberPhone1')}">Viber</label>-->
-
-
+                        <div class="form-group">
+                            <input name="phone1" class="form-control" type="text" th:field="*{phone1}"
+                                   th:style="${#fields.hasErrors('phone1')} ? 'border-color: #dc3545;' :'' "
+                                   required>
+                            <p th:errors="*{phone1}" style="color: #dc3545; font-size: 0.8em;">errors</p>
+                            <div class="invalid-feedback">
+                                Please choose a valid phone.
+                            </div>
 
 
-                  <!--  <input id="watsUpPhone1" class="css-checkbox med" type="checkbox">
-                    <label for="watsUpPhone1" name="watsUpPhone1_lbl"
-                           class="css-label med elegant">WatsUp</label>
-                    <br><br>-->
-
-                    <span><input name="phone2" class="css-input" type="text" th:field="*{phone2}"></span>
-
-                   <!-- <input id="viberPhone2" class="css-checkbox med" type="checkbox">
-                    <label for="viberPhone2" name="viberPhone2_lbl"
-                           class="css-label med elegant">Viber</label>
-                    <input id="watsUpPhone2" class="css-checkbox med" type="checkbox">
-                    <label for="watsUpPhone2" name="watsUpPhone2_lbl"
-                           class="css-label med elegant">WatsUp</label>
-
-                    <br><br>-->
-                    <span><input name="phone3" class="css-input" type="text" th:field="*{phone3}"></span>
+                            <!--input id="viberPhone1" class="css-checkbox med" type="checkbox" th:field="*{viberPhone1}" th:value="*{viberPhone1}">
+                            <label for="viberPhone1" name="viberPhone1_lbl"
+                                   class="css-label med elegant">Viber</label>-->
 
 
-                <!--    <input id="viberPhone3" class="css-checkbox med" type="checkbox">
-                    <label for="viberPhone3" name="viberPhone3_lbl"
-                           class="css-label med elegant">Viber</label>
-                    <input id="watsUpPhone3" class="css-checkbox med" type="checkbox">
-                    <label for="watsUpPhone3" name="watsUpPhone3_lbl"
-                           class="css-label med elegant">WatsUp</label>
+                            <!--
+                                                <input class="css-checkbox med" type="checkbox" th:field="*{viberPhone1}" th:value="*{viberPhone1}">
+                                                <label th:for="${#ids.next('viberPhone1')}">Viber</label>-->
+
+
+                            <!--  <input id="watsUpPhone1" class="css-checkbox med" type="checkbox">
+                              <label for="watsUpPhone1" name="watsUpPhone1_lbl"
+                                     class="css-label med elegant">WatsUp</label>
+                              <br><br>-->
+                        </div>
+
+                        <div class="form-group">
+                            <input name="phone2" class="form-control" type="text" th:field="*{phone2}"
+                                   th:style="${#fields.hasErrors('phone2')} ? 'border-color: #dc3545;' :'' ">
+                            <p th:errors="*{phone2}" style="color: #dc3545; font-size: 0.8em;">errors</p>
+
+
+                            <!-- <input id="viberPhone2" class="css-checkbox med" type="checkbox">
+                             <label for="viberPhone2" name="viberPhone2_lbl"
+                                    class="css-label med elegant">Viber</label>
+                             <input id="watsUpPhone2" class="css-checkbox med" type="checkbox">
+                             <label for="watsUpPhone2" name="watsUpPhone2_lbl"
+                                    class="css-label med elegant">WatsUp</label>
+
+                             <br><br>--></div>
+                        <div class="form-group">
+                            <input name="phone3" class="form-control" type="text" th:field="*{phone3}"
+                                   th:style="${#fields.hasErrors('phone3')} ? 'border-color: #dc3545;' :'' ">
+                            <p th:errors="*{phone3}" style="color: #dc3545; font-size: 0.8em;">errors</p>
+
+                        </div>
+
+
+                        <!--    <input id="viberPhone3" class="css-checkbox med" type="checkbox">
+                            <label for="viberPhone3" name="viberPhone3_lbl"
+                                   class="css-label med elegant">Viber</label>
+                            <input id="watsUpPhone3" class="css-checkbox med" type="checkbox">
+                            <label for="watsUpPhone3" name="watsUpPhone3_lbl"
+                                   class="css-label med elegant">WatsUp</label>
+                            <br>
+        -->
+
+                    </div>
+
+
                     <br>
--->
-
-                </div>
-
-
-                <br>
-                <div>
-<!--
-                    https://www.pandoge.com/moduli_i_skripty/obedinyaem-neskolko-znacheniy-input-textarea-v-odnom-pole-na-jquery-->
-
-                    <!--todo devide street and house number-->
-                    <h4>Где находится ваш объект?</h4>
-                    Улица<br>
-                    <input id="street" style="width: 600px;" name="street" class="css-input" type="text" th:field="*{street}" > <br> <br>
-                    Номер дома <br>
-                    <input name="street" class="css-input" type="text" th:field="*{houseNumber}"> <br> <br>
-                    Страна/территория <br>
-                    <input name="country" class="css-input" type="text" th:field="*{country}"> <br> <br>
-                    Город <br>
-                    <input name="town" class="css-input" type="text" th:field="*{town}">
-                </div>
-
-                <br>
-                <div>
-                    <!--todo devide street and house number-->
-                    <h4>Краткое описание</h4>
-
-                    <textarea name="descriptionShort" class="css-input" cols="120" rows="5" type="text" maxlength="500"
-                              th:field="*{descriptionShort}"></textarea> <br> <br>
-
-                </div>
-
-
-            </div>
-            <!--Contact info END-->
-
-
-            <br>
-            <br>
-            <br>
-            <br>
-
-            <h3>Планировка и цены </h3><br>
-            <h4>апартаменты</h4>
-            <!--price START-->
-
-
-            <div>
-
-                Количество комнат
-            <!--    <select  th:field="*{roomNumber}">
-                    <option th:value="1">1</option>
-                    <option th:value="2">2</option>
-                    <option th:value="3">3</option>
-                    <option th:value="4">4</option>
-                    <option th:value="5">5</option>
-                    <option th:value="6">6</option>
-                    <option th:value="7">7</option>
-                    <option th:value="8">8</option>
-                    <option th:value="9'">9</option>
-                    <option th:value="10">10</option>
-                    <option th:value="11">10+</option>
-                </select><br><br>-->
-
-                <div th:class="${#fields.hasErrors('roomNumber')} ? 'form-group has-error' :'form-group' ">
-                    <p th:errors="*{roomNumber}" class="help-block"></p>
-                    <select th:field="*{roomNumber}">
-                        <option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}" th:text="${i}"
-                                th:selected="${i==1}"></option>
-                    </select>
-                </div>
-
-
-                Количество спальных мест
-                <select name="bednumber" th:field="*{bedNumber}">
-                    <option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}" th:text="${i}"
-                            th:selected="${i==1}"></option>
-                </select><br><br>
-
-               <!-- Количество ванных комнат
-                <select name="bathroomnumber" th:field="*{bathroomNumber}">
-                    <option th:each="i : ${#numbers.sequence(1, 5)}" th:value="${i}" th:text="${i}"
-                            th:selected="${i==1}"></option>
-
-                </select><br><br>-->
-
-                <div th:class="${#fields.hasErrors('multistorey')} ? 'form-control:invalid' :'form-group' ">
-                    <p th:errors="*{multistorey}" >errors</p>
-
-
-                    !!!!!!!!!!!!!!!!!!!!!!
-                    <!--https://getbootstrap.com/docs/4.0/components/forms/?-->
-                    !!!!!!!!!!!!!!!!!!!!!!
-
-                    Этаж/этажность <br>
-                    <input name="multistorey" type="number" th:field="*{multistorey}"
-                           class="form-control"
-
-                           th:style="${#fields.hasErrors('multistorey')} ? 'border-color: #dc3545;' :'' "
-                           required ><p th:errors="*{multistorey}" style="color: #dc3545;">errors</p><br><br>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                    <div class="invalid-feedback">
-                        Please choose a username.
-                    </div>
-                </div>
-
-
-                общая площадь<br>
-                <input name="generalarea" class="css-input" type="number" th:field="*{generalArea}"><br><br>
-                жилая площадь<br>
-                <input name="lifearea" class="css-input" type="number" th:field="*{lifeArea}"><br><br>
-                площадь кухни<br>
-                <input name="kitchenarea" class="css-input" type="number" th:field="*{kitchenArea}"><br><br>
-
-
-                <h4>Количество гостей</h4>
-                Сколько гостей могут остановиться в этой квартире?<br>
-
-                <input name="guestsNumber" class="css-input" type="number" th:field="*{guestsNumber}"><br><br>
-
-
-            </div>
-
-            <h4>цена за ночь</h4>
-            <div>
-                <div style="margin: 20px;">
                     <div>
-                        Цена за сутки
-                        <input name="pricenight" class="css-input" value="price" type="number" th:field="*{priceDay}">
+                        <!--
+                                            https://www.pandoge.com/moduli_i_skripty/obedinyaem-neskolko-znacheniy-input-textarea-v-odnom-pole-na-jquery-->
+
+                        <!--todo devide street and house number-->
+                        <h4>Где находится ваш объект?</h4>
+                        Улица<br>
+                        <input id="street" style="width: 600px;" name="street" class="css-input" type="text"
+                               th:field="*{street}"> <br> <br>
+                        Номер дома <br>
+                        <input name="street" class="css-input" type="text" th:field="*{houseNumber}"> <br> <br>
+                        Страна/территория <br>
+                        <input name="country" class="css-input" type="text" th:field="*{country}"> <br> <br>
+                        Город <br>
+                        <input name="town" class="css-input" type="text" th:field="*{town}">
+                    </div>
+
+                    <br>
+                    <div>
+                        <!--todo devide street and house number-->
+                        <h4>Краткое описание</h4>
+                        <div class="form-group col-md-9">
+                        <textarea name="descriptionShort" class="form-control" cols="120" rows="5" type="text"
+                                  maxlength="500"
+                                  th:field="*{descriptionShort}"></textarea> <br> <br>
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <!--Contact info END-->
+
+
+                <h3>Планировка и цены </h3><br>
+                <h4>апартаменты</h4>
+                <!--price START-->
+
+
+                <div class="form-group col-md-4">
+
+                    Количество комнат
+                    <!--    <select  th:field="*{roomNumber}">
+                            <option th:value="1">1</option>
+                            <option th:value="2">2</option>
+                            <option th:value="3">3</option>
+                            <option th:value="4">4</option>
+                            <option th:value="5">5</option>
+                            <option th:value="6">6</option>
+                            <option th:value="7">7</option>
+                            <option th:value="8">8</option>
+                            <option th:value="9'">9</option>
+                            <option th:value="10">10</option>
+                            <option th:value="11">10+</option>
+                        </select><br><br>-->
+
+                    <div th:class="${#fields.hasErrors('roomNumber')} ? 'form-group has-error' :'form-group' ">
+                        <p th:errors="*{roomNumber}" class="help-block"></p>
+                        <select th:field="*{roomNumber}">
+                            <option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}" th:text="${i}"
+                                    th:selected="${i==1}"></option>
+                        </select>
+                    </div>
+
+                    <div>
+                        Количество спальных мест
+                        <input name="bednumber" type="number" th:field="*{bedNumber}" class="form-control"
+                               th:style="${#fields.hasErrors('bedNumber')} ? 'border-color: #dc3545;' :'' " required>
+                        <p th:errors="*{bedNumber}" style="color: #dc3545; font-size: 0.8em;">errors</p>
+                        <div class="invalid-feedback">
+                            Please choose a username.
+                        </div>
+                    </div>
+                    <!-- Количество ванных комнат
+                     <select name="bathroomnumber" th:field="*{bathroomNumber}">
+                         <option th:each="i : ${#numbers.sequence(1, 5)}" th:value="${i}" th:text="${i}"
+                                 th:selected="${i==1}"></option>
+
+                     </select><br><br>-->
+
+                    <div>
+                        <!--!!!!!!!!!!!!!!!!!!!!!!-->
+                        <!--https://getbootstrap.com/docs/4.0/components/forms/?-->
+                        <!--!!!!!!!!!!!!!!!!!!!!!!-->
+
+                        <!--Этаж/этажность <br>-->
+                        Этаж <br>
+                        <input name="multistorey" type="number" th:field="*{multistorey}" class="form-control"
+                               th:style="${#fields.hasErrors('multistorey')} ? 'border-color: #dc3545;' :'' " required>
+                        <p th:errors="*{multistorey}" style="color: #dc3545; font-size: 0.8em;">errors</p>
+                        <div class="invalid-feedback">
+                            Please choose a floor.
+                        </div>
+                    </div>
+
+
+                    <div>
+                        общая площадь<br>
+                        <input name="generalarea" type="number" th:field="*{generalArea}" class="form-control"
+                               th:style="${#fields.hasErrors('generalArea')} ? 'border-color: #dc3545;' :'' " required>
+                        <p th:errors="*{generalArea}" style="color: #dc3545; font-size: 0.8em;">errors</p>
+                    </div>
+
+
+                    <div>
+                        жилая площадь<br>
+                        <input name="lifearea" type="number" th:field="*{lifeArea}"
+                               class="form-control"
+                               th:style="${#fields.hasErrors('lifeArea')} ? 'border-color: #dc3545;' :'' " required>
+                        <p th:errors="*{lifeArea}" style="color: #dc3545; font-size: 0.8em;">errors</p>
+
+                    </div>
+                    <div>
+
+                        площадь кухни<br>
+                        <input name="kitchenarea" type="number" th:field="*{kitchenArea}" class="form-control"
+                               th:style="${#fields.hasErrors('kitchenArea')} ? 'border-color: #dc3545;' :'' " required>
+                        <p th:errors="*{kitchenArea}" style="color: #dc3545; font-size: 0.8em;">errors</p>
+                    </div>
+
+                </div>
+                <div>
+
+                    <h4>Количество гостей</h4>
+                    Сколько гостей могут остановиться в этой квартире?<br>
+
+                    <div class="form-group col-md-4">
+                        <input name="guestsNumber" type="number" th:field="*{guestsNumber}" class="form-control"
+                               th:style="${#fields.hasErrors('guestsNumber')} ? 'border-color: #dc3545;' :'' " required>
+                        <p th:errors="*{guestsNumber}" style="color: #dc3545; font-size: 0.8em;">errors</p>
                     </div>
                 </div>
 
-               <!-- <div style="margin: 20px;">
-                    <div>
-                        Цена за часы <input name="priceHour" class="css-input" value="price" type="number" th:field="*{priceHour}">
+                <h4>цена за ночь</h4>
+                <div>
+                    <div style="margin: 20px;">
+                        <div>
+                            Цена за сутки
+                            <input name="pricenight" value="price" type="number" th:field="*{priceDay}"
+                                   class="form-control"
+                                   th:style="${#fields.hasErrors('priceDay')} ? 'border-color: #dc3545;' :'' "
+                                   required>
+                            <p th:errors="*{priceDay}" style="color: #dc3545; font-size: 0.8em;">errors</p>
+                        </div>
                     </div>
-                </div>-->
+
+                    <!-- <div style="margin: 20px;">
+                         <div>
+                             Цена за часы <input name="priceHour" class="css-input" value="price" type="number" th:field="*{priceHour}">
+                         </div>
+                     </div>-->
+                </div>
             </div>
+
+            <div class="form-group col-md-4">
+                <input type="file" th:field="*{multipartFiles}" multiple>
+            </div>
+
+            <input class="btn btn-warning" type="submit" value="Сохранить"/>
+
+
+            <!--price END-->
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
         </div>
-
-
-        <input type="file" th:field="*{multipartFiles}" multiple>
-
-
-        <input type="submit" value="Save as Draft"/>
-
-
-        <!--price END-->
-
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-
     </form>
 </div>
 
 
 //////////////////////////////////////////////////////////////////////////////////////
 <!--File Upload START-->
-                    <div class="container">
-                        <div class="panel panel-default">
-                            <div class="panel-heading text-center">
-                                <h3>Spring MVC + Dropzone.js Example</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div>
-                                    <form id="dropzone-form" class="dropzone"
-                                          enctype="multipart/form-data">
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading text-center">
+            <h3>Maybe sometimes</h3>
+        </div>
+        <div class="panel-body">
+            <div>
+                <form id="dropzone-form" class="dropzone"
+                      enctype="multipart/form-data">
 
-                                        <div
-                                                class="dz-default dz-message file-dropzone text-center well col-sm-12">
+                    <div
+                            class="dz-default dz-message file-dropzone text-center well col-sm-12">
 
-                                            <span class="glyphicon glyphicon-paperclip"></span> <span>
+                        <span class="glyphicon glyphicon-paperclip"></span> <span>
 								To attach files, drag and drop here</span><br> <span>OR</span><br>
-                                            <span>Just Click</span>
-                                        </div>
+                        <span>Just Click</span>
+                    </div>
 
-                                        <!-- this is were the previews should be shown. -->
-                                        <div class="dropzone-previews"></div>
+                    <!-- this is were the previews should be shown. -->
+                    <div class="dropzone-previews"></div>
                 </form>
                 <hr>
                 <button id="upload-button" class="btn btn-primary">
@@ -384,6 +441,12 @@
             }
         });
     }
+
+
+
+
+
+
 </script>
 
 <!--todo validation-->
@@ -406,6 +469,12 @@
             });
         }, false);
     })();
+
+
+
+
+
+
 </script>
 
 
