@@ -2,22 +2,17 @@ package by.malinovski.book.controller;
 
 
 import by.malinovski.book.dto.SimpleFlatDto;
+import by.malinovski.book.model.User;
 import by.malinovski.book.service.impl.FlatService;
+import by.malinovski.book.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.security.Principal;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class MainController {
@@ -25,28 +20,16 @@ public class MainController {
     @Autowired
     FlatService flatService;
 
-   /* @RequestMapping(path = { "/", "/home" }, method = RequestMethod.GET)
-    public String showHome() {
-        return "home";
-    }*/
+
+    @Autowired
+    UserService userService;
+
 
 
     @RequestMapping(path = {"/", "/home"}, method = RequestMethod.GET)
     public ModelAndView showHome() {
-//    public String showHome() {
 
-//                    List<Flat> list2 =        flatService.getAllFlats();
-/*
-
-                    List<Flat> list = new LinkedList<>();
-                    list.add(new Flat());
-                    list.add(new Flat());
-                    list.add(new Flat());
-                    list.add(new Flat());
-                    list.add(new Flat());
-            list.add(new Flat());
-*/
-        List<SimpleFlatDto> allFlats = flatService.getAllFlats();
+        List<SimpleFlatDto> allFlats = flatService.getAllSimpleFlatsDto();
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("home");
@@ -54,34 +37,8 @@ public class MainController {
         modelAndView.addObject("flats", allFlats);
         modelAndView.addObject("fields", allFlats.size());
         return modelAndView;
-//        return "home";
     }
-
-
-
-   /* @RequestMapping(path = {"/userRegistration"}, method = RequestMethod.GET)
-    public String userRegistrationFormPost(@ModelAttribute RegistrationFormDto registrationFormDto, Model model) {
-
-        model.addAttribute("user", registrationFormDto);
-        return "userRegistration";
-    }
-*/
-  /* @RequestMapping(path = {"/registrationForm"}, method = RequestMethod.POST)
-   public String registrationFormPost(@ModelAttribute RegistrationFormDto registrationFormDto, Model model) {
-
-
-       model.addAttribute("registrationFormDto", registrationFormDto);
-        return "done";
-    }*/
-
-//    @RequestMapping(path = {"/userRegistration"}, method = RequestMethod.GET)
-//    public String userRegistrationFormPost(@ModelAttribute RegistrationFormDto registrationFormDto, Model model) {
-//
-//        model.addAttribute("user", registrationFormDto);
-//        return "userRegistration";
-//    }
-
-
+/*
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public @ResponseBody
     List upload(MultipartHttpServletRequest request,
@@ -123,7 +80,7 @@ public class MainController {
     @RequestMapping(value = "/get/{fileId}", method = RequestMethod.GET)
     public void getFile(HttpServletResponse response, @PathVariable Long fileId) {
 
-     /*   UploadedFile dataFile = uploadService.getFile(fileId);
+     *//*   UploadedFile dataFile = uploadService.getFile(fileId);
 
         File file = new File(dataFile.getLocation(), dataFile.getName());
 
@@ -137,8 +94,26 @@ public class MainController {
 
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }*//*
+    }*/
+
+    @RequestMapping(value = "/accessDeniedPage", method = RequestMethod.GET)
+    public String AccessDinied() {
+        return "/accessDeniedPage";
     }
 
 
+    @RequestMapping(value = "/user-page", method = RequestMethod.GET)
+    public ModelAndView UserPage(Principal principal) {
+
+
+        User user = userService.getUserByEmail(principal.getName());
+        List<SimpleFlatDto> flats = flatService.getSimpleFlatDtoByUser(user);
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("user-page");
+        modelAndView.addObject("flats", flats);
+
+        return modelAndView;
+    }
 }

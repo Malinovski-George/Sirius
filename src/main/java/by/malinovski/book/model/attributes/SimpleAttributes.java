@@ -27,29 +27,18 @@ public class SimpleAttributes {
     Flat flat;
 
     @Column(name = "roomNumber", nullable = false)
-    @NotNull(message="Укажите количество комнат")
-    @Range(min = 1L,
-            message = "Укажите правильное количество комнат")
     byte roomNumber;
 
-    @Range(min = 1L,
-            message = "Укажите правильное количество спальных мест")
     @Column(name = "bedNumber")
     byte bedNumber;
 
     @Column(name = "guestsNumber")
-    @Range(min = 1L,
-            message = "Укажите правильное количество гостей")
     byte guestsNumber;
 
     @Column(name = "floor", nullable = false)
-    @Range(min = 1L,
-            message = "Укажите правильное количество гостей")
     byte floor;
 
     @Column(name = "multistorey", nullable = false)
-    @Range(min = 1L,
-            message = "Укажите правильное количество этажей")
     byte multistorey; //этажность
 
     @Column(name = "generalArea", nullable = false)
@@ -64,7 +53,6 @@ public class SimpleAttributes {
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "price")
-
     private Price price;
 
 

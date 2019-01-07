@@ -9,7 +9,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-
 @Entity
 @Table(name = "flat")
 public class Flat {
@@ -55,6 +54,16 @@ public class Flat {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "flat", cascade = CascadeType.REMOVE)
     private Set<FlatPhoto> photos = new HashSet<>();
+
+    @Column(name = "phone1", length = 15)
+    private String phone1;
+
+    @Column(name = "phone2", length = 15)
+    private String phone2;
+
+    @Column(name = "phone3", length = 15)
+    private String phone3;
+
 
     // -- gettets and setters --
 
@@ -152,5 +161,29 @@ public class Flat {
 
     public void setPhotos(Set<FlatPhoto> photos) {
         this.photos = photos;
+    }
+
+    public String getPhone1() {
+        return phone1;
+    }
+
+    public void setPhone1(String phone1) {
+        this.phone1 = phone1;
+    }
+
+    public String getPhone2() {
+        return phone2;
+    }
+
+    public void setPhone2(String phone2) {
+        this.phone2 = phone2;
+    }
+
+    public String getPhone3() {
+        return phone3;
+    }
+
+    public void setPhone3(String phone3) {
+        this.phone3 = phone3;
     }
 }

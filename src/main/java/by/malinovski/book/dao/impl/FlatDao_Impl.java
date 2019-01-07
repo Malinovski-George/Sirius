@@ -3,6 +3,7 @@ package by.malinovski.book.dao.impl;
 
 import by.malinovski.book.dao.FlatDao;
 import by.malinovski.book.model.Flat;
+import by.malinovski.book.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -42,7 +43,8 @@ public class FlatDao_Impl implements FlatDao {
     @Override
     public Flat getFlatById(int id) {
         Session session = sessionFactory.getCurrentSession();
-        return (Flat) session.get(Flat.class, id);
+        Flat flat = session.get(Flat.class, id);
+        return flat;
     }
 
     @Override
@@ -50,7 +52,7 @@ public class FlatDao_Impl implements FlatDao {
         List<Flat> flats = null;
         Session session = sessionFactory.getCurrentSession();
         flats = session.createCriteria(Flat.class)
-                .add(Restrictions.eq("id", userId))
+                .add(Restrictions.eq("flatOwner", userId))
                 .list();
         return flats;
     }
@@ -68,5 +70,21 @@ public class FlatDao_Impl implements FlatDao {
         String hql = "delete Flat where id = :id";
         Query q = session.createQuery(hql).setParameter("id", flatId);
         q.executeUpdate();
+    }
+
+    @Override
+    public List<Flat> getFlatsByUser(User user) {
+        List<Flat> flats = null;
+        Session session = sessionFactory.getCurrentSession();
+        flats = session.createCriteria(Flat.class)
+                .add(Restrictions.eq("flatOwner", user))
+                .list();
+        return flats;
+    }
+
+    @Override
+    public void update(Flat flat) {
+        Session session = sessionFactory.getCurrentSession();
+       session.update(flat);
     }
 }

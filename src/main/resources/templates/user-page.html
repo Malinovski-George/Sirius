@@ -83,7 +83,7 @@
         <!--Main menu END-->
 
 
-        <h1>Hello !</h1>
+
 
 
         <th:block th:each="flat : ${flats}">
@@ -107,14 +107,13 @@
                                     <p class="card-text" th:text="${flat.descriptionShort}"></p>
 
                                     <p class="card-text" th:text="${flat.priceDay}"></p>
-                                    <a th:href="@{'/flats/' + ${flat.id}}" class="btn btn-primary">Узнать больше</a>
                                     <!--TODO    add cheking auth -->
+                                    <a th:href="@{'/user/flats/' + ${flat.id}}" class="btn btn-primary">Редактирвоать</a>
                                     <!--<div sec:authorize="hasAuthority('ROLE_ADMIN')">-->
-                                    <div th:if="${#request.isUserInRole('ROLE_ADMIN')}">
-                                        <a th:href="@{'/flats/' + ${flat.id}}" th:method="delete"
+                                    <div>
+                                        <a th:href="@{'/user/flats/' + ${flat.id}}" th:method="delete"
                                            class="btn btn-danger">Удалить</a>
-                                        <a th:href="@{'/flats/' + ${flat.id}}" th:method="update"
-                                           class="btn btn-warning">Подтвердить</a>
+
                                     </div>
 
                                 </div>
@@ -127,8 +126,7 @@
             </section>
 
 
-            <!--<div th:if="(${rowStat.count} + 1) % 3 == 0" class="w-100 d-lg-none mt-4"></div>-->
-            <!--<div th:if="(${rowStat.count} + 1) % 3 == 0" class="w-100 d-lg-none mt-4"></div>-->
+
         </th:block>
 
 

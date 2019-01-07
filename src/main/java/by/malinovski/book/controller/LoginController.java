@@ -30,13 +30,13 @@ public class LoginController {
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
     public String login() {
-        return "login2.html";
+        return "login.html";
     }
 
     @RequestMapping("/login-error")
     public String loginError(Model model) {
         model.addAttribute("loginError", true);
-        return "login2.html";
+        return "login.html";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<th:block th:fragment="header">
+
+    <nav name="Main Menu" class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">BOOKI</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                    aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <!--hide when logged-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="registrationForm">Регистрация</a>
+                    </li>
+                    <!--hide when unlogged-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/registrationForm">Добавить объявление</a>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="dropdown01"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Выбрать город</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="#">Минск</a>
+                            <a class="dropdown-item" href="#">Могилев</a>
+                            <a class="dropdown-item" href="#">Витебск</a>
+                            <a class="dropdown-item" href="#">Брест</a>
+                            <a class="dropdown-item" href="#">Гродно</a>
+                            <a class="dropdown-item" href="#">Гомель</a>
+                        </div>
+                    </li>
+
+                  <!--  <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>-->
+                </ul>
+                <!--
+                search
+                <form class="form-inline my-2 my-lg-0">
+                     <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                 </form>-->
+
+                <ul class="nav navbar-nav navbar-right">
+                    <!--hide when logged-->
+
+                   <!-- <li class="nav-item">
+                        <a class="nav-link" href="/login">Вход</a>
+                    </li>
+                    &lt;!&ndash;hide when unlogged&ndash;&gt;
+                    <li>
+                        <a class="nav-link" th:href="@{/logout}">Logout</a>
+                    </li>
+-->
+
+
+                    <li th:if="${#authorization.expression('!isAuthenticated()')}">
+                        <a href="/login" th:href="@{/login}">
+                            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Sign in
+                        </a>
+                    </li>
+                    <li th:if="${#authorization.expression('isAuthenticated()')}">
+                        <a href="/user-page" th:href="@{/user-page}">
+                            <span class="glyphicon glyphicon-log-out"></span>user page
+                        </a>
+
+                        <a href="/logout" th:href="@{#}" onclick="$('#form').submit();">
+                            <span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout
+                        </a>
+                        <form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>
+                    </li>
+
+
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</th:block>
+
+</body>
+</html>

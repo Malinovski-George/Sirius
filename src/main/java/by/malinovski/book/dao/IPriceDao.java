@@ -5,4 +5,6 @@ import by.malinovski.book.model.Price.Price;
 public interface IPriceDao {
 
     void save(Price price);
+
+    void update(Price price);
 }

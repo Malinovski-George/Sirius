@@ -7,10 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
 @EnableWebSecurity
@@ -36,42 +33,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
-                .permitAll();
+                .permitAll()
+                .and().logout()    //logout configuration
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
+                .and().exceptionHandling() //exception handling configuration
+                .accessDeniedPage("/accessDeniedPage");
+//        .accessDeniedHandler(accessDeniedHandler); for loggin access denied
     }
 //    https://www.baeldung.com/registration-with-spring-mvc-and-spring-security
 
     @Bean
     @Override
     public UserDetailsService userDetailsService() {
-       /* UserDetails user =
-                User.withDefaultPasswordEncoder()
-                        .username("user")
-                        .password("password")
-                        .roles("USER")
-                        .build();
-
-        User.withDefaultPasswordEncoder().username("user").password("user").roles("USER").build();
-
-        return new InMemoryUserDetailsManager(user);*/
         return new UserDetailsServiceImpl();
     }
-
-//    @SuppressWarnings("deprecation")
-//    @Bean
-//    public InMemoryUserDetailsManager inMemoryUserDetailsManager() throws Exception {
-//        return new InMemoryUserDetailsManager(
-//                User.withDefaultPasswordEncoder().username("admin").password("admin")
-//                        .roles("ADMIN", "USER", "ACTUATOR").build(),
-//                User.withDefaultPasswordEncoder().username("user").password("user")
-//                        .roles("USER").build());
-//    }
-
 
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
                 .antMatchers("/resources/**");
-
     }
 }

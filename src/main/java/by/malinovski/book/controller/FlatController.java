@@ -38,17 +38,16 @@ public class FlatController {
 //    public String showHome() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("registrationForm");
-
-        SimpleFlatDto flatDto = new SimpleFlatDto();
-        modelAndView.addObject("flat", flatDto);
+// TODO GM: flat vs simpleFlatDto
+//        SimpleFlatDto flatDto = new SimpleFlatDto();
+//        modelAndView.addObject("flat", flatDto);
         modelAndView.addObject("simpleFlatDto", new SimpleFlatDto());
         return modelAndView;
 //        return "home";
     }
 
-
-//    @RequestMapping(path = {"/registrationForm"}, method = RequestMethod.POST)
-@PostMapping("/registrationForm")
+    //@PostMapping("/registrationForm")
+    @RequestMapping(path = {"/registrationForm"}, method = RequestMethod.POST)
     public String registrationFormPost1(@Valid SimpleFlatDto simpleFlatDto, BindingResult result, Principal principal) throws IOException {
 
 
@@ -65,14 +64,6 @@ public class FlatController {
         modelAndView.setStatus(HttpStatus.OK);
         return "redirect:/";
     }
-
-
-   /* @RequestMapping(path = {"/registrationForm"}, method = RequestMethod.POST)
-    public String registrationFormPost(@ModelAttribute RegistrationFormDto registrationFormDto, Model model) {
-
-        model.addAttribute("registrationFormDto", registrationFormDto);
-        return "done";
-    }*/
 
     @RequestMapping(path = {"/image/{imgid}"}, method = RequestMethod.GET)
     public void registrationFormPost1(HttpServletRequest request, @PathVariable(value = "imgid") String imgid, HttpServletResponse response) throws IOException {
@@ -103,5 +94,43 @@ public class FlatController {
         }
         return "redirect:/";
     }
+
+    @RequestMapping(path = {"/user/flats/{id}"}, method = RequestMethod.GET)
+    public ModelAndView updateFlat(Principal principal, @PathVariable(value = "id") String id) throws IOException {
+//        User user = userService.getUserByEmail(principal.getName());
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("updateForm");
+
+
+        SimpleFlatDto flatDto = flatService.getSimpleFlatDtoById(Integer.valueOf(id));
+        modelAndView.addObject("simpleFlatDto", flatDto);
+        return modelAndView;
+
+//        return "redirect:/user-page";
+    }
+
+    @RequestMapping(path = {"/user/flats/{id}"}, method = RequestMethod.DELETE)
+    public String deleteUserFlat(Principal principal, @PathVariable(value = "id") String id) throws IOException {
+        User user = userService.getUserByEmail(principal.getName());
+        if (flatService.canDelete(user, Integer.valueOf(id))) {
+            flatService.delete(Integer.valueOf(id));
+        }
+        return "redirect:/user-page";
+    }
+
+    @RequestMapping(path = {"/user/flats/{id}"}, method = RequestMethod.POST)
+    public String updateUserFlat(@Valid SimpleFlatDto simpleFlatDto, BindingResult result, @PathVariable(value = "id") String id) throws IOException {
+
+        if (result.hasErrors()) {
+            return "registrationForm";
+        }
+
+        flatService.updateFlat(simpleFlatDto, Integer.valueOf(id));
+
+
+        return "redirect:/user-page";
+    }
+
 
 }

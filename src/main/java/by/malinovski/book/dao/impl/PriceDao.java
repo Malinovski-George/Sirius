@@ -21,4 +21,10 @@ public class PriceDao implements IPriceDao {
         Session session = sessionFactory.getCurrentSession();
         session.save(price);
     }
+
+    @Override
+    public void update(Price price) {
+        Session session = sessionFactory.getCurrentSession();
+        session.update(price);
+    }
 }
