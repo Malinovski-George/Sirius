@@ -111,9 +111,11 @@
                                     <a th:href="@{'/user/flats/' + ${flat.id}}" class="btn btn-primary">Редактирвоать</a>
                                     <!--<div sec:authorize="hasAuthority('ROLE_ADMIN')">-->
                                     <div>
-                                        <a th:href="@{'/user/flats/' + ${flat.id}}" th:method="delete"
-                                           class="btn btn-danger">Удалить</a>
-
+                                        <form th:action="@{'/user/flats/' + ${flat.id}}" th:method="delete">
+                                            <!--<a th:href="@{'/user/flats/' + ${flat.id}}" th:method="delete" class="btn btn-danger">Удалить</a>-->
+                                            <input name="_method" type="hidden" value="delete"/>
+                                            <input class="btn btn-danger" type="submit" value="Удалить"/>
+                                        </form>
                                     </div>
 
                                 </div>
