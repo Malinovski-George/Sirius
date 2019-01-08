@@ -14,10 +14,15 @@ create table flat
 	id int auto_increment
 		primary key,
 	simpleAttributes int null,
+	phone1 varchar(15) null,
+	phone2 varchar(15) null,
+	phone3 varchar(15) null,
 	constraint flat_id_uindex
 		unique (id)
 )
 ;
+
+
 
 
 /*
