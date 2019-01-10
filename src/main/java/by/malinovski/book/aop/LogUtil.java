@@ -1,14 +1,19 @@
 package by.malinovski.book.aop;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 //@Component
+@Configuration
 @Aspect
+
 public class LogUtil {
 
     private final Logger log = org.slf4j.LoggerFactory.getLogger(this.getClass());
@@ -36,7 +41,7 @@ public class LogUtil {
         return retVal;
     }
 
-    @AfterThrowing
+    /*@AfterThrowing
     public void logExceptionMethod(Throwable error) throws Throwable {
         StringBuilder logMessage = new StringBuilder();
         logMessage.append("\n ERROR MESSAGE: ");
@@ -50,5 +55,14 @@ public class LogUtil {
             logMessage.append("\n");
         }
         log.error(logMessage.toString());
+    }*/
+
+    @Before("execution(* by.malinovski.book.*.*.*(..))")
+    public void before(JoinPoint joinPoint){
+        //Advice
+        log.info("!!! Check for user access ");
+        log.info("!!! Allowed execution for {}", joinPoint);
     }
+
 }
+

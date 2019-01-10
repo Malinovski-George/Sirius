@@ -1,5 +1,7 @@
 package by.malinovski.book;
 
+import by.malinovski.book.aop.CustomRequestInterceptor;
+import by.malinovski.book.aop.LogUtil;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.filter.CommonsRequestLoggingFilter;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
@@ -43,6 +47,8 @@ public class Demo2Application implements WebMvcConfigurer {
     @Autowired
     private Environment env;
 
+    @Autowired
+    private CustomRequestInterceptor customRequestInterceptor;
 
     public static void main(String[] args) {
         SpringApplication.run(Demo2Application.class, args);
@@ -155,4 +161,22 @@ public class Demo2Application implements WebMvcConfigurer {
         registry.addViewController("/registrationForm").setViewName("registrationForm");
         registry.addViewController("/").setViewName("home");
     }
+
+//    log request
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(customRequestInterceptor)
+                .addPathPatterns("/**/log-incoming-request/**/");;
+    }
+
+    @Bean
+    public CommonsRequestLoggingFilter requestLoggingFilter() {
+        CommonsRequestLoggingFilter loggingFilter = new CommonsRequestLoggingFilter();
+        loggingFilter.setIncludeClientInfo(true);
+        loggingFilter.setIncludeQueryString(true);
+        loggingFilter.setIncludePayload(true);
+        loggingFilter.setIncludeHeaders(false);
+        return loggingFilter;
+    }
+
 }
