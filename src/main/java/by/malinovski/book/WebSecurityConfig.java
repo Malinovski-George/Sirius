@@ -14,32 +14,45 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .antMatchers("/",
-                        "/home",
-                        "/userRegistration",
-                        "/lib/bootstrap/**",
-                        "/css/**",
-                        "/scss/**",
-                        "/image/**",
-                        "/fonts/**",
-                        "/js/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/")
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll()
-                .and().logout()    //logout configuration
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/")
-                .and().exceptionHandling() //exception handling configuration
-                .accessDeniedPage("/accessDeniedPage");
-//        .accessDeniedHandler(accessDeniedHandler); for loggin access denied
+    http.authorizeRequests()
+        .antMatchers(
+            "/",
+            "/home",
+            "/userRegistration",
+            "/lib/bootstrap/**",
+            "/css/**",
+            "/scss/**",
+            "/image/**",
+            "/fonts/**",
+            "/js/**")
+        .permitAll()
+        .anyRequest()
+        .authenticated()
+        .and()
+        .formLogin()
+        .loginPage("/login")
+        .defaultSuccessUrl("/")
+        .permitAll()
+        .and()
+        .logout()
+        .permitAll()
+        .and()
+        .logout() // logout configuration
+        .logoutUrl("/logout")
+        .logoutSuccessUrl("/")
+        .deleteCookies("JSESSIONID")
+        .and()
+        .exceptionHandling() // exception handling configuration
+        .accessDeniedPage("/accessDeniedPage")
+        //        .accessDeniedHandler(accessDeniedHandler); for loggin access denied
+        //                .permitAll();
+        // remember me configuration
+        .and()
+        .rememberMe()
+        .key("uniqueAndSecret")
+        .rememberMeParameter("remember-me")
+        .rememberMeCookieName("booki-remember-me")
+        .tokenValiditySeconds(7 * 24 * 60 * 60);
     }
 //    https://www.baeldung.com/registration-with-spring-mvc-and-spring-security
 
