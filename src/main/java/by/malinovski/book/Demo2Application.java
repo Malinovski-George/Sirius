@@ -11,9 +11,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
@@ -21,15 +23,17 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 import javax.sql.DataSource;
+import java.util.Locale;
 import java.util.Properties;
 
 @SpringBootApplication
@@ -125,7 +129,7 @@ public class Demo2Application implements WebMvcConfigurer {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(thymeleafTemplateResolver());
         templateEngine.addDialect(new LayoutDialect());
-        templateEngine.addDialect(new SpringSecurityDialect());
+        templateEngine.addDialect(new SpringSecurityDialect());//dialect for
         templateEngine.setEnableSpringELCompiler(true);
 //        templateEngine.setEnableSpringELCompiler(true);
         return templateEngine;
@@ -162,11 +166,14 @@ public class Demo2Application implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("home");
     }
 
-//    log request
+    //    log request
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(customRequestInterceptor)
-                .addPathPatterns("/**/log-incoming-request/**/");;
+                .addPathPatterns("/**/log-incoming-request/**/");
+
+        registry.addInterceptor(localeChangeInterceptor());
+
     }
 
     @Bean
@@ -179,4 +186,24 @@ public class Demo2Application implements WebMvcConfigurer {
         return loggingFilter;
     }
 
+    /*i18n*/
+    @Bean
+    public LocaleResolver localeResolver() {
+        SessionLocaleResolver slr = new SessionLocaleResolver();
+//        slr.setDefaultLocale(new Locale("ru"));
+
+//        CookieLocaleResolver resolver = new CookieLocaleResolver();
+//        resolver.setDefaultLocale(new Locale("ru"));
+//        resolver.setDefaultLocale(new Locale("ru"));
+//        resolver.setCookieName("locale");
+//        resolver.setCookieMaxAge(60 * 60 * 24 * 365 * 10);
+        return slr;
+    }
+
+    @Bean
+    public LocaleChangeInterceptor localeChangeInterceptor() {
+        LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
+        lci.setParamName("lang");
+        return lci;
+    }
 }

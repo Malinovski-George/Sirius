@@ -23,17 +23,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/css/**",
             "/scss/**",
             "/image/**",
+            "/images/**",
             "/fonts/**",
             "/js/**")
         .permitAll()
         .anyRequest()
         .authenticated()
-        .and()
+
+            .and()
         .formLogin()
         .loginPage("/login")
         .defaultSuccessUrl("/")
         .permitAll()
-        .and()
+
+            .and()
         .logout()
         .permitAll()
         .and()
@@ -41,13 +44,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .logoutUrl("/logout")
         .logoutSuccessUrl("/")
         .deleteCookies("JSESSIONID")
-        .and()
+
+            .and()
         .exceptionHandling() // exception handling configuration
         .accessDeniedPage("/accessDeniedPage")
         //        .accessDeniedHandler(accessDeniedHandler); for loggin access denied
         //                .permitAll();
-        // remember me configuration
-        .and()
+
+            // remember me configuration
+             .and()
         .rememberMe()
         .key("uniqueAndSecret")
         .rememberMeParameter("remember-me")
@@ -62,7 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new UserDetailsServiceImpl();
     }
 
-    @Override
+    @Override    // TODO GM: is i need it?
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
