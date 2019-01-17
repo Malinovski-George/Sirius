@@ -8,12 +8,13 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 //@Component
 @Configuration
 @Aspect
-
+@Profile("production")
 public class LogUtil {
 
     private final Logger log = org.slf4j.LoggerFactory.getLogger(this.getClass());
