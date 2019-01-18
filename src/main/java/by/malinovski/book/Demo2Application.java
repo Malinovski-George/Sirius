@@ -2,6 +2,7 @@ package by.malinovski.book;
 
 import by.malinovski.book.aop.CustomRequestInterceptor;
 import by.malinovski.book.aop.LogUtil;
+//import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.*;
@@ -36,6 +38,8 @@ import javax.sql.DataSource;
 import java.util.Locale;
 import java.util.Properties;
 
+
+//@EnableAdminServer
 @SpringBootApplication
 @EnableTransactionManagement
 

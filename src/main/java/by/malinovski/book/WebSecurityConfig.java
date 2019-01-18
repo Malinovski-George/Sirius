@@ -25,10 +25,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/image/**",
             "/images/**",
             "/fonts/**",
-            "/js/**")
+            "/js/**",
+                "/actuator/**")
         .permitAll()
         .anyRequest()
-        .authenticated()
+//        .authenticated()
+        .permitAll()
 
             .and()
         .formLogin()
@@ -58,6 +60,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .rememberMeParameter("remember-me")
         .rememberMeCookieName("booki-remember-me")
         .tokenValiditySeconds(7 * 24 * 60 * 60);
+
+        http
+                .csrf().disable();
+
+        http.authorizeRequests().anyRequest().permitAll()
+                .and().csrf().disable();
+
+
+
+
     }
 //    https://www.baeldung.com/registration-with-spring-mvc-and-spring-security
 
