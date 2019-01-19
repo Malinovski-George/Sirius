@@ -1,0 +1,168 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+    <changeSet author="George (generated)" id="1547914324346-1">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="price"/>
+            </not>
+        </preConditions>
+        <createTable catalogName="booki" tableName="price">
+            <column name="priceNight" type="INT(10)"/>
+            <column name="priceHour" type="INT(10)"/>
+            <column name="priceDay" type="INT(10)"/>
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="George (generated)" id="1547914324346-2">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="simpleattributes"/>
+            </not>
+        </preConditions>
+        <createTable catalogName="booki" tableName="simpleattributes">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="flat" type="INT(10)"/>
+            <column name="roomnumber" type="SMALLINT(5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bednumber" type="SMALLINT(5)"/>
+            <column name="guestsNumber" type="SMALLINT(5)"/>
+            <column name="floor" type="SMALLINT(5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="multistorey" type="INT(10)"/>
+            <column name="generalarea" type="SMALLINT(5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lifearea" type="SMALLINT(5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="kitchenarea" type="SMALLINT(5)"/>
+            <column name="price" type="INT(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="George (generated)" id="1547914324346-3">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="flat_attributes"/>
+            </not>
+        </preConditions>
+        <createTable catalogName="booki" tableName="flat_attributes">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="flat" type="INT(10)"/>
+            <column name="hasbalcony" type="BIT(1)"/>
+            <column name="istoiletcombined" type="BIT(1)"/>
+            <column name="hasfridge" type="BIT(1)"/>
+            <column name="hasdishes" type="BIT(1)"/>
+            <column name="hasmicrowaveoven" type="BIT(1)"/>
+            <column name="hassmallequipment" type="BIT(1)"/>
+            <column name="haswasher" type="BIT(1)"/>
+            <column name="hastv" type="BIT(1)"/>
+            <column name="hashairdryer" type="BIT(1)"/>
+            <column name="hasairconditioning" type="BIT(1)"/>
+            <column name="haswifi" type="BIT(1)"/>
+            <column name="hasfurniture" type="BIT(1)"/>
+            <column name="hasbuiltinwardrobes" type="BIT(1)"/>
+            <column name="hasdomoff" type="BIT(1)"/>
+            <column name="haselevator" type="BIT(1)"/>
+            <column name="iswindowstoyard" type="BIT(1)"/>
+            <column name="hasdoubleglazedwindows" type="BIT(1)"/>
+            <column name="cansmoke" type="BIT(1)"/>
+            <column name="ispossiblepets" type="BIT(1)"/>
+            <column name="canspendholidays" type="BIT(1)"/>
+            <column name="hasfireplace" type="BIT(1)"/>
+            <column name="hasjacuzzi" type="BIT(1)"/>
+            <column name="hascomputer" type="BIT(1)"/>
+            <column name="haspool" type="BIT(1)"/>
+            <column name="hasdryingmachine" type="BIT(1)"/>
+            <column name="hasiron" type="BIT(1)"/>
+            <column name="hasironingboard" type="BIT(1)"/>
+            <column name="hasdryer" type="BIT(1)"/>
+            <column name="hastouletaccessories" type="BIT(1)"/>
+            <column name="hasshampoo" type="BIT(1)"/>
+            <column name="isseparateentrance" type="BIT(1)"/>
+            <column name="hasreceptionist" type="BIT(1)"/>
+            <column name="price" type="INT(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="George (generated)" id="1547914324346-4">
+        <preConditions onFail="CONTINUE">
+            <not>
+                <tableExists tableName="flat"/>
+            </not>
+            <!--<and>
+                <tableExists tableName="flat"/>
+            </and>-->
+        </preConditions>
+        <createTable catalogName="booki" tableName="flat">
+            <column name="flatowner" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="flatattributes" type="INT(10)"/>
+            <column name="descriptionshort" type="VARCHAR(2000)"/>
+            <column name="city" type="VARCHAR(25)"/>
+            <column name="street" type="VARCHAR(45)"/>
+            <column name="ownername" type="VARCHAR(45)"/>
+            <column name="house" type="VARCHAR(10)"/>
+            <column name="created" type="TIMESTAMP"/>
+            <column name="modified" type="TIMESTAMP"/>
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="simpleAttributes" type="INT(10)"/>
+            <column name="phone1" type="VARCHAR(15)"/>
+            <column name="phone2" type="VARCHAR(15)"/>
+            <column name="phone3" type="VARCHAR(15)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="George (generated)" id="1547914324346-5">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="user"/>
+            </not>
+        </preConditions>
+        <createTable catalogName="booki" tableName="user">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="email" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone1" type="VARCHAR(15)"/>
+            <column name="phone2" type="VARCHAR(15)"/>
+            <column name="phone3" type="VARCHAR(15)"/>
+            <column name="phoneviber" type="VARCHAR(15)"/>
+            <column name="phonewatsup" type="VARCHAR(15)"/>
+            <column name="role_id" type="INT(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="George (generated)" id="1547914324346-6">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="flat_photo"/>
+            </not>
+        </preConditions>
+        <createTable catalogName="booki" tableName="flat_photo">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="image" type="LONGBLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="flat" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
