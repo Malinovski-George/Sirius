@@ -1,55 +1,48 @@
 package by.malinovski.book.util.actuatorEndPoints;
 
-import org.springframework.boot.actuate.endpoint.annotation.DeleteOperation;
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
-import org.springframework.boot.actuate.endpoint.annotation.Selector;
-import org.springframework.boot.actuate.endpoint.annotation.WriteOperation;
 import org.springframework.stereotype.Component;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 @Endpoint(id = "features") //   http://localhost:8080/actuator/features
 public class FeaturesEndpoint {
 
+  //    private Map<String, Feature> features = new ConcurrentHashMap<>();
+  // ----------
+  @ReadOperation
+  public String features() {
+    return "asd";
+  }
 
+  /*@ReadOperation
+  public Feature feature(@Selector String name) {
+      features.put("asd", new Feature());
+      return features.get(name);
+  }
 
-//    private Map<String, Feature> features = new ConcurrentHashMap<>();
-//----------
-    @ReadOperation
-    public String features() {
-        return "asd";
-    }
+  @WriteOperation
+  public void configureFeature(@Selector String name, Feature feature) {
+      features.put(name, feature);
+  }
 
-    /*@ReadOperation
-    public Feature feature(@Selector String name) {
-        features.put("asd", new Feature());
-        return features.get(name);
-    }
+  @DeleteOperation
+  public void deleteFeature(@Selector String name) {
+      features.remove(name);
+  }
 
-    @WriteOperation
-    public void configureFeature(@Selector String name, Feature feature) {
-        features.put(name, feature);
-    }
+  public static class Feature {
+      private Boolean enabled;
 
-    @DeleteOperation
-    public void deleteFeature(@Selector String name) {
-        features.remove(name);
-    }
+      // [...] getters and setters
 
-    public static class Feature {
-        private Boolean enabled;
+      public Boolean getEnabled() {
+          return enabled;
+      }
 
-        // [...] getters and setters
-
-        public Boolean getEnabled() {
-            return enabled;
-        }
-
-        public void setEnabled(Boolean enabled) {
-            this.enabled = enabled;
-        }
-    }*/
+      public void setEnabled(Boolean enabled) {
+          this.enabled = enabled;
+      }
+  }*/
 
 }

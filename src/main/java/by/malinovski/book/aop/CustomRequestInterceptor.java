@@ -1,7 +1,6 @@
 package by.malinovski.book.aop;
 
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +10,8 @@ import java.time.Instant;
 @Component
 public class CustomRequestInterceptor extends HandlerInterceptorAdapter {
 
-    private final Logger logger = org.slf4j.LoggerFactory.getLogger(this.getClass());
+  private final Logger logger = org.slf4j.LoggerFactory.getLogger(this.getClass());
+
   @Override
   public boolean preHandle(
       HttpServletRequest request, HttpServletResponse response, Object handler) {

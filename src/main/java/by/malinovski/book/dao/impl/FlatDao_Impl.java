@@ -1,15 +1,14 @@
 package by.malinovski.book.dao.impl;
 
-
 import by.malinovski.book.dao.FlatDao;
 import by.malinovski.book.model.Flat;
 import by.malinovski.book.model.User;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -18,73 +17,67 @@ import java.util.List;
 @Transactional
 public class FlatDao_Impl implements FlatDao {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+  @Autowired private SessionFactory sessionFactory;
 
-    public FlatDao_Impl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+  public FlatDao_Impl(SessionFactory sessionFactory) {
+    this.sessionFactory = sessionFactory;
+  }
 
-    @Override
-    public int createFlat(Flat flat) {
-        Session session = sessionFactory.getCurrentSession();
-        return (Integer) session.save(flat);
-    }
+  @Override
+  public int createFlat(Flat flat) {
+    Session session = sessionFactory.getCurrentSession();
+    return (Integer) session.save(flat);
+  }
 
-    @Override
-    public List<Flat> getAllFlats() {
-        List<Flat> flats = null;
-        Session session = sessionFactory.getCurrentSession();
-        flats = session.createCriteria(Flat.class).list();
-        return flats;
+  @Override
+  public List<Flat> getAllFlats() {
+    List<Flat> flats = null;
+    Session session = sessionFactory.getCurrentSession();
+    flats = session.createCriteria(Flat.class).list();
+    return flats;
+  }
 
-    }
+  @Override
+  public Flat getFlatById(int id) {
+    Session session = sessionFactory.getCurrentSession();
+    Flat flat = session.get(Flat.class, id);
+    return flat;
+  }
 
-    @Override
-    public Flat getFlatById(int id) {
-        Session session = sessionFactory.getCurrentSession();
-        Flat flat = session.get(Flat.class, id);
-        return flat;
-    }
+  @Override
+  public List<Flat> getFlatsByUserId(int userId) {
+    List<Flat> flats = null;
+    Session session = sessionFactory.getCurrentSession();
+    flats = session.createCriteria(Flat.class).add(Restrictions.eq("flatOwner", userId)).list();
+    return flats;
+  }
 
-    @Override
-    public List<Flat> getFlatsByUserId(int userId) {
-        List<Flat> flats = null;
-        Session session = sessionFactory.getCurrentSession();
-        flats = session.createCriteria(Flat.class)
-                .add(Restrictions.eq("flatOwner", userId))
-                .list();
-        return flats;
-    }
+  @Override
+  public void save(Flat flat) {
+    Session session = sessionFactory.getCurrentSession();
 
-    @Override
-    public void save(Flat flat) {
-        Session session = sessionFactory.getCurrentSession();
+    session.save(flat);
+  }
 
-        session.save(flat);
-    }
+  @Override
+  public void delete(Integer flatId) {
+    Session session = sessionFactory.getCurrentSession();
+    String hql = "delete Flat where id = :id";
+    Query q = session.createQuery(hql).setParameter("id", flatId);
+    q.executeUpdate();
+  }
 
-    @Override
-    public void delete(Integer flatId) {
-        Session session = sessionFactory.getCurrentSession();
-        String hql = "delete Flat where id = :id";
-        Query q = session.createQuery(hql).setParameter("id", flatId);
-        q.executeUpdate();
-    }
+  @Override
+  public List<Flat> getFlatsByUser(User user) {
+    List<Flat> flats = null;
+    Session session = sessionFactory.getCurrentSession();
+    flats = session.createCriteria(Flat.class).add(Restrictions.eq("flatOwner", user)).list();
+    return flats;
+  }
 
-    @Override
-    public List<Flat> getFlatsByUser(User user) {
-        List<Flat> flats = null;
-        Session session = sessionFactory.getCurrentSession();
-        flats = session.createCriteria(Flat.class)
-                .add(Restrictions.eq("flatOwner", user))
-                .list();
-        return flats;
-    }
-
-    @Override
-    public void update(Flat flat) {
-        Session session = sessionFactory.getCurrentSession();
-       session.update(flat);
-    }
+  @Override
+  public void update(Flat flat) {
+    Session session = sessionFactory.getCurrentSession();
+    session.update(flat);
+  }
 }

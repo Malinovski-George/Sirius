@@ -2,66 +2,52 @@ package by.malinovski.book.dto;
 
 import by.malinovski.book.service.validator.PasswordMatches;
 
-// TODO GM: validation
 @PasswordMatches
 public class UserDto {
 
-    //        @NotNull
-//        @NotEmpty
-    private String firstName;
+  private String firstName;
+  private String lastName;
+  private String password;
+  private String matchingPassword;
+  private String email;
 
-    //        @NotNull
-//        @NotEmpty
-    private String lastName;
+  public String getFirstName() {
+    return firstName;
+  }
 
-    //        @NotNull
-//        @NotEmpty
-    private String password;
-    private String matchingPassword;
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
 
-    //        @NotNull
-//        @NotEmpty
-    private String email;
+  public String getLastName() {
+    return lastName;
+  }
 
-    public String getFirstName() {
-        return firstName;
-    }
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public String getLastName() {
-        return lastName;
-    }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+  public String getMatchingPassword() {
+    return matchingPassword;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public void setMatchingPassword(String matchingPassword) {
+    this.matchingPassword = matchingPassword;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public String getMatchingPassword() {
-        return matchingPassword;
-    }
-
-    public void setMatchingPassword(String matchingPassword) {
-        this.matchingPassword = matchingPassword;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 }
-
-

@@ -24,8 +24,6 @@ public class GlobalExceptionHandler {
     return "error";
   }
 
-
-
   @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Data integrity violation") // 404
   @ExceptionHandler(ResponseStatusException.class)
   public ModelAndView notFound(HttpServletRequest request, Exception ex) {

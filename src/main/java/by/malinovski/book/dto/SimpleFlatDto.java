@@ -49,7 +49,7 @@ public class SimpleFlatDto {
   @Range(min = 1L, message = "Количество комнат не может быть меньше 1")
   private byte roomNumber;
 
-    @NotNull(message = "Укажите количество этажей")
+  @NotNull(message = "Укажите количество этажей")
   @Range(min = 1L, message = "Количество этажей не может быть меньше 1")
   private byte multistorey;
 

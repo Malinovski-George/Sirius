@@ -3,17 +3,14 @@ package by.malinovski.book.model;
 import java.sql.Timestamp;
 import java.util.Date;
 
-
 public class FlatStatistic {
 
-    private int id;
-    private Flat flat;
+  private int id;
+  private Flat flat;
 
-    private boolean isPhoneVisible;
+  private boolean isPhoneVisible;
 
-    private Date date;
+  private Date date;
 
-    private Timestamp timestamp;
-
-
+  private Timestamp timestamp;
 }

@@ -15,9 +15,9 @@ import by.malinovski.book.model.attributes.SimpleAttributes;
 import by.malinovski.book.service.IFlatService;
 import by.malinovski.book.util.convertors.PhotoConvertor;
 import by.malinovski.book.util.convertors.SimpleFlatConvertor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
@@ -26,133 +26,108 @@ import java.util.Set;
 @Component
 public class FlatService implements IFlatService {
 
-    @Autowired
-    SimpleFlatConvertor flatConvertor;
+  @Autowired SimpleFlatConvertor flatConvertor;
 
-    @Autowired
-    PhotoConvertor photoConvertor;
+  @Autowired PhotoConvertor photoConvertor;
 
-    @Autowired
-    FlatDao flatDao;
+  @Autowired FlatDao flatDao;
 
-    @Autowired
-    FlatAttributesDao attrDao;
+  @Autowired FlatAttributesDao attrDao;
 
-    @Autowired
-    PriceDao priceDao;
+  @Autowired PriceDao priceDao;
 
-    @Autowired
-    PhotoDao photoDao;
+  @Autowired PhotoDao photoDao;
 
-    @Override
-    public void saveNewFlat(SimpleFlatDto simpleFlatDto, User user) throws IOException {
-        Flat flat = flatConvertor.getFlat(simpleFlatDto);
-        SimpleAttributes simpleAttr = flatConvertor.getSimpleAttributes(simpleFlatDto);
-        Set<FlatPhoto> photos = photoConvertor.getPhotosFromDto(simpleFlatDto, flat);
+  @Override
+  public void saveNewFlat(SimpleFlatDto simpleFlatDto, User user) throws IOException {
+    Flat flat = flatConvertor.getFlat(simpleFlatDto);
+    SimpleAttributes simpleAttr = flatConvertor.getSimpleAttributes(simpleFlatDto);
+    Set<FlatPhoto> photos = photoConvertor.getPhotosFromDto(simpleFlatDto, flat);
 
-        Price price = new Price();
-        FlatAttributes flatAttr = new FlatAttributes();
+    Price price = new Price();
+    FlatAttributes flatAttr = new FlatAttributes();
 
-        price.setPriceDay(new BigDecimal(simpleFlatDto.getPriceDay()));
-        simpleAttr.setFlat(flat);
-        simpleAttr.setPrice(price);
-        flatAttr.setFlat(flat);
-        flatAttr.setPrice(price);
-        flat.setFlatAttributes(flatAttr);
-        flat.setSimpleAttributes(simpleAttr);
-        flat.setFlatOwner(user);
+    price.setPriceDay(new BigDecimal(simpleFlatDto.getPriceDay()));
+    simpleAttr.setFlat(flat);
+    simpleAttr.setPrice(price);
+    flatAttr.setFlat(flat);
+    flatAttr.setPrice(price);
+    flat.setFlatAttributes(flatAttr);
+    flat.setSimpleAttributes(simpleAttr);
+    flat.setFlatOwner(user);
 
-        priceDao.save(price);
+    priceDao.save(price);
 
-        flatDao.save(flat);
-//        attrDao.save(flatAttr);
-//        attrDao.save(simpleAttr);
+    flatDao.save(flat);
 
-        photoDao.save(photos);
+    photoDao.save(photos);
+  }
 
+  @Override
+  public List<SimpleFlatDto> getAllSimpleFlatsDto() {
+    List<Flat> flats = flatDao.getAllFlats();
+    return flatConvertor.getFlatsDto(flats);
+  }
+
+  @Override
+  public boolean canDelete(User user, Integer flatId) {
+
+    if (Role.ROLE_ADMIN.equals(user.getRole())) {
+      return true;
     }
 
-    @Override
-    public List<SimpleFlatDto> getAllSimpleFlatsDto() {
-        List<Flat> flats = flatDao.getAllFlats();
-        return flatConvertor.getFlatsDto(flats);
+    if (user.equals(flatDao.getFlatById(flatId).getFlatOwner())) {
+      return true;
     }
 
-    @Override
-    public boolean canDelete(User user, Integer flatId) {
+    return false;
+  }
 
-        if (Role.ROLE_ADMIN.equals(user.getRole())) {
-            return true;
-        }
-
-        if (user.equals(flatDao.getFlatById(flatId).getFlatOwner())) {
-            return true;
-        }
-
-        return false;
+  @Override
+  public boolean canUpdate(User user, Integer flatId) {
+    if (Role.ROLE_ADMIN.equals(user.getRole())) {
+      return true;
     }
 
-    @Override
-    public boolean canUpdate(User user, Integer flatId) {
-        if (Role.ROLE_ADMIN.equals(user.getRole())) {
-            return true;
-        }
-
-        if (user.equals(flatDao.getFlatById(flatId).getFlatOwner())) {
-            return true;
-        }
-
-        return false;
+    if (user.equals(flatDao.getFlatById(flatId).getFlatOwner())) {
+      return true;
     }
 
-    @Override
-    public void delete(Integer flatId) {
-        flatDao.delete(flatId);
-    }
+    return false;
+  }
 
-    @Override
-    public List<SimpleFlatDto> getSimpleFlatDtoByUser(User user) {
-        return flatConvertor.getFlatsDto(flatDao.getFlatsByUser(user));
-    }
+  @Override
+  public void delete(Integer flatId) {
+    flatDao.delete(flatId);
+  }
 
-    @Override
-    public SimpleFlatDto getSimpleFlatDtoById(Integer flatId) {
+  @Override
+  public List<SimpleFlatDto> getSimpleFlatDtoByUser(User user) {
+    return flatConvertor.getFlatsDto(flatDao.getFlatsByUser(user));
+  }
 
-        return flatConvertor.getFlatDto(flatDao.getFlatById(flatId));
-    }
+  @Override
+  public SimpleFlatDto getSimpleFlatDtoById(Integer flatId) {
 
-    @Override
-    public void updateFlat(SimpleFlatDto simpleFlatDto, Integer flatId) {
+    return flatConvertor.getFlatDto(flatDao.getFlatById(flatId));
+  }
 
-        Flat flat = flatDao.getFlatById(flatId);
-        flat = flatConvertor.updateFlatWithDto(flat, simpleFlatDto);
+  @Override
+  public void updateFlat(SimpleFlatDto simpleFlatDto, Integer flatId) {
 
-        SimpleAttributes simpleAttr = flat.getSimpleAttributes();
+    Flat flat = flatDao.getFlatById(flatId);
+    flat = flatConvertor.updateFlatWithDto(flat, simpleFlatDto);
 
-        simpleAttr = flatConvertor.updateSimpleAttributesWithDto(simpleAttr, simpleFlatDto);
+    SimpleAttributes simpleAttr = flat.getSimpleAttributes();
 
+    simpleAttr = flatConvertor.updateSimpleAttributesWithDto(simpleAttr, simpleFlatDto);
 
+    Price price = simpleAttr.getPrice();
+    FlatAttributes flatAttr = flat.getFlatAttributes();
 
-//        Set<FlatPhoto> photos = photoConvertor.getPhotosFromDto(simpleFlatDto, flat);
+    price.setPriceDay(new BigDecimal(simpleFlatDto.getPriceDay()));
+    priceDao.update(price);
 
-        Price price = simpleAttr.getPrice();
-        FlatAttributes flatAttr = flat.getFlatAttributes();
-
-        price.setPriceDay(new BigDecimal(simpleFlatDto.getPriceDay()));
-//        simpleAttr.setFlat(flat);
-//        simpleAttr.setPrice(price);
-//        flatAttr.setFlat(flat);
-//        flatAttr.setPrice(price);
-//        flat.setFlatAttributes(flatAttr);
-//        flat.setSimpleAttributes(simpleAttr);
-
-
-        priceDao.update(price);
-
-        flatDao.update(flat);
-//        attrDao.save(flatAttr);
-//        attrDao.save(simpleAttr);
-
-    }
-
+    flatDao.update(flat);
+  }
 }

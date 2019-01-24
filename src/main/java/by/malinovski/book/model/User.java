@@ -32,14 +32,14 @@ public class User {
     @Column(name = "name", nullable = false, length = 50)
     private String name;
 
-    @Column(name = "phone1", nullable = false, length = 50)
+   /* @Column(name = "phone1", nullable = false, length = 50)
     private String phone1;
 
     @Column(name = "phone2", length = 50)
     private String phone2;
 
     @Column(name = "phone3", length = 50)
-    private String phone3;
+    private String phone3;*/
 
     @Column(name = "phoneViber", length = 50)
     private String phoneViber;
@@ -95,7 +95,7 @@ public class User {
         this.name = name;
     }
 
-    public String getPhone1() {
+   /* public String getPhone1() {
         return phone1;
     }
 
@@ -117,7 +117,7 @@ public class User {
 
     public void setPhone3(String phone3) {
         this.phone3 = phone3;
-    }
+    }*/
 
     public String getPhoneViber() {
         return phoneViber;

@@ -3,519 +3,409 @@ package by.malinovski.book.model.attributes;
 import by.malinovski.book.model.Flat;
 import by.malinovski.book.model.Price.Price;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-/**
- * This class contains all flat attributes
- * that is used in full setting form
- */
-
+/** This class contains all flat attributes that is used in full setting form */
 @Entity
 @Table(name = "Flat_Attributes")
 public class FlatAttributes {
-//TODO convert in USD/RUB
+  // TODO convert in USD/RUB
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id")
+  private int id;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "flat")
-    Flat flat;
+  @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+  @JoinColumn(name = "flat")
+  Flat flat;
 
- /*   @Column(name = "roomNumber", nullable = false)
-    byte roomNumber;
+  @Column(name = "hasBalcony")
+  boolean balcony;
 
-    @Column(name = "bedNumber")
-    byte bedNumber;
+  @Column(name = "isToiletCombined")
+  boolean isToiletCombined;
 
-    @Column(name = "guestsNumber")
-    byte guestsNumber;
+  @Column(name = "hasFridge")
+  private boolean isFridge;
 
-    @Column(name = "floor", nullable = false)
-    byte floor;
+  @Column(name = "hasDishes")
+  private boolean isDishes;
 
-    @Column(name = "multistorey", nullable = false)
-    byte multistorey; //этажность
+  @Column(name = "hasMicrowaveOven")
+  private boolean isMicrowaveOven;
 
-    @Column(name = "generalArea", nullable = false)
-    private byte generalArea;
+  @Column(name = "hasSmallEquipment")
+  private boolean isSmallEquipment;
 
-    @Column(name = "lifeArea", nullable = false)
-    private byte lifeArea;
+  @Column(name = "hasWasher")
+  private boolean isWasher;
 
-    @Column(name = "kitchenArea", nullable = false)
-    private byte kitchenArea;*/
+  @Column(name = "hasTV")
+  private boolean isTV;
 
-    @Column(name = "hasBalcony")
-    boolean balcony;
+  @Column(name = "hasHairDryer")
+  private boolean isHairDryer;
 
-    @Column(name = "isToiletCombined")
-    boolean isToiletCombined;
+  @Column(name = "hasAirConditioning")
+  private boolean isAirConditioning;
 
-    @Column(name = "hasFridge")
-    private boolean isFridge;
+  @Column(name = "hasWifi")
+  private boolean isWifi;
 
-    @Column(name = "hasDishes")
-    private boolean isDishes;
+  @Column(name = "hasFurniture")
+  private boolean isFurniture;
 
-    @Column(name = "hasMicrowaveOven")
-    private boolean isMicrowaveOven;
+  @Column(name = "hasBuiltInWardrobes")
+  private boolean isBuiltInWardrobes;
 
-    @Column(name = "hasSmallEquipment")
-    private boolean isSmallEquipment;
+  @Column(name = "hasDomoff")
+  private boolean isDomoff;
 
-    @Column(name = "hasWasher")
-    private boolean isWasher;
+  @Column(name = "hasElevator")
+  private boolean isElevator;
 
-    @Column(name = "hasTV")
-    private boolean isTV;
+  @Column(name = "isWindowsToYard")
+  private boolean isWindowsToYard;
 
-    @Column(name = "hasHairDryer")
-    private boolean isHairDryer;
+  @Column(name = "hasDoubleGlazedWindows")
+  private boolean isDoubleGlazedWindows;
 
-    @Column(name = "hasAirConditioning")
-    private boolean isAirConditioning;
+  @Column(name = "CanSmoke")
+  private boolean isCanSmoke;
 
-    @Column(name = "hasWifi")
-    private boolean isWifi;
+  @Column(name = "isPossiblePets")
+  private boolean isPossiblePets;
 
-    @Column(name = "hasFurniture")
-    private boolean isFurniture;
+  @Column(name = "canSpendHolidays")
+  private boolean isHolidays;
 
-    @Column(name = "hasBuiltInWardrobes")
-    private boolean isBuiltInWardrobes;
+  @Column(name = "hasFireplace")
+  private boolean isFireplace;
 
-    @Column(name = "hasDomoff")
-    private boolean isDomoff;
+  @Column(name = "hasJacuzzi")
+  private boolean isJacuzzi;
 
-    @Column(name = "hasElevator")
-    private boolean isElevator;
+  @Column(name = "hasComputer")
+  private boolean isOmputer;
 
-    @Column(name = "isWindowsToYard")
-    private boolean isWindowsToYard;
+  @Column(name = "hasPool")
+  private boolean isPool;
 
-    @Column(name = "hasDoubleGlazedWindows")
-    private boolean isDoubleGlazedWindows;
+  @Column(name = "hasDryingMachine")
+  private boolean isDryingMachine;
 
-    @Column(name = "CanSmoke")
-    private boolean isCanSmoke;
+  @Column(name = "hasIron")
+  private boolean isIron;
 
-    @Column(name = "isPossiblePets")
-    private boolean isPossiblePets;
+  @Column(name = "hasIroningBoard")
+  private boolean isIroningBoard;
 
-    @Column(name = "canSpendHolidays")
-    private boolean isHolidays;
+  @Column(name = "hasDryer")
+  private boolean isDryer;
 
-    @Column(name = "hasFireplace")
-    private boolean isFireplace;
+  @Column(name = "hasTouletAccessories")
+  private boolean isAccessories;
 
-    @Column(name = "hasJacuzzi")
-    private boolean isJacuzzi;
+  @Column(name = "hasShampoo")
+  private boolean isShampoo;
 
-    @Column(name = "hasComputer")
-    private boolean isOmputer;
+  @Column(name = "isSeparateEntrance")
+  private boolean isSeparateEntrance;
 
-    @Column(name = "hasPool")
-    private boolean isPool;
+  @Column(name = "hasReceptionist")
+  private boolean isReceptionist;
 
-    @Column(name = "hasDryingMachine")
-    private boolean isDryingMachine;
+  @OneToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "price")
+  private Price price;
 
-    @Column(name = "hasIron")
-    private boolean isIron;
+  public int getId() {
+    return id;
+  }
 
-    @Column(name = "hasIroningBoard")
-    private boolean isIroningBoard;
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    @Column(name = "hasDryer")
-    private boolean isDryer;
+  public Flat getFlat() {
+    return flat;
+  }
 
-    @Column(name = "hasTouletAccessories")
-    private boolean isAccessories;
+  public void setFlat(Flat flat) {
+    this.flat = flat;
+  }
 
-    @Column(name = "hasShampoo")
-    private boolean isShampoo;
+  public boolean isBalcony() {
+    return balcony;
+  }
 
-    @Column(name = "isSeparateEntrance")
-    private boolean isSeparateEntrance;
+  public void setBalcony(boolean balcony) {
+    this.balcony = balcony;
+  }
 
-    @Column(name = "hasReceptionist")
-    private boolean isReceptionist;
+  public boolean isToiletCombined() {
+    return isToiletCombined;
+  }
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "price")
-    private Price price;
+  public void setToiletCombined(boolean toiletCombined) {
+    isToiletCombined = toiletCombined;
+  }
 
+  public boolean isFridge() {
+    return isFridge;
+  }
 
-  /*  @Column(name = "priceDay")
-    private BigDecimal priceDay;*/
+  public void setFridge(boolean fridge) {
+    isFridge = fridge;
+  }
 
-   /* @Column(name = "priceNight")
-    private BigDecimal priceNight;
+  public boolean isDishes() {
+    return isDishes;
+  }
 
-    @Column(name = "priceHour")
-    private BigDecimal priceHour;*/
+  public void setDishes(boolean dishes) {
+    isDishes = dishes;
+  }
 
+  public boolean isMicrowaveOven() {
+    return isMicrowaveOven;
+  }
 
-    public int getId() {
-        return id;
-    }
+  public void setMicrowaveOven(boolean microwaveOven) {
+    isMicrowaveOven = microwaveOven;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public boolean isSmallEquipment() {
+    return isSmallEquipment;
+  }
 
-    public Flat getFlat() {
-        return flat;
-    }
+  public void setSmallEquipment(boolean smallEquipment) {
+    isSmallEquipment = smallEquipment;
+  }
 
-    public void setFlat(Flat flat) {
-        this.flat = flat;
-    }
+  public boolean isWasher() {
+    return isWasher;
+  }
 
-    /*public byte getRoomNumber() {
-        return roomNumber;
-    }
+  public void setWasher(boolean washer) {
+    isWasher = washer;
+  }
 
-    public void setRoomNumber(byte roomNumber) {
-        this.roomNumber = roomNumber;
-    }
+  public boolean isTV() {
+    return isTV;
+  }
 
-    public byte getBedNumber() {
-        return bedNumber;
-    }
+  public void setTV(boolean TV) {
+    isTV = TV;
+  }
 
-    public void setBedNumber(byte bedNumber) {
-        this.bedNumber = bedNumber;
-    }
+  public boolean isHairDryer() {
+    return isHairDryer;
+  }
 
-    public byte getFloor() {
-        return floor;
-    }
+  public void setHairDryer(boolean hairDryer) {
+    isHairDryer = hairDryer;
+  }
 
-    public void setFloor(byte floor) {
-        this.floor = floor;
-    }
+  public boolean isAirConditioning() {
+    return isAirConditioning;
+  }
 
-    public byte getMultistorey() {
-        return multistorey;
-    }
+  public void setAirConditioning(boolean airConditioning) {
+    isAirConditioning = airConditioning;
+  }
 
-    public void setMultistorey(byte multistorey) {
-        this.multistorey = multistorey;
-    }
+  public boolean isWifi() {
+    return isWifi;
+  }
 
-    public byte getGeneralArea() {
-        return generalArea;
-    }
+  public void setWifi(boolean wifi) {
+    isWifi = wifi;
+  }
 
-    public void setGeneralArea(byte generalArea) {
-        this.generalArea = generalArea;
-    }
+  public boolean isFurniture() {
+    return isFurniture;
+  }
 
-    public byte getLifeArea() {
-        return lifeArea;
-    }
+  public void setFurniture(boolean furniture) {
+    isFurniture = furniture;
+  }
 
-    public void setLifeArea(byte lifeArea) {
-        this.lifeArea = lifeArea;
-    }
+  public boolean isBuiltInWardrobes() {
+    return isBuiltInWardrobes;
+  }
 
-    public byte getKitchenArea() {
-        return kitchenArea;
-    }
+  public void setBuiltInWardrobes(boolean builtInWardrobes) {
+    isBuiltInWardrobes = builtInWardrobes;
+  }
 
-    public void setKitchenArea(byte kitchenArea) {
-        this.kitchenArea = kitchenArea;
-    }
-*/
-    public boolean isBalcony() {
-        return balcony;
-    }
+  public boolean isDomoff() {
+    return isDomoff;
+  }
 
-    public void setBalcony(boolean balcony) {
-        this.balcony = balcony;
-    }
+  public void setDomoff(boolean domoff) {
+    isDomoff = domoff;
+  }
 
-    public boolean isToiletCombined() {
-        return isToiletCombined;
-    }
+  public boolean isElevator() {
+    return isElevator;
+  }
 
-    public void setToiletCombined(boolean toiletCombined) {
-        isToiletCombined = toiletCombined;
-    }
+  public void setElevator(boolean elevator) {
+    isElevator = elevator;
+  }
 
-    public boolean isFridge() {
-        return isFridge;
-    }
+  public boolean isWindowsToYard() {
+    return isWindowsToYard;
+  }
 
-    public void setFridge(boolean fridge) {
-        isFridge = fridge;
-    }
+  public void setWindowsToYard(boolean windowsToYard) {
+    isWindowsToYard = windowsToYard;
+  }
 
-    public boolean isDishes() {
-        return isDishes;
-    }
+  public boolean isDoubleGlazedWindows() {
+    return isDoubleGlazedWindows;
+  }
 
-    public void setDishes(boolean dishes) {
-        isDishes = dishes;
-    }
+  public void setDoubleGlazedWindows(boolean doubleGlazedWindows) {
+    isDoubleGlazedWindows = doubleGlazedWindows;
+  }
 
-    public boolean isMicrowaveOven() {
-        return isMicrowaveOven;
-    }
+  public boolean isCanSmoke() {
+    return isCanSmoke;
+  }
 
-    public void setMicrowaveOven(boolean microwaveOven) {
-        isMicrowaveOven = microwaveOven;
-    }
+  public void setCanSmoke(boolean canSmoke) {
+    isCanSmoke = canSmoke;
+  }
 
-    public boolean isSmallEquipment() {
-        return isSmallEquipment;
-    }
+  public boolean isPossiblePets() {
+    return isPossiblePets;
+  }
 
-    public void setSmallEquipment(boolean smallEquipment) {
-        isSmallEquipment = smallEquipment;
-    }
+  public void setPossiblePets(boolean possiblePets) {
+    isPossiblePets = possiblePets;
+  }
 
-    public boolean isWasher() {
-        return isWasher;
-    }
+  public boolean isHolidays() {
+    return isHolidays;
+  }
 
-    public void setWasher(boolean washer) {
-        isWasher = washer;
-    }
+  public void setHolidays(boolean holidays) {
+    isHolidays = holidays;
+  }
 
-    public boolean isTV() {
-        return isTV;
-    }
+  public boolean isFireplace() {
+    return isFireplace;
+  }
 
-    public void setTV(boolean TV) {
-        isTV = TV;
-    }
+  public void setFireplace(boolean fireplace) {
+    isFireplace = fireplace;
+  }
 
-    public boolean isHairDryer() {
-        return isHairDryer;
-    }
+  public boolean isJacuzzi() {
+    return isJacuzzi;
+  }
 
-    public void setHairDryer(boolean hairDryer) {
-        isHairDryer = hairDryer;
-    }
+  public void setJacuzzi(boolean jacuzzi) {
+    isJacuzzi = jacuzzi;
+  }
 
-    public boolean isAirConditioning() {
-        return isAirConditioning;
-    }
+  public boolean isOmputer() {
+    return isOmputer;
+  }
 
-    public void setAirConditioning(boolean airConditioning) {
-        isAirConditioning = airConditioning;
-    }
+  public void setOmputer(boolean omputer) {
+    isOmputer = omputer;
+  }
 
-    public boolean isWifi() {
-        return isWifi;
-    }
+  public boolean isPool() {
+    return isPool;
+  }
 
-    public void setWifi(boolean wifi) {
-        isWifi = wifi;
-    }
+  public void setPool(boolean pool) {
+    isPool = pool;
+  }
 
-    public boolean isFurniture() {
-        return isFurniture;
-    }
+  public boolean isDryingMachine() {
+    return isDryingMachine;
+  }
 
-    public void setFurniture(boolean furniture) {
-        isFurniture = furniture;
-    }
+  public void setDryingMachine(boolean dryingMachine) {
+    isDryingMachine = dryingMachine;
+  }
 
-    public boolean isBuiltInWardrobes() {
-        return isBuiltInWardrobes;
-    }
+  public boolean isIron() {
+    return isIron;
+  }
 
-    public void setBuiltInWardrobes(boolean builtInWardrobes) {
-        isBuiltInWardrobes = builtInWardrobes;
-    }
+  public void setIron(boolean iron) {
+    isIron = iron;
+  }
 
-    public boolean isDomoff() {
-        return isDomoff;
-    }
+  public boolean isIroningBoard() {
+    return isIroningBoard;
+  }
 
-    public void setDomoff(boolean domoff) {
-        isDomoff = domoff;
-    }
+  public void setIroningBoard(boolean ironingBoard) {
+    isIroningBoard = ironingBoard;
+  }
 
-    public boolean isElevator() {
-        return isElevator;
-    }
+  public boolean isDryer() {
+    return isDryer;
+  }
 
-    public void setElevator(boolean elevator) {
-        isElevator = elevator;
-    }
+  public void setDryer(boolean dryer) {
+    isDryer = dryer;
+  }
 
-    public boolean isWindowsToYard() {
-        return isWindowsToYard;
-    }
+  public boolean isAccessories() {
+    return isAccessories;
+  }
 
-    public void setWindowsToYard(boolean windowsToYard) {
-        isWindowsToYard = windowsToYard;
-    }
+  public void setAccessories(boolean accessories) {
+    isAccessories = accessories;
+  }
 
-    public boolean isDoubleGlazedWindows() {
-        return isDoubleGlazedWindows;
-    }
+  public boolean isShampoo() {
+    return isShampoo;
+  }
 
-    public void setDoubleGlazedWindows(boolean doubleGlazedWindows) {
-        isDoubleGlazedWindows = doubleGlazedWindows;
-    }
+  public void setShampoo(boolean shampoo) {
+    isShampoo = shampoo;
+  }
 
-    public boolean isCanSmoke() {
-        return isCanSmoke;
-    }
+  public boolean isSeparateEntrance() {
+    return isSeparateEntrance;
+  }
 
-    public void setCanSmoke(boolean canSmoke) {
-        isCanSmoke = canSmoke;
-    }
+  public void setSeparateEntrance(boolean separateEntrance) {
+    isSeparateEntrance = separateEntrance;
+  }
 
-    public boolean isPossiblePets() {
-        return isPossiblePets;
-    }
+  public boolean isReceptionist() {
+    return isReceptionist;
+  }
 
-    public void setPossiblePets(boolean possiblePets) {
-        isPossiblePets = possiblePets;
-    }
+  public void setReceptionist(boolean receptionist) {
+    isReceptionist = receptionist;
+  }
 
-    public boolean isHolidays() {
-        return isHolidays;
-    }
+  public Price getPrice() {
+    return price;
+  }
 
-    public void setHolidays(boolean holidays) {
-        isHolidays = holidays;
-    }
-
-    public boolean isFireplace() {
-        return isFireplace;
-    }
-
-    public void setFireplace(boolean fireplace) {
-        isFireplace = fireplace;
-    }
-
-    public boolean isJacuzzi() {
-        return isJacuzzi;
-    }
-
-    public void setJacuzzi(boolean jacuzzi) {
-        isJacuzzi = jacuzzi;
-    }
-
-    public boolean isOmputer() {
-        return isOmputer;
-    }
-
-    public void setOmputer(boolean omputer) {
-        isOmputer = omputer;
-    }
-
-    public boolean isPool() {
-        return isPool;
-    }
-
-    public void setPool(boolean pool) {
-        isPool = pool;
-    }
-
-    public boolean isDryingMachine() {
-        return isDryingMachine;
-    }
-
-    public void setDryingMachine(boolean dryingMachine) {
-        isDryingMachine = dryingMachine;
-    }
-
-    public boolean isIron() {
-        return isIron;
-    }
-
-    public void setIron(boolean iron) {
-        isIron = iron;
-    }
-
-    public boolean isIroningBoard() {
-        return isIroningBoard;
-    }
-
-    public void setIroningBoard(boolean ironingBoard) {
-        isIroningBoard = ironingBoard;
-    }
-
-    public boolean isDryer() {
-        return isDryer;
-    }
-
-    public void setDryer(boolean dryer) {
-        isDryer = dryer;
-    }
-
-    public boolean isAccessories() {
-        return isAccessories;
-    }
-
-    public void setAccessories(boolean accessories) {
-        isAccessories = accessories;
-    }
-
-    public boolean isShampoo() {
-        return isShampoo;
-    }
-
-    public void setShampoo(boolean shampoo) {
-        isShampoo = shampoo;
-    }
-
-    public boolean isSeparateEntrance() {
-        return isSeparateEntrance;
-    }
-
-    public void setSeparateEntrance(boolean separateEntrance) {
-        isSeparateEntrance = separateEntrance;
-    }
-
-    public boolean isReceptionist() {
-        return isReceptionist;
-    }
-
-    public void setReceptionist(boolean receptionist) {
-        isReceptionist = receptionist;
-    }
-
-   /* public BigDecimal getPriceDay() {
-        return priceDay;
-    }
-
-    public void setPriceDay(BigDecimal priceDay) {
-        this.priceDay = priceDay;
-    }*/
-
-   /* public BigDecimal getPriceNight() {
-        return priceNight;
-    }
-
-    public void setPriceNight(BigDecimal priceNight) {
-        this.priceNight = priceNight;
-    }
-
-    public BigDecimal getPriceHour() {
-        return priceHour;
-    }
-
-    public void setPriceHour(BigDecimal priceHour) {
-        this.priceHour = priceHour;
-    }*/
-
-    public Price getPrice() {
-        return price;
-    }
-
-    public void setPrice(Price price) {
-        this.price = price;
-    }
+  public void setPrice(Price price) {
+    this.price = price;
+  }
 }

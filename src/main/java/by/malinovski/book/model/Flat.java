@@ -4,12 +4,33 @@ import by.malinovski.book.model.Photos.FlatPhoto;
 import by.malinovski.book.model.attributes.FlatAttributes;
 import by.malinovski.book.model.attributes.SimpleAttributes;
 
-import javax.persistence.*;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 @Table(name = "flat")
 public class Flat {
 
@@ -53,6 +74,7 @@ public class Flat {
     private Date modified;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "flat", cascade = CascadeType.REMOVE)
+    @Fetch(FetchMode.JOIN)
     private Set<FlatPhoto> photos = new HashSet<>();
 
     @Column(name = "phone1", length = 15)
@@ -186,4 +208,6 @@ public class Flat {
     public void setPhone3(String phone3) {
         this.phone3 = phone3;
     }
+
+
 }
