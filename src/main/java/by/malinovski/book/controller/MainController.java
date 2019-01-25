@@ -53,12 +53,4 @@ public class MainController {
 
     return modelAndView;
   }
-
-
-  @RequestMapping(value = "/claerCache", method = RequestMethod.GET)
-  public void clearCache()
-    {
-    CacheManager.getInstance().clearAll();
-  }
-
 }
