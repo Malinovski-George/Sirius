@@ -30,8 +30,7 @@ import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Cacheable
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@javax.persistence.Cacheable
 @Table(name = "flat")
 public class Flat {
 

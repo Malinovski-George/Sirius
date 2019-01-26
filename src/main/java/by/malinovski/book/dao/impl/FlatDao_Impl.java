@@ -7,7 +7,9 @@ import by.malinovski.book.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
@@ -15,6 +17,7 @@ import java.util.List;
 
 @Repository
 @Transactional
+@javax.persistence.Cacheable
 public class FlatDao_Impl implements FlatDao {
 
   @Autowired private SessionFactory sessionFactory;
@@ -22,6 +25,7 @@ public class FlatDao_Impl implements FlatDao {
   public FlatDao_Impl(SessionFactory sessionFactory) {
     this.sessionFactory = sessionFactory;
   }
+  private final Logger logger = org.slf4j.LoggerFactory.getLogger(this.getClass());
 
   @Override
   public int createFlat(Flat flat) {
@@ -30,7 +34,9 @@ public class FlatDao_Impl implements FlatDao {
   }
 
   @Override
+  @Cacheable(value = "flats")
   public List<Flat> getAllFlats() {
+    logger.warn("Calling Repository method to retrieve event");
     List<Flat> flats = null;
     Session session = sessionFactory.getCurrentSession();
     flats = session.createCriteria(Flat.class).list();
@@ -38,6 +44,7 @@ public class FlatDao_Impl implements FlatDao {
   }
 
   @Override
+  @Cacheable(value = "flat.byId", key = "#id")
   public Flat getFlatById(int id) {
     Session session = sessionFactory.getCurrentSession();
     Flat flat = session.get(Flat.class, id);

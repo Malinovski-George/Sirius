@@ -17,6 +17,7 @@ import javax.persistence.Table;
 /** This class contains all flat attributes that is used in full setting form */
 @Entity
 @Table(name = "Flat_Attributes")
+@javax.persistence.Cacheable
 public class FlatAttributes {
   // TODO convert in USD/RUB
 

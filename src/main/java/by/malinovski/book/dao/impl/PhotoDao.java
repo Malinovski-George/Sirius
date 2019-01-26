@@ -13,6 +13,7 @@ import java.util.Set;
 
 @Repository
 @Transactional
+@javax.persistence.Cacheable
 public class PhotoDao implements IPhotoDao {
 
   @Autowired private SessionFactory sessionFactory;

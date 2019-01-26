@@ -13,6 +13,7 @@ import java.util.List;
 
 @Transactional
 @Repository
+@javax.persistence.Cacheable
 public class FlatAttributesDao_Impl implements FlatAttributesDao {
 
   private SessionFactory sessionFactory;

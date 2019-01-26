@@ -15,6 +15,7 @@ import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "simpleAttributes")
+@javax.persistence.Cacheable
 public class SimpleAttributes {
 
     @Id

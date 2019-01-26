@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "flat_photo")
+@javax.persistence.Cacheable
 public class FlatPhoto {
 
     @Id
