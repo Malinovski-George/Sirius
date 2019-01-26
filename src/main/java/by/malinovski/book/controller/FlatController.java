@@ -6,7 +6,6 @@ import by.malinovski.book.model.Photos.FlatPhoto;
 import by.malinovski.book.model.User;
 import by.malinovski.book.service.IFlatService;
 import by.malinovski.book.service.impl.UserService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -15,9 +14,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.security.Principal;
@@ -63,26 +66,37 @@ public class FlatController {
   }
 
   @RequestMapping(
-      path = {"/image/{imgid}"},
-      method = RequestMethod.GET)
+    path = {"/image/{imgid}"},
+    method = RequestMethod.GET
+  )
   public void registrationFormPost1(
       HttpServletRequest request,
       @PathVariable(value = "imgid") String imgid,
       HttpServletResponse response)
       throws IOException {
 
-    FlatPhoto photo = photoDao.getPhotoById(imgid);
-
     response.reset();
     String contentType = "img/png";
     response.setContentType(contentType);
-    response.setContentLength((int) photo.getImage().length);
-
     OutputStream out = response.getOutputStream();
-    out.write(photo.getImage());
+
+    if (!imgid.equals("-1")) {
+      FlatPhoto photo = photoDao.getPhotoById(imgid);
+      response.setContentLength((int) photo.getImage().length);
+      out.write(photo.getImage());
+    } else {
+      BufferedImage originalImage =
+          ImageIO.read(getClass().getResource("/static/images/NoPhoto.png"));
+      ByteArrayOutputStream baos = new ByteArrayOutputStream();
+      ImageIO.write(originalImage, "png", baos);
+      baos.flush();
+      byte[] imageInByte = baos.toByteArray();
+      baos.close();
+      response.setContentLength(imageInByte.length);
+      out.write(imageInByte);
+    }
     out.flush();
     out.close();
-
     response.setStatus(HttpServletResponse.SC_OK);
   }
 

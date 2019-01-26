@@ -80,8 +80,10 @@ public class SimpleFlatConvertor {
     flatDto.setPhone2(flat.getPhone2());
     flatDto.setPhone3(flat.getPhone3());
 
-    if (flat.getPhotos() != null) {
+    if (flat.getPhotos().size() != 0) {
       flatDto.setMainPhotoId(flat.getPhotos().stream().findFirst().get().getId());
+    } else {
+      flatDto.setMainPhotoId(-1);
     }
     SimpleAttributes simpleAttributes = flat.getSimpleAttributes();
     flatDto.setRoomNumber(simpleAttributes.getRoomNumber());
