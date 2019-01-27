@@ -1,0 +1,269 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap, CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="/css/style.css">
+     <link rel="stylesheet" href="/css/style_dropzone.css">
+     <link rel="stylesheet" href="/css/dropzone/dropzone-style.css">-->
+    <link rel="stylesheet" href="/css/bootstrap-dialog.css">
+
+    <!--  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+             crossorigin="anonymous"></script>
+
+ <script src="/js/jquery-2.1.1.js"></script>
+     <script src="/js/bootstrap.min.js"></script>
+     <script type="text/javascript" src="/js/bootstrap-dialog.js"></script>
+     <script type="text/javascript" src="/js/dropzone/dropzone.js"></script>
+     <script type="text/javascript" src="/js/dropzone/uploader.js"></script>-->
+
+
+    <title>add photo</title></head>
+<body>
+
+
+<div class="container" name="Main container">
+    <div layout:fragment="content" th:remove="tag">
+
+        sadasa
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css" rel="stylesheet"
+              type="text/css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"
+                type="text/javascript"></script>
+        <script type="text/javascript" src="/js/bootstrap-dialog.js"></script>
+        <script type="text/javascript">
+            Dropzone.options.dropzone = {
+                // Prevents Dropzone from uploading dropped files immediately
+                autoProcessQueue: false,
+                            maxFiles: 5,
+                            init: function () {
+                            var submitButton = document.querySelector("#submit-all")
+                            myDropzone = this;
+                            /*  submitButton.addEventListener("click", function () {
+                                  myDropzone.processQueue();  // Tell Dropzone to process all queued files.
+                              });*/
+                            // to handle the added file event
+                            this.on("addedfile", function (file) {
+                                var removeButton = Dropzone.createElement("<button class=\"btn btn-light btn-sm\" " +
+                                    "style='display: block;" +
+                                    "margin-left: auto;" +
+                                    "margin-right: auto;' > Remove file </button>");
+                                // Capture the Dropzone instance as closure.
+                                var _this = this;
+
+                                // Listen to the click event
+                                removeButton.addEventListener("click", function (e) {
+                                    // Make sure the button click doesn't submit the form:
+                                    e.preventDefault();
+                                    e.stopPropagation();
+
+                                    // Remove the file preview.
+                                    _this.removeFile(file);
+                                    // If you want to the delete the file on the server as well,
+                                    // you can do the AJAX request here.
+                                });
+                                file.previewElement.appendChild(removeButton);
+                    });
+                    this.on("maxfilesexceeded", function (file) {
+                        this.removeFile(file);
+                    });
+                }
+            };
+
+            $(function () {
+                $(".dropzone").sortable({
+                    stop: 'sortEventHandler',
+
+                    items: '.dz-preview',
+                    cursor: 'move',
+                    opacity: 0.5,
+                    containment: '.dropzone',
+                    distance: 20,
+                    tolerance: 'pointer',
+
+                    change: function (event, ui) {
+
+                        ui.placeholder.css({visibility: 'visible', border: '1px solid#337ab7'});
+                    }
+
+
+                });
+
+
+            });
+        </script>
+
+
+        <script>Dropzone.options.dropzone = {
+
+            url: "/upload",
+            autoProcessQueue: false,
+            uploadMultiple: true,
+            maxFilesize: 256, // MB
+            parallelUploads: 100,
+            maxFiles: 100,
+            addRemoveLinks: true,
+//            previewsContainer: ".dropzone-previews",
+
+            // The setting up of the dropzone
+            init: function () {
+
+                var myDropzone = this;
+
+                // first set autoProcessQueue = false
+                $('#upload-button').on("click", function (e) {
+
+                    myDropzone.processQueue();
+                });
+
+                // customizing the default progress bar
+            /*    this.on("uploadprogress", function (file, progress) {
+
+                    progress = parseFloat(progress).toFixed(0);
+
+                    var progressBar = file.previewElement.getElementsByClassName("dz-upload")[0];
+                    progressBar.innerHTML = progress + "%";
+                });*/
+
+                // displaying the uploaded files information in a Bootstrap dialog
+            /*    this.on("successmultiple", function (files, serverResponse) {
+                    showInformationDialog(files, serverResponse);
+                });*/
+            }
+        }
+
+        function showInformationDialog(files, objectArray) {
+
+            var responseContent = "";
+
+            for (var i = 0; i < objectArray.length; i++) {
+
+                var infoObject = objectArray[i];
+
+                for (var infoKey in infoObject) {
+                    if (infoObject.hasOwnProperty(infoKey)) {
+                        responseContent = responseContent + " " + infoKey + " -> " + infoObject[infoKey] + "<br>";
+                    }
+                }
+                responseContent = responseContent + "<hr>";
+            }
+
+            // from the library bootstrap-dialog.min.js
+            BootstrapDialog.show({
+                title: '<b>Server Response</b>',
+                message: responseContent
+            });
+        }
+
+</script>
+
+
+        <!--  <script>
+              // myDropzone is the configuration for the element that has an id attribute
+              // with the value my-dropzone (or myDropzone)
+              Dropzone.options.dropzone = {
+                  init: function() {
+                      this.on("addedfile", function(file) {
+
+                          // Create the remove button
+                          var removeButton = Dropzone.createElement("<button class=\"btn btn-light\">Remove file</button>");
+
+
+                          // Capture the Dropzone instance as closure.
+                          var _this = this;
+
+                          // Listen to the click event
+                          removeButton.addEventListener("click", function(e) {
+                              // Make sure the button click doesn't submit the form:
+                              e.preventDefault();
+                              e.stopPropagation();
+
+                              // Remove the file preview.
+                              _this.removeFile(file);
+                              // If you want to the delete the file on the server as well,
+                              // you can do the AJAX request here.
+                          });
+
+                          // Add the button to the file preview element.
+                          file.previewElement.appendChild(removeButton);
+                      });
+                  }
+              };
+          </script>-->
+
+        <form id="dropzone" class="dropzone" th:action="@{/upload}" method="post" enctype="multipart/form-data"
+              style="border:1px solid #000;">
+
+        </form>
+        <button id="upload-button" class="btn btn-primary">
+            <span class="glyphicon glyphicon-upload"></span> Upload
+        </button>
+        sadasa
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <!--  <div class="container">
+              <div class="panel panel-default">
+                  <div class="panel-heading text-center">
+                      <h3>Spring MVC + Dropzone.js Example</h3>
+                  </div>
+                  <div class="panel-body">
+                      <div>
+                          <div id="dZUpload" class="dropzone">
+                              <div class="dz-defaultdz-message"></div>
+                          </div>
+
+
+                          <form id="dropzone-form" class="dropzone"
+                                enctype="multipart/form-data">
+
+                              <div
+                                      class="dz-default dz-message file-dropzone text-center well col-sm-12">
+
+                                  <span class="glyphicon glyphicon-paperclip"></span> <span>
+                                  To attach files, drag and drop here</span><br> <span>OR</span><br>
+                                  <span>Just Click</span>
+                              </div>
+
+                              &lt;!&ndash; this is were the previews should be shown. &ndash;&gt;
+                              <div class="dropzone-previews"></div>
+                          </form>
+                          <hr>
+                          <button id="upload-button" class="btn btn-primary">
+                              <span class="glyphicon glyphicon-upload"></span> Upload
+                          </button>
+                          <a class="btn btn-primary pull-right" href="list">
+                              <span class="glyphicon glyphicon-eye-open"></span> View All Uploads
+                          </a>
+                      </div>
+                  </div>
+              </div>
+          </div>-->
+    </div>
+</div>
+
+
+</body>
+</html>

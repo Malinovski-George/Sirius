@@ -66,6 +66,17 @@ public class FlatController {
   }
 
   @RequestMapping(
+    path = {"/addPhoto"},
+    method = RequestMethod.GET
+  )
+  public String addPhoto(
+      @Valid SimpleFlatDto simpleFlatDto, BindingResult result, Principal principal)
+      throws IOException {
+
+    return "registrationFormPhoto2";
+  }
+
+  @RequestMapping(
     path = {"/image/{imgid}"},
     method = RequestMethod.GET
   )

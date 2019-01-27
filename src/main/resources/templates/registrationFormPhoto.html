@@ -1,0 +1,127 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap, CSS -->
+    <!--<link rel="stylesheet" href="/css/bootstrap.min.css">-->
+    <!--<link rel="stylesheet" href="/css/style.css">-->
+    <!--<link rel="stylesheet" href="/css/style_dropzone.css">-->
+    <link rel="stylesheet" href="/css/dropzone/dropzone-style.css">
+    <link rel="stylesheet" href="/css/bootstrap-dialog.css">
+
+  <!--  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+-->
+
+    <script src="/js/jquery-2.1.1.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap-dialog.js"></script>
+    <script type="text/javascript" src="/js/dropzone/dropzone.js"></script>
+    <script type="text/javascript" src="/js/dropzone/uploader.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+
+    <title>add photo</title></head>
+<body>
+
+
+
+<div class="container" name="Main container">
+    <div layout:fragment="content" th:remove="tag">
+
+    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css" rel="stylesheet" type="text/css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="/js/dropzone/uploader.js"></script>
+        <script type="text/javascript" src="/js/dropzone/dropzone.js"></script>-->
+
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                Dropzone.autoDiscover = false;
+                $(".dropzonePreviews").sortable({
+
+                    change: function (event, ui) {
+
+                        ui.placeholder.css({visibility: 'visible', border: '1px solid#337ab7' });
+
+                    }
+
+                });
+
+                $(".dropzonePreviews").dropzone({
+                    url: "GenericHandler.ashx",
+                    maxFiles: 5,
+                    addRemoveLinks: true,
+                    success: function (file, response) {
+                        var imgName = response;
+                        file.previewElement.classList.add("dz-success");
+                    },
+                    error: function (file, response) {
+                        file.previewElement.classList.add("dz-error");
+                    }
+                });
+            });
+        </script>
+
+
+        sadasa
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h3>Spring MVC + Dropzone.js Example</h3>
+                </div>
+                <div class="panel-body">
+                    <div>
+
+
+
+                        <form id="dropzone-form" class="dropzone"
+                              enctype="multipart/form-data">
+
+                            <div
+                                    class="dz-default dz-message file-dropzone text-center well col-sm-12">
+
+                                <span class="glyphicon glyphicon-paperclip"></span> <span>
+								To attach files, drag and drop here</span><br> <span>OR</span><br>
+                                <span>Just Click</span>
+                            </div>
+
+                            <!-- this is were the previews should be shown. -->
+                            <div class="dropzone-previews"></div>
+                        </form>
+                        <hr>
+                        <button id="upload-button" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-upload"></span> Upload
+                        </button>
+                        <a class="btn btn-primary pull-right" href="list">
+                            <span class="glyphicon glyphicon-eye-open"></span> View All Uploads
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>
