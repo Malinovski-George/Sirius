@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Profile;
 
 @Configuration
 @Aspect
-@Profile("production")
+//@Profile("production")
 public class LogUtil {
 
   private final Logger log = org.slf4j.LoggerFactory.getLogger(this.getClass());

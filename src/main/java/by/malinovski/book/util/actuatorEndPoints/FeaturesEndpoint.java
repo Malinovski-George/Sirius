@@ -1,19 +1,19 @@
 package by.malinovski.book.util.actuatorEndPoints;
 
-import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
-import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
+//import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
+//import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
 import org.springframework.stereotype.Component;
 
 @Component
-@Endpoint(id = "features") //   http://localhost:8080/actuator/features
+//@Endpoint(id = "features") //   http://localhost:8080/actuator/features
 public class FeaturesEndpoint {
 
   //    private Map<String, Feature> features = new ConcurrentHashMap<>();
   // ----------
-  @ReadOperation
-  public String features() {
-    return "asd";
-  }
+//  @ReadOperation
+//  public String features() {
+//    return "asd";
+//  }
 
   /*@ReadOperation
   public Feature feature(@Selector String name) {

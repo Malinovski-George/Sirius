@@ -161,7 +161,7 @@ public class Demo2Application implements WebMvcConfigurer {
   }
 
   @Bean
-  @Profile("debug")
+//  @Profile("debug")
   public CommonsRequestLoggingFilter requestLoggingFilter() {
     CommonsRequestLoggingFilter loggingFilter = new CommonsRequestLoggingFilter();
     loggingFilter.setIncludeClientInfo(true);
